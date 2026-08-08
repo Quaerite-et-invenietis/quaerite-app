@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quaerite!</title>
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#201F1C">
+
+<!-- iOS : comportement app installée -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Quaerite!">
+<link rel="apple-touch-icon" href="icon-180.png">
+
+<link rel="icon" href="icon-192.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #201F1C;
+    --card-bg: #262521;
+    --ink: #EAE7E0;
+    --ink-soft: #9C988D;
+    --ink-faint: #5A574E;
+    --line: #35332D;
+    --accent: #D97F42;
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Lora', serif;
+  }
+
+  .stage {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+  }
+
+  .deck-area {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .deck {
+    position: relative;
+    width: 100%;
+  }
+
+  .stack-edge {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    height: 16px;
+    border: 1px solid var(--line);
+    border-top: none;
+    border-radius: 0 0 13px 13px;
+    background: var(--card-bg);
+    display: none;
+  }
+  .stack-edge.e1 { bottom: -9px; z-index: 1; opacity: 0.55; }
+  .stack-edge.e2 { bottom: -17px; left: 20px; right: 20px; z-index: 0; opacity: 0.3; }
+  .stack-edge.visible { display: block; }
+
+  .card {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 34px 30px 30px;
+  }
+
+  .ref-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .ref-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .part-tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--ink-faint);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1px 5px;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    background: none;
+  }
+  .part-tag:hover { border-color: var(--ink-soft); color: var(--ink-soft); }
+  .ref {
+    font-style: italic;
+    font-size: 13px;
+    color: var(--accent);
+    margin-bottom: 0;
+  }
+  .arbo-path {
+    display: none;
+    margin-top: 6px;
+    margin-bottom: 0;
+  }
+  .arbo-path.show {
+    display: block;
+    margin-bottom: 14px;
+  }
+  .arbo-level {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    line-height: 1.7;
+    color: var(--ink-faint);
+  }
+  .arbo-level:nth-child(1) { padding-left: 0; }
+  .arbo-level:nth-child(2) { padding-left: 11px; }
+  .arbo-level:nth-child(3) { padding-left: 22px; }
+  .arbo-level:nth-child(4) { padding-left: 33px; }
+  .arbo-level:nth-child(5) { padding-left: 44px; }
+  .arbo-level:nth-last-child(-n+2) {
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+  .progress-count {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--ink-faint);
+    letter-spacing: 0.03em;
+  }
+
+  .question {
+    font-size: 23px;
+    font-weight: 400;
+    line-height: 1.45;
+    margin-bottom: 38px;
+  }
+
+  .choices {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .choice {
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 11px 0;
+    font-family: 'Lora', serif;
+    font-size: 16px;
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .choice:hover:not(.locked) { color: #FFFFFF; }
+  .choice.correct { font-weight: 600; color: var(--ink); }
+  .choice.wrong { color: var(--ink-faint); text-decoration: line-through; }
+  .choice.dimmed { color: var(--ink-faint); }
+
+  .explanation {
+    margin-top: 26px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    display: none;
+  }
+  .explanation.show { display: block; animation: reveal 0.3s ease; }
+  @keyframes reveal {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .explanation .exp-text {
+    font-family: 'Lora', serif;
+    font-style: normal;
+    font-size: 15px;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  .deepen {
+    margin-top: 16px;
+  }
+  .deepen-toggle {
+    background: none;
+    border: none;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    cursor: pointer;
+  }
+  .deepen-toggle:hover { color: var(--ink-soft); }
+  .deepen-toggle .glyph {
+    font-family: 'Lora', serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1;
+    color: var(--accent);
+  }
+  .deepen-body {
+    display: none;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin-top: 10px;
+    padding-left: 12px;
+    border-left: 2px solid var(--line);
+  }
+  .deepen-body.show { display: block; animation: reveal 0.3s ease; }
+
+  /* ---- écran de fin ---- */
+  .endview {
+    display: none;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 60px 30px;
+  }
+  .endview.show { display: block; animation: reveal 0.3s ease; }
+  .endview .msg {
+    font-size: 19px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  .endview .sub {
+    font-style: italic;
+    font-size: 13.5px;
+    color: var(--ink-faint);
+  }
+
+  /* ---- historique 7 jours ---- */
+  .week-history {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+  }
+  .week-dot-btn {
+    background: none;
+    border: none;
+    padding: 10px;
+    margin: -10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .week-dot-btn:disabled { cursor: default; }
+  .week-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    border: 1.5px solid var(--ink-faint);
+    display: block;
+    transition: transform 0.15s ease;
+  }
+  .week-dot.done { background: var(--accent); border-color: var(--accent); }
+  .week-dot.future { border-color: var(--line); }
+  .week-dot-btn.today .week-dot { border-color: var(--ink); }
+  .week-dot-btn:not(:disabled):hover .week-dot { transform: scale(1.2); }
+
+  .history-banner {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .history-back {
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--ink-faint);
+    cursor: pointer;
+  }
+  .history-back:hover { color: var(--ink-soft); }
+  .history-date {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 12.5px;
+    color: var(--accent);
+  }
+
+  /* ---- zone de test ---- */
+  .testbar {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Lora', serif;
+  }
+  .nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(234, 231, 224, 0.10);
+    border: 1px solid rgba(234, 231, 224, 0.16);
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 5;
+    padding: 0;
+    transition: background 0.15s ease, opacity 0.15s ease;
+  }
+  .nav-arrow svg { width: 15px; height: 15px; }
+  .nav-arrow:hover:not(:disabled) { background: rgba(234, 231, 224, 0.2); }
+  .nav-arrow:disabled { opacity: 0.2; cursor: default; }
+  .nav-arrow.left { left: -6px; }
+  .nav-arrow.right { right: -6px; }
+  .progressdots { display: flex; gap: 6px; }
+  .progressdots .pd {
+    width: 4px; height: 4px; border-radius: 50%;
+    background: var(--line); cursor: pointer;
+  }
+  .progressdots .pd.active { background: var(--ink-soft); width: 12px; border-radius: 2px; }
+  .warning {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    color: var(--ink-faint);
+    text-align: center;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+  }
+
+  @media (max-width: 460px) {
+    .question { font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stage">
+  <div class="deck-area" id="deckArea">
+    <button class="nav-arrow left" id="prevBtn" aria-label="Précédent">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+    <button class="nav-arrow right" id="nextBtn" aria-label="Suivant">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </button>
+
+    <div class="deck" id="deckWrap">
+      <div class="stack-edge e2" id="stackEdge2"></div>
+      <div class="stack-edge e1" id="stackEdge1"></div>
+      <div class="card" id="cardView">
+      <div class="history-banner" id="historyBanner" style="display:none;">
+        <button class="history-back" id="historyBackBtn">‹ Retour</button>
+        <span class="history-date" id="historyDateLabel"></span>
+      </div>
+      <div class="ref-row">
+        <div class="ref-left">
+          <button class="part-tag" id="partTag" type="button"></button>
+          <span class="ref" id="reference"></span>
+        </div>
+        <div class="progress-count" id="progressCount"></div>
+      </div>
+      <div class="arbo-path" id="arboPath"></div>
+      <div class="question" id="question"></div>
+      <div class="choices" id="choices"></div>
+      <div class="explanation" id="explanation">
+        <div class="exp-text" id="explanationText"></div>
+        <div class="deepen">
+          <button class="deepen-toggle" id="deepenToggle"><span class="glyph" id="deepenGlyph">+</span><span>Détails</span></button>
+          <div class="deepen-body" id="deepenBody"></div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <div class="endview" id="endView">
+      <div class="msg">C'est fait pour aujourd'hui.</div>
+      <div class="sub">5 nouvelles cartes t'attendent demain.</div>
+      <div class="week-history" id="weekHistory"></div>
+    </div>
+  </div>
+
+  <div class="testbar">
+    <div class="progressdots" id="progressdots"></div>
+</div>
+
+<script>
+const todayCards = [
+  {
+    reference: "Écriture Sainte",
+    part: "I.1.2.3",
+    arbo: "Première partie : La profession de la foi › Première section : « Je crois » – « Nous croyons » › Chapitre deuxième : Dieu à la rencontre de l'homme › Article 3 : La Sainte Écriture › IV. Le Canon des Écritures",
+    question: "Selon le CEC, combien de livres au total compose le canon catholique de la Bible (Ancien et Nouveau Testament réunis) ?",
+    choices: ["66", "73", "76", "81"],
+    correct: 1,
+    explanation: "Le CEC liste 46 livres pour l'Ancien Testament et 27 pour le Nouveau, soit 73 au total.",
+    source: "CEC §120",
+    more: "Le canon protestant en compte 66, en excluant les livres deutérocanoniques (comme 2 Maccabées ou la Sagesse)."
+  },
+  {
+    reference: "Morale (loi naturelle)",
+    part: "III.1.3.1",
+    arbo: "Troisième partie : La vie dans le Christ › Première section : La vocation de l'homme, la vie dans l'Esprit › Chapitre troisième : Le salut de Dieu, la Loi et la Grâce › Article 1 : La loi morale › I. La loi morale naturelle",
+    question: "Selon le CEC, quelle qualité fondamentale caractérise la loi morale naturelle ?",
+    choices: [
+      "Elle varie légitimement selon les cultures",
+      "Elle est immuable et universelle",
+      "Elle n'engage que les baptisés",
+      "Elle a été abrogée par la grâce du Nouveau Testament"
+    ],
+    correct: 1,
+    explanation: "Le CEC affirme qu'elle est « immuable » et que son autorité « s'étend à tous les hommes », même reniée elle ne peut être effacée du cœur de l'homme.",
+    source: "CEC §1954-1958",
+    more: "Seule son application concrète varie selon les époques et cultures — pas les principes eux-mêmes."
+  },
+  {
+    reference: "Mariologie",
+    part: "I.2.3.9",
+    arbo: "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre troisième : Je crois en l'Esprit Saint › Article 9 : « Je crois à la Sainte Église catholique » › Paragraphe 6 : Marie, Mère du Christ, Mère de l'Église",
+    question: "Le dogme de l'Assomption de la Vierge Marie a été proclamé par quel pape, en quelle année ?",
+    choices: ["Pie IX, en 1854", "Pie XII, en 1950", "Jean XXIII, en 1962", "Léon XIII, en 1891"],
+    correct: 1,
+    explanation: "Le CEC cite la proclamation du dogme de l'Assomption par Pie XII en 1950.",
+    source: "CEC §966",
+    more: "À ne pas confondre avec l'Immaculée Conception (Pie IX, 1854), qui porte sur le début et non la fin de la vie de Marie."
+  },
+  {
+    reference: "Sacrements",
+    part: "II.2.1.3",
+    arbo: "Deuxième partie : La célébration du mystère chrétien › Deuxième section : Les sept sacrements de l'Église › Chapitre premier : Les sacrements de l'initiation chrétienne › Article 3 : Le sacrement de l'Eucharistie › I. L'Eucharistie, source et sommet de la vie ecclésiale",
+    question: "Le CEC, citant saint Thomas d'Aquin, qualifie l'Eucharistie parmi les sept sacrements comme quoi ?",
+    choices: [
+      "le premier sacrement reçu",
+      "le sacrement des sacrements, fin de tous les autres",
+      "un sacrement facultatif",
+      "le seul sacrement renouvelable chaque jour"
+    ],
+    correct: 1,
+    explanation: "« Tous les autres sacrements sont ordonnés à celui-ci comme à leur fin » — l'Eucharistie tient une place unique parmi les sept.",
+    source: "CEC §1211",
+    more: "Cette place centrale explique pourquoi elle est dite « source et sommet » de toute la vie de l'Église."
+  },
+  {
+    reference: "Sacrements",
+    part: "II.1.1.2",
+    arbo: "Deuxième partie : La célébration du mystère chrétien › Première section : L'économie sacramentelle › Chapitre premier : Le mystère pascal dans le temps de l'Église › Article 2 : Le mystère pascal dans les sacrements de l'Église › II. Les sacrements de l'Église",
+    question: "Quels sont les trois sacrements qui impriment un caractère indélébile et ne peuvent donc jamais être répétés ?",
+    choices: [
+      "Baptême, Eucharistie, Mariage",
+      "Baptême, Confirmation, Ordre",
+      "Confirmation, Pénitence, Onction des malades",
+      "Ordre, Mariage, Onction des malades"
+    ],
+    correct: 1,
+    explanation: "Baptême, Confirmation et Ordre laissent un « caractère » indélébile dans l'âme ; les autres sacrements peuvent, eux, être reçus plusieurs fois.",
+    source: "CEC §1121",
+    more: "L'Ordre comporte trois degrés — épiscopat, presbytérat, diaconat — mais seuls les deux premiers relèvent du sacerdoce ; le diaconat est un degré de service, distinct."
+  }
+];
+
+// Lundi (weekHistory[0]) — 5 questions distinctes, vérifiées sur vatican.va
+const mondayCards = [
+  {
+    reference: "Concile de Nicée, 325",
+    part: "I.2.1.1",
+    arbo: "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre premier : Je crois en Dieu le Père › Article 1 : « Je crois en Dieu le Père tout-puissant, créateur du ciel et de la terre » › Paragraphe 2 : Le Père",
+    question: "Selon le CEC, qu'a confessé l'Église au premier concile œcuménique de Nicée, en 325, à propos du Fils ?",
+    choices: [
+      "Qu'il est une simple créature de Dieu",
+      "Qu'il est « consubstantiel » au Père, un seul Dieu avec lui",
+      "Qu'il n'a qu'une nature, purement divine",
+      "Qu'il procède du Père et de l'Esprit"
+    ],
+    correct: 1,
+    explanation: "Le CEC rapporte qu'à Nicée, l'Église a confessé le Fils « consubstantiel » (« homoousios ») au Père — un seul Dieu avec lui, contre l'arianisme qui en faisait une créature.",
+    source: "CEC §242",
+    more: "Le concile de Constantinople (381) reprendra et complétera cette expression dans le Symbole encore récité aujourd'hui."
+  },
+  {
+    reference: "Sermon sur la montagne",
+    part: "III.1.1.2",
+    arbo: "Troisième partie : La vie dans le Christ › Première section : La vocation de l'homme, la vie dans l'Esprit › Chapitre premier : La dignité de la personne humaine › Article 2 : Notre vocation à la béatitude › I. Les béatitudes",
+    question: "Combien de béatitudes le CEC recense-t-il, à la suite de Matthieu 5 ?",
+    choices: ["5", "7", "8", "10"],
+    correct: 2,
+    explanation: "Le CEC cite la liste complète des béatitudes de Matthieu 5 : huit, des « pauvres de cœur » aux « persécutés pour la justice ».",
+    source: "CEC §1716",
+    more: "Le CEC précise qu'elles reprennent et accomplissent les promesses faites au peuple élu depuis Abraham, non plus ordonnées à une terre mais au Royaume des cieux."
+  },
+  {
+    reference: "Vertus théologales",
+    part: "III.1.1.7",
+    arbo: "Troisième partie : La vie dans le Christ › Première section : La vocation de l'homme, la vie dans l'Esprit › Chapitre premier : La dignité de la personne humaine › Article 7 : Les vertus › II. Les vertus théologales",
+    question: "Selon le CEC, combien de vertus théologales y a-t-il, et lesquelles ?",
+    choices: [
+      "Deux : la foi et la charité",
+      "Trois : la foi, l'espérance et la charité",
+      "Quatre : les mêmes que les vertus cardinales",
+      "Sept, en comptant les dons de l'Esprit"
+    ],
+    correct: 1,
+    explanation: "Le CEC cite 1 Corinthiens 13,13 : « il y a trois vertus théologales : la foi, l'espérance et la charité ».",
+    source: "CEC §1813",
+    more: "Contrairement aux vertus humaines acquises par l'effort, le CEC précise qu'elles sont « infusées par Dieu dans l'âme des fidèles »."
+  },
+  {
+    reference: "Vertus cardinales",
+    part: "III.1.1.7",
+    arbo: "Troisième partie : La vie dans le Christ › Première section : La vocation de l'homme, la vie dans l'Esprit › Chapitre premier : La dignité de la personne humaine › Article 7 : Les vertus › I. Les vertus humaines",
+    question: "Le CEC nomme quatre vertus « cardinales », qui jouent un rôle charnière. Lesquelles ?",
+    choices: [
+      "Foi, espérance, charité, humilité",
+      "Prudence, justice, force, tempérance",
+      "Sagesse, science, conseil, piété",
+      "Patience, bonté, douceur, fidélité"
+    ],
+    correct: 1,
+    explanation: "Le CEC les nomme explicitement : « la prudence, la justice, la force et la tempérance », en citant le livre de la Sagesse (8,7).",
+    source: "CEC §1805",
+    more: "Le terme « cardinal » vient du latin cardo, le gond : toutes les autres vertus morales s'articulent, selon le CEC, autour de ces quatre-là."
+  },
+  {
+    reference: "Notre Père",
+    part: "IV.2.–.3",
+    arbo: "Quatrième partie : La prière chrétienne › Deuxième section : La prière du Seigneur, « Notre Père ! » › Article 3 : Les sept demandes",
+    question: "Selon le CEC, combien de demandes compte le Notre Père, et comment se répartissent-elles ?",
+    choices: [
+      "Cinq demandes, sans structure particulière",
+      "Sept demandes : trois tournées vers Dieu, quatre vers nos besoins",
+      "Dix demandes, comme les commandements",
+      "Trois demandes seulement"
+    ],
+    correct: 1,
+    explanation: "Le CEC parle de « sept demandes, sept bénédictions » : les trois premières « théologales » tournées vers la gloire du Père, les quatre dernières offrant notre misère à sa grâce.",
+    source: "CEC §2803",
+    more: "Le CEC file la métaphore de la vague : une première vague nous porte vers Dieu, une seconde redescend vers nos besoins concrets (pain, pardon, épreuve, mal)."
+  }
+];
+
+// Mercredi (weekHistory[2]) — 5 questions distinctes, vérifiées sur vatican.va
+const wednesdayCards = [
+  {
+    reference: "Trinité",
+    part: "I.2.1.1",
+    arbo: "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre premier : Je crois en Dieu le Père › Article 1 : « Je crois en Dieu le Père tout-puissant, créateur du ciel et de la terre » › Paragraphe 2 : Le Père",
+    question: "Le concile de Florence (1439) juge « légitime et raisonnable » que la tradition occidentale confesse l'Esprit Saint comme procédant du Père et...",
+    choices: ["du Père seul, à nouveau", "du Fils seul", "du Père et du Fils (Filioque)", "de la Trinité indistinctement"],
+    correct: 2,
+    explanation: "Le CEC explique que l'Occident affirme la procession de l'Esprit « du Père et du Fils » (Filioque), tandis que l'Orient insiste sur le Père comme origine première.",
+    source: "CEC §246-247",
+    more: "Ce désaccord théologique reste aujourd'hui un point de division réel avec les Églises orthodoxes."
+  },
+  {
+    reference: "Ecclésiologie",
+    part: "I.2.3.9",
+    arbo: "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre troisième : Je crois en l'Esprit Saint › Article 9 : « Je crois à la Sainte Église catholique » › III. L'Église est catholique",
+    question: "Vatican II enseigne que l'unique Église du Christ « subsiste » dans l'Église catholique — une formule plus prudente que « est ». Quelle expression latine emploie ce texte ?",
+    choices: ["Est identica", "Subsistit in", "Continetur in", "Manet unica"],
+    correct: 1,
+    explanation: "Le CEC cite Lumen Gentium 8 : l'Église du Christ « est réalisée dans (subsistit in) l'Église catholique ».",
+    source: "CEC §816",
+    more: "Cette formule reconnaît aussi des « éléments nombreux de sanctification » présents hors des structures visibles de l'Église catholique."
+  },
+  {
+    reference: "Eucharistie",
+    part: "II.2.1.3",
+    arbo: "Deuxième partie : La célébration du mystère chrétien › Deuxième section : Les sept sacrements de l'Église › Chapitre premier : Les sacrements de l'initiation chrétienne › Article 3 : Le sacrement de l'Eucharistie › V. Le sacrifice sacramentel, action de grâce, mémorial, présence",
+    question: "Le concile de Trente, cité par le CEC, nomme « transsubstantiation » le changement du pain et du vin. En quoi consiste précisément ce changement ?",
+    choices: [
+      "Un changement d'apparence seulement",
+      "Un changement de toute la substance du pain et du vin",
+      "Une union symbolique sans changement réel",
+      "Un changement limité à l'hostie consacrée par l'évêque"
+    ],
+    correct: 1,
+    explanation: "Le CEC cite Trente : « changement de toute la substance du pain en la substance du Corps du Christ (...) et de toute la substance du vin en la substance de son Sang ».",
+    source: "CEC §1376",
+    more: "Le CEC précise que cette présence est dite « réelle » non par exclusion des autres formes de présence du Christ, mais « par excellence »."
+  },
+  {
+    reference: "Eschatologie",
+    part: "I.2.3.12",
+    arbo: "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre troisième : Je crois en l'Esprit Saint › Article 12 : « Je crois à la vie éternelle » › III. La purification finale ou Purgatoire",
+    question: "Quel texte de l'Ancien Testament le CEC cite comme fondement scripturaire de la prière pour les défunts et de la doctrine du Purgatoire ?",
+    choices: ["Le Livre de la Sagesse", "2 Maccabées", "Le Siracide", "Tobie"],
+    correct: 1,
+    explanation: "Le CEC cite 2 Maccabées 12,46 : Judas Maccabée fait offrir un sacrifice expiatoire pour ses soldats morts.",
+    source: "CEC §1032",
+    more: "2 Maccabées est un livre deutérocanonique, absent du canon protestant — ce qui explique en partie pourquoi cette doctrine reste spécifiquement catholique et orthodoxe."
+  },
+  {
+    reference: "Morale",
+    part: "III.1.1.8",
+    arbo: "Troisième partie : La vie dans le Christ › Première section : La vocation de l'homme, la vie dans l'Esprit › Chapitre premier : La dignité de la personne humaine › Article 8 : Le péché › IV. La gravité du péché, péché mortel et véniel",
+    question: "Selon le CEC, quelles sont les trois conditions requises ensemble pour qu'un péché soit mortel ?",
+    choices: [
+      "Intention mauvaise, absence de repentir, récidive",
+      "Matière grave, pleine conscience, consentement délibéré",
+      "Scandale public, préméditation, refus du sacrement",
+      "Gravité objective, jeune âge, ignorance de la loi"
+    ],
+    correct: 1,
+    explanation: "Le CEC cite Reconciliatio et Paenitentia : « matière grave », « pleine conscience » et « consentement délibéré » — les trois conditions sont cumulatives.",
+    source: "CEC §1857",
+    more: "Le CEC précise ensuite que l'ignorance affectée et l'endurcissement du cœur n'atténuent pas le caractère volontaire du péché : ils l'aggravent."
+  }
+];
+
+// --- Contenu disponible : pour l'instant 3 jours de cartes vérifiées (15 au total). ---
+// L'app boucle dessus en attendant que d'autres lots de cartes soient ajoutés (jusqu'à 365).
+const contentPool = [todayCards, mondayCards, wednesdayCards];
+
+const LS_LAUNCH = 'quaerite_launch_date';
+const LS_HISTORY = 'quaerite_history';
+
+function isoOf(d) {
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+}
+function todayISO() { return isoOf(new Date()); }
+
+// Date de lancement PAR APPAREIL : le jour 1 démarre au premier lancement de chaque personne,
+// pas une date fixe partagée par tout le monde.
+function getLaunchDate() {
+  let v = localStorage.getItem(LS_LAUNCH);
+  if (!v) { v = todayISO(); localStorage.setItem(LS_LAUNCH, v); }
+  return v;
+}
+
+function daysBetween(fromISO, toISO) {
+  const a = new Date(fromISO + 'T00:00:00');
+  const b = new Date(toISO + 'T00:00:00');
+  return Math.round((b - a) / 86400000);
+}
+function getHistory() {
+  try { return JSON.parse(localStorage.getItem(LS_HISTORY)) || {}; } catch (e) { return {}; }
+}
+function saveHistory(dateISO, score) {
+  const h = getHistory();
+  h[dateISO] = { done: true, score };
+  localStorage.setItem(LS_HISTORY, JSON.stringify(h));
+}
+
+const launchDate = getLaunchDate();
+const dayIndex = daysBetween(launchDate, todayISO()); // 0 le jour du lancement, 1 le lendemain, etc.
+const todayDeck = contentPool[((dayIndex % contentPool.length) + contentPool.length) % contentPool.length];
+
+let cards = todayDeck;
+let sessionAnswers = new Array(todayDeck.length).fill(null);
+let scoreSaved = false;
+
+let currentWeekData = []; // reconstruit à chaque passage sur l'écran de fin, à partir des vraies dates
+let viewingHistoryDay = null; // null = aujourd'hui, sinon un objet du tableau ci-dessus
+let current = 0; // 0..cards.length-1 = cartes, cards.length = écran de fin
+let answered = false;
+const total = cards.length + 1;
+
+const els = {
+  deckWrap: document.getElementById('deckWrap'),
+  cardView: document.getElementById('cardView'),
+  endView: document.getElementById('endView'),
+  stackEdge1: document.getElementById('stackEdge1'),
+  stackEdge2: document.getElementById('stackEdge2'),
+  reference: document.getElementById('reference'),
+  partTag: document.getElementById('partTag'),
+  arboPath: document.getElementById('arboPath'),
+  progressCount: document.getElementById('progressCount'),
+  question: document.getElementById('question'),
+  choices: document.getElementById('choices'),
+  explanation: document.getElementById('explanation'),
+  explanationText: document.getElementById('explanationText'),
+  deepenToggle: document.getElementById('deepenToggle'),
+  deepenBody: document.getElementById('deepenBody'),
+  deepenGlyph: document.getElementById('deepenGlyph'),
+  prevBtn: document.getElementById('prevBtn'),
+  nextBtn: document.getElementById('nextBtn'),
+  progressdots: document.getElementById('progressdots'),
+  weekHistory: document.getElementById('weekHistory'),
+  historyBanner: document.getElementById('historyBanner'),
+  historyBackBtn: document.getElementById('historyBackBtn'),
+  historyDateLabel: document.getElementById('historyDateLabel')
+};
+
+const DAY_LABELS = ['D', 'L', 'M', 'M', 'J', 'V', 'S']; // getDay() : 0 = dimanche
+
+function buildWeekHistory() {
+  const hist = getHistory();
+  currentWeekData = [];
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date();
+    d.setDate(d.getDate() - i);
+    const iso = isoOf(d);
+    const entry = hist[iso];
+    currentWeekData.push({
+      iso,
+      label: DAY_LABELS[d.getDay()],
+      date: d.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' }),
+      done: !!(entry && entry.done),
+      score: entry ? entry.score : 0,
+      isToday: i === 0
+    });
+  }
+
+  els.weekHistory.innerHTML = '';
+  currentWeekData.forEach((day) => {
+    const btn = document.createElement('button');
+    btn.className = 'week-dot-btn' + (day.isToday ? ' today' : '');
+    btn.disabled = !day.done;
+    btn.setAttribute('aria-label', day.date + (day.done ? ` — ${day.score}/5` : ' — non fait'));
+    const dot = document.createElement('span');
+    dot.className = 'week-dot' + (day.done ? ' done' : '');
+    btn.appendChild(dot);
+    btn.addEventListener('click', () => enterHistoryDay(day));
+    els.weekHistory.appendChild(btn);
+  });
+}
+
+function enterHistoryDay(day) {
+  if (!day.done) return;
+  viewingHistoryDay = day;
+  const dIdxForDay = daysBetween(launchDate, day.iso);
+  const poolIdx = ((dIdxForDay % contentPool.length) + contentPool.length) % contentPool.length;
+  cards = contentPool[poolIdx];
+  current = 0;
+  render();
+}
+
+els.historyBackBtn.addEventListener('click', () => {
+  viewingHistoryDay = null;
+  cards = todayDeck;
+  current = cards.length;
+  render();
+});
+
+function buildProgressDots() {
+  els.progressdots.innerHTML = '';
+  for (let i = 0; i < total; i++) {
+    const d = document.createElement('span');
+    d.className = 'pd' + (i === current ? ' active' : '');
+    d.addEventListener('click', () => { current = i; render(); });
+    els.progressdots.appendChild(d);
+  }
+}
+
+function render() {
+  answered = false;
+  els.deepenBody.classList.remove('show');
+  els.deepenGlyph.textContent = '+';
+
+  if (current === cards.length) {
+    els.deckWrap.style.display = 'none';
+    els.endView.classList.add('show');
+
+    if (viewingHistoryDay === null && !scoreSaved) {
+      const score = sessionAnswers.reduce((n, ans, idx) => n + (ans === todayDeck[idx].correct ? 1 : 0), 0);
+      saveHistory(todayISO(), score);
+      scoreSaved = true;
+    }
+    buildWeekHistory();
+  } else {
+    els.endView.classList.remove('show');
+    els.deckWrap.style.display = 'block';
+
+    const c = cards[current];
+    els.reference.textContent = c.reference;
+    els.partTag.textContent = c.part;
+    els.arboPath.innerHTML = '';
+    c.arbo.split(' › ').forEach((level) => {
+      const d = document.createElement('div');
+      d.className = 'arbo-level';
+      d.textContent = level;
+      els.arboPath.appendChild(d);
+    });
+    els.arboPath.classList.remove('show');
+    els.progressCount.textContent = (current + 1) + ' / ' + cards.length;
+    els.question.textContent = c.question;
+
+    els.choices.innerHTML = '';
+    c.choices.forEach((text, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'choice';
+      btn.textContent = text;
+      btn.addEventListener('click', () => selectChoice(i));
+      els.choices.appendChild(btn);
+    });
+
+    els.explanation.classList.remove('show');
+
+    if (viewingHistoryDay !== null) {
+      // relecture d'un jour passé : bandeau de date, réponse déjà révélée, pas de pile
+      els.historyBanner.style.display = 'flex';
+      els.historyDateLabel.textContent = viewingHistoryDay.date;
+      els.stackEdge1.classList.remove('visible');
+      els.stackEdge2.classList.remove('visible');
+      selectChoice(c.correct);
+    } else {
+      els.historyBanner.style.display = 'none';
+      // la pile diminue visuellement au fil des cartes restantes
+      const remaining = cards.length - current - 1;
+      els.stackEdge1.classList.toggle('visible', remaining >= 1);
+      els.stackEdge2.classList.toggle('visible', remaining >= 2);
+    }
+  }
+
+  els.prevBtn.disabled = current === 0;
+  els.nextBtn.disabled = current === total - 1;
+  buildProgressDots();
+}
+
+function selectChoice(i) {
+  if (answered) return;
+  answered = true;
+  const c = cards[current];
+
+  if (viewingHistoryDay === null) {
+    sessionAnswers[current] = i;
+  }
+
+  const buttons = els.choices.querySelectorAll('.choice');
+  buttons.forEach((btn, idx) => {
+    btn.classList.add('locked');
+    if (idx === c.correct) btn.classList.add('correct');
+    else if (idx === i) btn.classList.add('wrong');
+    else btn.classList.add('dimmed');
+  });
+
+  els.explanationText.textContent = c.explanation;
+  els.deepenBody.textContent = c.more;
+  els.explanation.classList.add('show');
+}
+
+els.deepenToggle.addEventListener('click', () => {
+  const nowShown = els.deepenBody.classList.toggle('show');
+  els.deepenGlyph.textContent = nowShown ? '−' : '+';
+});
+
+els.partTag.addEventListener('click', () => {
+  els.arboPath.classList.toggle('show');
+});
+
+els.prevBtn.addEventListener('click', () => { if (current > 0) { current--; render(); } });
+els.nextBtn.addEventListener('click', () => { if (current < total - 1) { current++; render(); } });
+
+render();
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
+}
+</script>
+
+</body>
+</html>
