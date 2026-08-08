@@ -732,7 +732,7 @@ const wednesdayCards = [
 // L'app boucle dessus en attendant que d'autres lots de cartes soient ajoutés (jusqu'à 365).
 const contentPool = [todayCards, mondayCards, wednesdayCards];
 
-const LS_LAUNCH = 'quaerite_launch_date';
+const LS_PROGRESS = 'quaerite_progress';
 const LS_HISTORY = 'quaerite_history';
 
 function isoOf(d) {
@@ -740,29 +740,108 @@ function isoOf(d) {
 }
 function todayISO() { return isoOf(new Date()); }
 
-// Date de lancement PAR APPAREIL : le jour 1 démarre au premier lancement de chaque personne.
-function getLaunchDate() {
-  let v = localStorage.getItem(LS_LAUNCH);
-  if (!v) { v = todayISO(); localStorage.setItem(LS_LAUNCH, v); }
-  return v;
+// Système à rattrapage : un jeu de cartes n'est "consommé" que le jour où l'app est
+// réellement ouverte. Personne ne perd de contenu en cas d'absence — le prochain jeu
+// dans la file reste celui du lendemain (calendaire) suivant, pas celui calé sur la date.
+function getProgress() {
+  try {
+    const p = JSON.parse(localStorage.getItem(LS_PROGRESS));
+    if (p && typeof p.daysEngaged === 'number' && p.lastDate) return p;
+  } catch (e) {}
+  return null;
 }
-function daysBetween(fromISO, toISO) {
-  const a = new Date(fromISO + 'T00:00:00');
-  const b = new Date(toISO + 'T00:00:00');
-  return Math.round((b - a) / 86400000);
+function advanceProgress() {
+  const today = todayISO();
+  let p = getProgress();
+  if (!p) {
+    p = { daysEngaged: 1, lastDate: today };
+  } else if (p.lastDate !== today) {
+    p = { daysEngaged: p.daysEngaged + 1, lastDate: today };
+  }
+  // même jour déjà engagé : on ne touche à rien, le jeu du jour reste celui déjà assigné
+  localStorage.setItem(LS_PROGRESS, JSON.stringify(p));
+  return p;
 }
 function getHistory() {
   try { return JSON.parse(localStorage.getItem(LS_HISTORY)) || {}; } catch (e) { return {}; }
 }
-function saveHistory(dateISO, score) {
+function saveHistory(dateISO, score, deckIdx) {
   const h = getHistory();
-  h[dateISO] = { done: true, score };
+  h[dateISO] = { done: true, score, deckIndex: deckIdx };
   localStorage.setItem(LS_HISTORY, JSON.stringify(h));
 }
 
-const launchDate = getLaunchDate();
-const dayIndex = daysBetween(launchDate, todayISO());
-const todayDeck = contentPool[((dayIndex % contentPool.length) + contentPool.length) % contentPool.length];
+const LS_ASSIGN = 'quaerite_assignments'; // quel deck a été assigné à chaque jour engagé
+const LS_WEEKPLAN = 'quaerite_weekplans'; // quel jour de la semaine est une répétition, et lequel il répète
+
+function getAssignments() {
+  try { return JSON.parse(localStorage.getItem(LS_ASSIGN)) || {}; } catch (e) { return {}; }
+}
+function saveAssignment(idx, data) {
+  const a = getAssignments();
+  a[idx] = data;
+  localStorage.setItem(LS_ASSIGN, JSON.stringify(a));
+}
+function getWeekPlans() {
+  try { return JSON.parse(localStorage.getItem(LS_WEEKPLAN)) || {}; } catch (e) { return {}; }
+}
+function saveWeekPlans(p) { localStorage.setItem(LS_WEEKPLAN, JSON.stringify(p)); }
+
+// Un jour au hasard de chaque semaine (à partir de la semaine 2) rejoue un jour au hasard
+// de la semaine précédente, pour la révision. Garde-fou : jamais le jour 1 d'une semaine
+// qui répéterait le jour 7 de la précédente — ça ferait deux fois le même jeu, 2 jours de suite.
+function getOrCreateWeekPlan(weekNumber) {
+  const plans = getWeekPlans();
+  if (plans[weekNumber]) return plans[weekNumber];
+  let placementDay, sourceDay;
+  do {
+    placementDay = 1 + Math.floor(Math.random() * 7);
+    sourceDay = 1 + Math.floor(Math.random() * 7);
+  } while (placementDay === 1 && sourceDay === 7);
+  const plan = { placementDay, sourceDay };
+  plans[weekNumber] = plan;
+  saveWeekPlans(plans);
+  return plan;
+}
+
+function countFreshBefore(idx) {
+  const a = getAssignments();
+  let n = 0;
+  for (let i = 1; i < idx; i++) {
+    if (a[i] && !a[i].isRepeat) n++;
+  }
+  return n;
+}
+
+// Calcule (et mémorise une fois pour toutes) le deck du jour n° idx (1 = premier jour jamais engagé).
+function getOrCreateAssignment(idx) {
+  const assignments = getAssignments();
+  if (assignments[idx]) return assignments[idx];
+
+  const weekNumber = Math.ceil(idx / 7);
+  const dayInWeek = ((idx - 1) % 7) + 1;
+
+  if (weekNumber >= 2) {
+    const plan = getOrCreateWeekPlan(weekNumber);
+    if (dayInWeek === plan.placementDay) {
+      const sourceIdx = (weekNumber - 2) * 7 + plan.sourceDay;
+      const sourceAssignment = getOrCreateAssignment(sourceIdx);
+      const result = { deckIndex: sourceAssignment.deckIndex, isRepeat: true, sourceIdx };
+      saveAssignment(idx, result);
+      return result;
+    }
+  }
+
+  const freshCount = countFreshBefore(idx);
+  const result = { deckIndex: freshCount % contentPool.length, isRepeat: false };
+  saveAssignment(idx, result);
+  return result;
+}
+
+const progress = advanceProgress();
+const todayAssignment = getOrCreateAssignment(progress.daysEngaged);
+const dayIndex = progress.daysEngaged - 1;
+const todayDeck = contentPool[todayAssignment.deckIndex];
 
 let cards = todayDeck;
 let sessionAnswers = new Array(todayDeck.length).fill(null);
@@ -872,9 +951,10 @@ function buildWeekHistory() {
 function enterHistoryDay(day) {
   if (!day.done) return;
   viewingHistoryDay = day;
-  const dIdxForDay = daysBetween(launchDate, day.iso);
-  const poolIdx = ((dIdxForDay % contentPool.length) + contentPool.length) % contentPool.length;
-  cards = contentPool[poolIdx];
+  const hist = getHistory();
+  const entry = hist[day.iso];
+  const poolIdx = entry && typeof entry.deckIndex === 'number' ? entry.deckIndex : 0;
+  cards = contentPool[poolIdx % contentPool.length];
   current = 0;
   render();
 }
@@ -906,7 +986,7 @@ function render() {
 
     if (viewingHistoryDay === null && !scoreSaved) {
       const score = sessionAnswers.reduce((n, ans, idx) => n + (ans === todayDeck[idx].correct ? 1 : 0), 0);
-      saveHistory(todayISO(), score);
+      saveHistory(todayISO(), score, todayAssignment.deckIndex);
       scoreSaved = true;
     }
     buildWeekHistory();
