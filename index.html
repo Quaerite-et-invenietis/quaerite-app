@@ -1,33 +1,34 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Quaerite!</title>
-
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#201F1C">
-
+<link href="manifest.json" rel="manifest"/>
+<meta content="#131313" name="theme-color"/>
 <!-- iOS : comportement app installée -->
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Quaerite!">
-<link rel="apple-touch-icon" href="icon-180.png">
-
-<link rel="icon" href="icon-192.png">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+<meta content="Quaerite!" name="apple-mobile-web-app-title"/>
+<link href="icon-180.png" rel="apple-touch-icon"/>
+<link href="icon-192.png" rel="icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <style>
   :root{
-    --bg: #201F1C;
-    --card-bg: #262521;
-    --ink: #EAE7E0;
-    --ink-soft: #9C988D;
-    --ink-faint: #5A574E;
-    --line: #35332D;
-    --accent: #D97F42;
+    --bg: #131313; /* Dark background */
+    --card-bg: #2a2a2a;
+    --ink: #e5e2e1;
+    --ink-soft: #c4c5d6;
+    --ink-faint: #8e90a0;
+    --line: #444654;
+    --accent: #b8c4ff; /* Primary */
+    --accent-light: #002585; /* On Primary slightly darker */
+    --correct-bg: #00513a; /* Darker green */
+    --correct-text: #67fcc6;
+    --wrong-bg: #93000a;
+    --wrong-text: #ffdad6;
   }
 
   * { box-sizing: border-box; }
@@ -36,7 +37,7 @@
     min-height: 100vh;
     background: var(--bg);
     color: var(--ink);
-    font-family: 'Lora', serif;
+    font-family: 'Inter', sans-serif;
   }
 
   .stage {
@@ -44,34 +45,105 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 40px 24px;
+    justify-content: flex-start;
+    padding: 24px 16px;
+    padding-top: max(24px, env(safe-area-inset-top));
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
+  }
+
+  .top-bar {
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    padding: 0 8px;
+  }
+  
+  .history-banner {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .history-back {
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  }
+  .history-back:hover { color: var(--ink); border-color: var(--ink-faint); }
+  .history-date {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .progress-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .progress-bar-bg {
+    flex: 1;
+    height: 8px;
+    background: var(--line);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+  }
+  .progress-count {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    min-width: 40px;
+    text-align: right;
   }
 
   .deck-area {
     position: relative;
     width: 100%;
-    max-width: 400px;
+    max-width: 420px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
 
   .deck {
     position: relative;
     width: 100%;
+    flex: 1;
   }
 
   .stack-edge {
     position: absolute;
-    left: 10px;
-    right: 10px;
+    left: 12px;
+    right: 12px;
     height: 16px;
     border: 1px solid var(--line);
     border-top: none;
-    border-radius: 0 0 13px 13px;
+    border-radius: 0 0 24px 24px;
     background: var(--card-bg);
     display: none;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
   }
-  .stack-edge.e1 { bottom: -9px; z-index: 1; opacity: 0.55; }
-  .stack-edge.e2 { bottom: -17px; left: 20px; right: 20px; z-index: 0; opacity: 0.3; }
+  .stack-edge.e1 { bottom: -10px; z-index: 1; opacity: 0.8; }
+  .stack-edge.e2 { bottom: -20px; left: 24px; right: 24px; z-index: 0; opacity: 0.5; }
   .stack-edge.visible { display: block; }
 
   .card {
@@ -80,114 +152,122 @@
     width: 100%;
     background: var(--card-bg);
     border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 34px 30px 30px;
+    border-radius: 28px;
+    padding: 32px 24px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
   }
 
   .ref-row {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
-    margin-bottom: 12px;
+    margin-bottom: 20px;
   }
   .ref-left {
     display: flex;
     align-items: center;
     gap: 8px;
+    flex-wrap: wrap;
   }
   .part-tag {
     font-family: 'Inter', sans-serif;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 600;
-    color: var(--ink-faint);
-    border: 1px solid var(--line);
-    border-radius: 4px;
-    padding: 1px 5px;
-    letter-spacing: 0.02em;
-    cursor: pointer;
-    background: none;
-  }
-  .part-tag:hover { border-color: var(--ink-soft); color: var(--ink-soft); }
-  .ref {
-    font-style: italic;
-    font-size: 13px;
     color: var(--accent);
+    background: var(--accent-light);
+    border: none;
+    border-radius: 12px;
+    padding: 4px 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .part-tag:hover { background: var(--accent); color: var(--bg); }
+  .ref {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-soft);
     margin-bottom: 0;
   }
   .arbo-path {
     display: none;
-    margin-top: 6px;
-    margin-bottom: 0;
+    margin-bottom: 24px;
+    background: var(--bg);
+    padding: 12px 16px;
+    border-radius: 16px;
   }
   .arbo-path.show {
     display: block;
-    margin-bottom: 14px;
+    animation: reveal 0.3s ease;
   }
   .arbo-level {
     font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    line-height: 1.7;
-    color: var(--ink-faint);
-  }
-  .arbo-level:nth-child(1) { padding-left: 0; }
-  .arbo-level:nth-child(2) { padding-left: 11px; }
-  .arbo-level:nth-child(3) { padding-left: 22px; }
-  .arbo-level:nth-child(4) { padding-left: 33px; }
-  .arbo-level:nth-child(5) { padding-left: 44px; }
-  .arbo-level:nth-last-child(-n+2) {
+    font-size: 12px;
+    line-height: 1.4;
     color: var(--ink-soft);
-    font-weight: 500;
   }
-  .progress-count {
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    color: var(--ink-faint);
-    letter-spacing: 0.03em;
+  .arbo-level:last-child {
+    color: var(--ink);
+    font-weight: 600;
   }
 
   .question {
-    font-size: 23px;
-    font-weight: 400;
-    line-height: 1.45;
-    margin-bottom: 38px;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 32px;
+    color: var(--ink);
+    letter-spacing: -0.01em;
   }
 
   .choices {
     display: flex;
     flex-direction: column;
+    gap: 12px;
   }
 
   .choice {
     text-align: left;
-    background: none;
-    border: none;
-    padding: 11px 0;
-    font-family: 'Lora', serif;
+    background: var(--bg);
+    border: 2px solid transparent;
+    border-radius: 20px;
+    padding: 16px 20px;
+    font-family: 'Inter', sans-serif;
     font-size: 16px;
+    font-weight: 500;
     color: var(--ink);
     cursor: pointer;
+    transition: all 0.2s ease;
   }
-  .choice:hover:not(.locked) { color: #FFFFFF; }
-  .choice.correct { font-weight: 600; color: var(--ink); }
-  .choice.wrong { color: var(--ink-faint); text-decoration: line-through; }
-  .choice.dimmed { color: var(--ink-faint); }
+  .choice:hover:not(.locked) { border-color: var(--ink-faint); }
+  .choice.correct { 
+    background: var(--correct-bg); 
+    border-color: var(--correct-bg);
+    color: var(--correct-text); 
+  }
+  .choice.wrong { 
+    background: var(--wrong-bg); 
+    border-color: var(--wrong-bg);
+    color: var(--wrong-text);
+  }
+  .choice.dimmed { opacity: 0.5; }
 
   .explanation {
-    margin-top: 26px;
-    padding-top: 20px;
+    margin-top: 32px;
+    padding-top: 24px;
     border-top: 1px solid var(--line);
     display: none;
   }
-  .explanation.show { display: block; animation: reveal 0.3s ease; }
+  .explanation.show { display: block; animation: reveal 0.4s ease; }
   @keyframes reveal {
-    from { opacity: 0; transform: translateY(-4px); }
+    from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
   .explanation .exp-text {
-    font-family: 'Lora', serif;
-    font-style: normal;
+    font-family: 'Inter', sans-serif;
     font-size: 15px;
+    font-weight: 500;
     color: var(--ink);
     line-height: 1.6;
   }
@@ -198,221 +278,233 @@
   .deepen-toggle {
     background: none;
     border: none;
-    padding: 0;
+    padding: 8px 0;
     display: inline-flex;
     align-items: center;
-    gap: 7px;
+    gap: 6px;
     font-family: 'Inter', sans-serif;
-    font-size: 10.5px;
+    font-size: 14px;
     font-weight: 600;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
+    color: var(--accent);
     cursor: pointer;
   }
-  .deepen-toggle:hover { color: var(--ink-soft); }
+  .deepen-toggle:hover { opacity: 0.8; }
   .deepen-toggle .glyph {
-    font-family: 'Lora', serif;
-    font-weight: 400;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1;
-    color: var(--accent);
+    font-weight: bold;
   }
   .deepen-body {
     display: none;
     font-family: 'Inter', sans-serif;
-    font-style: normal;
-    font-size: 12.5px;
+    font-size: 14px;
     color: var(--ink-soft);
     line-height: 1.6;
-    margin-top: 10px;
-    padding-left: 12px;
-    border-left: 2px solid var(--line);
+    margin-top: 12px;
+    padding: 16px;
+    background: var(--bg);
+    border-radius: 16px;
   }
   .deepen-body.show { display: block; animation: reveal 0.3s ease; }
+
+  .nav-controls {
+    margin-top: 32px;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  
+  .nav-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px;
+    border-radius: 24px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+  }
+  .nav-btn.secondary {
+    background: var(--bg);
+    color: var(--ink-soft);
+  }
+  .nav-btn.primary {
+    background: var(--accent);
+    color: var(--bg);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+  }
+  .nav-btn.primary.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+  .nav-btn:hover:not(:disabled) { transform: scale(0.98); }
+  .nav-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  
+  .nav-btn svg { width: 20px; height: 20px; }
 
   /* ---- écran de fin ---- */
   .endview {
     display: none;
     width: 100%;
-    max-width: 400px;
+    max-width: 420px;
     text-align: center;
     background: var(--card-bg);
     border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 60px 30px;
+    border-radius: 28px;
+    padding: 48px 24px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
   }
-  .endview.show { display: block; animation: reveal 0.3s ease; }
+  .endview.show { display: block; animation: reveal 0.4s ease; }
+  .end-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--correct-bg);
+    color: var(--correct-text);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+  }
+  .end-icon svg { width: 40px; height: 40px; }
   .endview .msg {
-    font-size: 19px;
-    line-height: 1.5;
-    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 12px;
   }
   .endview .sub {
-    font-style: italic;
-    font-size: 13.5px;
-    color: var(--ink-faint);
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin-bottom: 32px;
   }
 
   /* ---- historique 7 jours ---- */
   .week-history {
     display: flex;
     justify-content: space-between;
-    margin-top: 30px;
-    padding-top: 22px;
+    margin-top: 32px;
+    padding-top: 24px;
     border-top: 1px solid var(--line);
   }
   .week-dot-btn {
     background: none;
     border: none;
-    padding: 10px;
-    margin: -10px;
+    padding: 8px 4px;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .week-dot-btn:disabled { cursor: default; }
+  .week-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink-faint);
+  }
+  .week-dot-btn.today .week-label { color: var(--ink); }
+  .week-dot {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--bg);
+    color: var(--ink-faint);
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.2s;
   }
-  .week-dot-btn:disabled { cursor: default; }
-  .week-dot {
-    width: 11px;
-    height: 11px;
-    border-radius: 50%;
-    border: 1.5px solid var(--ink-faint);
-    display: block;
-    transition: transform 0.15s ease;
-  }
-  .week-dot.done { background: var(--accent); border-color: var(--accent); }
-  .week-dot.future { border-color: var(--line); }
-  .week-dot-btn.today .week-dot { border-color: var(--ink); }
-  .week-dot-btn:not(:disabled):hover .week-dot { transform: scale(1.2); }
-
-  .history-banner {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: 18px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--line);
-  }
-  .history-back {
-    background: none;
-    border: none;
-    padding: 0;
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    color: var(--ink-faint);
-    cursor: pointer;
-  }
-  .history-back:hover { color: var(--ink-soft); }
-  .history-date {
-    font-family: 'Lora', serif;
-    font-style: italic;
-    font-size: 12.5px;
-    color: var(--accent);
-  }
+  .week-dot.done { background: var(--accent); color: var(--bg); }
+  .week-dot.future { opacity: 0.5; border: 1px dashed var(--ink-faint); background: transparent; }
+  .week-dot-btn:not(:disabled):hover .week-dot { transform: scale(1.1); }
 
   /* ---- zone de test ---- */
   .testbar {
     margin-top: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    font-family: 'Lora', serif;
+    width: 100%;
+    max-width: 420px;
   }
-  .nav-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: rgba(234, 231, 224, 0.10);
-    border: 1px solid rgba(234, 231, 224, 0.16);
-    color: var(--ink);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 5;
-    padding: 0;
-    transition: background 0.15s ease, opacity 0.15s ease;
-  }
-  .nav-arrow svg { width: 15px; height: 15px; }
-  .nav-arrow:hover:not(:disabled) { background: rgba(234, 231, 224, 0.2); }
-  .nav-arrow:disabled { opacity: 0.2; cursor: default; }
-  .nav-arrow.left { left: -6px; }
-  .nav-arrow.right { right: -6px; }
-  .progressdots { display: flex; gap: 6px; }
-  .progressdots .pd {
-    width: 4px; height: 4px; border-radius: 50%;
-    background: var(--line); cursor: pointer;
-  }
-  .progressdots .pd.active { background: var(--ink-soft); width: 12px; border-radius: 2px; }
   .warning {
     font-family: 'Inter', sans-serif;
-    font-size: 10px;
+    font-size: 12px;
     color: var(--ink-faint);
     text-align: center;
-    line-height: 1.6;
-    letter-spacing: 0.02em;
+    line-height: 1.5;
   }
 
   @media (max-width: 460px) {
     .question { font-size: 20px; }
   }
 </style>
-</head>
+<style>.arbo-level:nth-child(1) { padding-left: 0; } .arbo-level:nth-child(2) { padding-left: 8px; } .arbo-level:nth-child(3) { padding-left: 16px; } .arbo-level:nth-child(4) { padding-left: 24px; } .arbo-level:nth-child(5) { padding-left: 32px; }</style></head>
 <body>
-
 <div class="stage">
-  <div class="deck-area" id="deckArea">
-    <button class="nav-arrow left" id="prevBtn" aria-label="Précédent">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-    </button>
-    <button class="nav-arrow right" id="nextBtn" aria-label="Suivant">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-    </button>
-
-    <div class="deck" id="deckWrap">
-      <div class="stack-edge e2" id="stackEdge2"></div>
-      <div class="stack-edge e1" id="stackEdge1"></div>
-      <div class="card" id="cardView">
-      <div class="history-banner" id="historyBanner" style="display:none;">
-        <button class="history-back" id="historyBackBtn">‹ Retour</button>
-        <span class="history-date" id="historyDateLabel"></span>
-      </div>
-      <div class="ref-row">
-        <div class="ref-left">
-          <button class="part-tag" id="partTag" type="button"></button>
-          <span class="ref" id="reference"></span>
-        </div>
-        <div class="progress-count" id="progressCount"></div>
-      </div>
-      <div class="arbo-path" id="arboPath"></div>
-      <div class="question" id="question"></div>
-      <div class="choices" id="choices"></div>
-      <div class="explanation" id="explanation">
-        <div class="exp-text" id="explanationText"></div>
-        <div class="deepen">
-          <button class="deepen-toggle" id="deepenToggle"><span class="glyph" id="deepenGlyph">+</span><span>Détails</span></button>
-          <div class="deepen-body" id="deepenBody"></div>
-        </div>
-      </div>
-    </div>
-    </div>
-
-    <div class="endview" id="endView">
-      <div class="msg">C'est fait pour aujourd'hui.</div>
-      <div class="sub">5 nouvelles cartes t'attendent demain.</div>
-      <div class="week-history" id="weekHistory"></div>
-    </div>
-  </div>
-
-  <div class="testbar">
-    <div class="progressdots" id="progressdots"></div>
+<div class="top-bar" id="topBar">
+<div class="progress-container" id="progressContainer">
+<div class="progress-bar-bg">
+<div class="progress-bar-fill" id="progressBar"></div>
 </div>
-
+<div class="progress-count" id="progressCount"></div>
+</div>
+<div class="history-banner" id="historyBanner" style="display:none;">
+<button class="history-back" id="historyBackBtn">‹ Retour</button>
+<span class="history-date" id="historyDateLabel"></span>
+</div>
+</div>
+<div class="deck-area" id="deckArea">
+<div class="deck" id="deckWrap">
+<div class="stack-edge e2" id="stackEdge2"></div>
+<div class="stack-edge e1" id="stackEdge1"></div>
+<div class="card" id="cardView">
+<div class="ref-row">
+<div class="ref-left">
+<button class="part-tag" id="partTag" type="button"></button>
+<span class="ref" id="reference"></span>
+</div>
+</div>
+<div class="arbo-path" id="arboPath"></div>
+<div class="question" id="question"></div>
+<div class="choices" id="choices"></div>
+<div class="explanation" id="explanation">
+<div class="exp-text" id="explanationText"></div>
+<div class="deepen">
+<button class="deepen-toggle" id="deepenToggle"><span class="glyph" id="deepenGlyph">+</span><span>Détails</span></button>
+<div class="deepen-body" id="deepenBody"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="nav-controls" id="navControls">
+<button aria-label="Précédent" class="nav-btn secondary" id="prevBtn">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+</button>
+<button aria-label="Suivant" class="nav-btn primary" id="nextBtn">
+            Continuer
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+</button>
+</div>
+<div class="endview" id="endView">
+<div class="end-icon">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+</div>
+<div class="msg">C'est fait pour aujourd'hui.</div>
+<div class="sub">5 nouvelles cartes t'attendent demain.</div>
+<div class="week-history" id="weekHistory"></div>
+</div>
+</div>
+</div>
 <script>
 const todayCards = [
   {
@@ -647,14 +739,12 @@ function isoOf(d) {
 }
 function todayISO() { return isoOf(new Date()); }
 
-// Date de lancement PAR APPAREIL : le jour 1 démarre au premier lancement de chaque personne,
-// pas une date fixe partagée par tout le monde.
+// Date de lancement PAR APPAREIL : le jour 1 démarre au premier lancement de chaque personne.
 function getLaunchDate() {
   let v = localStorage.getItem(LS_LAUNCH);
   if (!v) { v = todayISO(); localStorage.setItem(LS_LAUNCH, v); }
   return v;
 }
-
 function daysBetween(fromISO, toISO) {
   const a = new Date(fromISO + 'T00:00:00');
   const b = new Date(toISO + 'T00:00:00');
@@ -670,20 +760,23 @@ function saveHistory(dateISO, score) {
 }
 
 const launchDate = getLaunchDate();
-const dayIndex = daysBetween(launchDate, todayISO()); // 0 le jour du lancement, 1 le lendemain, etc.
+const dayIndex = daysBetween(launchDate, todayISO());
 const todayDeck = contentPool[((dayIndex % contentPool.length) + contentPool.length) % contentPool.length];
 
 let cards = todayDeck;
 let sessionAnswers = new Array(todayDeck.length).fill(null);
 let scoreSaved = false;
 
-let currentWeekData = []; // reconstruit à chaque passage sur l'écran de fin, à partir des vraies dates
+let currentWeekData = [];
 let viewingHistoryDay = null; // null = aujourd'hui, sinon un objet du tableau ci-dessus
-let current = 0; // 0..cards.length-1 = cartes, cards.length = écran de fin
+let current = 0;
 let answered = false;
 const total = cards.length + 1;
 
 const els = {
+  topBar: document.getElementById('topBar'),
+  progressContainer: document.getElementById('progressContainer'),
+  progressBar: document.getElementById('progressBar'),
   deckWrap: document.getElementById('deckWrap'),
   cardView: document.getElementById('cardView'),
   endView: document.getElementById('endView'),
@@ -700,9 +793,9 @@ const els = {
   deepenToggle: document.getElementById('deepenToggle'),
   deepenBody: document.getElementById('deepenBody'),
   deepenGlyph: document.getElementById('deepenGlyph'),
+  navControls: document.getElementById('navControls'),
   prevBtn: document.getElementById('prevBtn'),
   nextBtn: document.getElementById('nextBtn'),
-  progressdots: document.getElementById('progressdots'),
   weekHistory: document.getElementById('weekHistory'),
   historyBanner: document.getElementById('historyBanner'),
   historyBackBtn: document.getElementById('historyBackBtn'),
@@ -735,8 +828,16 @@ function buildWeekHistory() {
     btn.className = 'week-dot-btn' + (day.isToday ? ' today' : '');
     btn.disabled = !day.done;
     btn.setAttribute('aria-label', day.date + (day.done ? ` — ${day.score}/5` : ' — non fait'));
+
+    const label = document.createElement('span');
+    label.className = 'week-label';
+    label.textContent = day.label;
+
     const dot = document.createElement('span');
     dot.className = 'week-dot' + (day.done ? ' done' : '');
+    dot.textContent = day.done ? day.score : '';
+
+    btn.appendChild(label);
     btn.appendChild(dot);
     btn.addEventListener('click', () => enterHistoryDay(day));
     els.weekHistory.appendChild(btn);
@@ -760,23 +861,22 @@ els.historyBackBtn.addEventListener('click', () => {
   render();
 });
 
-function buildProgressDots() {
-  els.progressdots.innerHTML = '';
-  for (let i = 0; i < total; i++) {
-    const d = document.createElement('span');
-    d.className = 'pd' + (i === current ? ' active' : '');
-    d.addEventListener('click', () => { current = i; render(); });
-    els.progressdots.appendChild(d);
-  }
+function updateProgress() {
+    const pct = ((current) / cards.length) * 100;
+    els.progressBar.style.width = pct + '%';
+    els.progressCount.textContent = (current + 1) + '/' + cards.length;
 }
 
 function render() {
   answered = false;
   els.deepenBody.classList.remove('show');
   els.deepenGlyph.textContent = '+';
+  els.nextBtn.classList.remove('show');
 
   if (current === cards.length) {
     els.deckWrap.style.display = 'none';
+    els.navControls.style.display = 'none';
+    els.topBar.style.display = 'none';
     els.endView.classList.add('show');
 
     if (viewingHistoryDay === null && !scoreSaved) {
@@ -788,19 +888,23 @@ function render() {
   } else {
     els.endView.classList.remove('show');
     els.deckWrap.style.display = 'block';
+    els.navControls.style.display = 'flex';
+    els.topBar.style.display = 'flex';
 
     const c = cards[current];
     els.reference.textContent = c.reference;
     els.partTag.textContent = c.part;
     els.arboPath.innerHTML = '';
-    c.arbo.split(' › ').forEach((level) => {
+
+    const pathParts = c.arbo.split(' › ');
+    pathParts.forEach((level, idx) => {
       const d = document.createElement('div');
       d.className = 'arbo-level';
-      d.textContent = level;
+      d.textContent = idx === 0 ? level : '› ' + level;
       els.arboPath.appendChild(d);
     });
+
     els.arboPath.classList.remove('show');
-    els.progressCount.textContent = (current + 1) + ' / ' + cards.length;
     els.question.textContent = c.question;
 
     els.choices.innerHTML = '';
@@ -813,17 +917,18 @@ function render() {
     });
 
     els.explanation.classList.remove('show');
+    updateProgress();
 
     if (viewingHistoryDay !== null) {
-      // relecture d'un jour passé : bandeau de date, réponse déjà révélée, pas de pile
+      els.progressContainer.style.display = 'none';
       els.historyBanner.style.display = 'flex';
       els.historyDateLabel.textContent = viewingHistoryDay.date;
       els.stackEdge1.classList.remove('visible');
       els.stackEdge2.classList.remove('visible');
       selectChoice(c.correct);
     } else {
+      els.progressContainer.style.display = 'flex';
       els.historyBanner.style.display = 'none';
-      // la pile diminue visuellement au fil des cartes restantes
       const remaining = cards.length - current - 1;
       els.stackEdge1.classList.toggle('visible', remaining >= 1);
       els.stackEdge2.classList.toggle('visible', remaining >= 2);
@@ -831,8 +936,6 @@ function render() {
   }
 
   els.prevBtn.disabled = current === 0;
-  els.nextBtn.disabled = current === total - 1;
-  buildProgressDots();
 }
 
 function selectChoice(i) {
@@ -855,6 +958,8 @@ function selectChoice(i) {
   els.explanationText.textContent = c.explanation;
   els.deepenBody.textContent = c.more;
   els.explanation.classList.add('show');
+
+  els.nextBtn.classList.add('show');
 }
 
 els.deepenToggle.addEventListener('click', () => {
@@ -877,6 +982,4 @@ if ('serviceWorker' in navigator) {
   });
 }
 </script>
-
-</body>
-</html>
+</body></html>
