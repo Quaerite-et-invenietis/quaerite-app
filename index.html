@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html lang="fr"><head>
@@ -10,11 +11,185 @@
 <meta content="yes" name="apple-mobile-web-app-capable"/>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
 <meta content="Quaerite!" name="apple-mobile-web-app-title"/>
-<link href="icon-180.png" rel="apple-touch-icon"/>
+<link href="icon-192.png" rel="apple-touch-icon"/>
 <link href="icon-192.png" rel="icon"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "secondary-fixed": "#ffdcc4",
+                "surface-container-high": "#2a2a2a",
+                "background": "#131313",
+                "surface-container-highest": "#353534",
+                "primary-fixed": "#dde1ff",
+                "tertiary": "#44dfab",
+                "surface": "#131313",
+                "primary-fixed-dim": "#b8c4ff",
+                "surface-container": "#201f1f",
+                "on-secondary-fixed-variant": "#6f3800",
+                "surface-variant": "#353534",
+                "on-tertiary-fixed": "#002116",
+                "on-error-container": "#ffdad6",
+                "on-surface": "#e5e2e1",
+                "tertiary-container": "#00a47a",
+                "secondary-container": "#db7605",
+                "on-secondary-container": "#442000",
+                "secondary": "#ffb77f",
+                "on-error": "#690005",
+                "on-primary-fixed": "#001453",
+                "surface-container-lowest": "#0e0e0e",
+                "surface-container-low": "#1c1b1b",
+                "on-primary-container": "#001f75",
+                "primary": "#b8c4ff",
+                "primary-container": "#6b89ff",
+                "on-tertiary-fixed-variant": "#00513a",
+                "error-container": "#93000a",
+                "surface-bright": "#393939",
+                "on-tertiary": "#003827",
+                "on-secondary-fixed": "#2f1500",
+                "on-primary-fixed-variant": "#0337b8",
+                "inverse-surface": "#e5e2e1",
+                "on-secondary": "#4e2600",
+                "outline": "#8e90a0",
+                "inverse-primary": "#2f52d0",
+                "on-surface-variant": "#c4c5d6",
+                "secondary-fixed-dim": "#ffb77f",
+                "on-background": "#e5e2e1",
+                "surface-dim": "#131313",
+                "on-tertiary-container": "#003122",
+                "error": "#ffb4ab",
+                "on-primary": "#002585",
+                "surface-tint": "#b8c4ff",
+                "outline-variant": "#444654",
+                "tertiary-fixed-dim": "#44dfab",
+                "inverse-on-surface": "#313030",
+                "tertiary-fixed": "#67fcc6"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "base": "8px",
+                "xl": "64px",
+                "margin-mobile": "16px",
+                "gutter": "24px",
+                "xs": "4px",
+                "md": "24px",
+                "lg": "40px",
+                "margin-desktop": "48px",
+                "sm": "12px"
+        },
+        "fontFamily": {
+                "headline-md": [
+                        "Manrope"
+                ],
+                "label-sm": [
+                        "JetBrains Mono"
+                ],
+                "body-md": [
+                        "Inter"
+                ],
+                "headline-lg": [
+                        "Manrope"
+                ],
+                "label-md": [
+                        "JetBrains Mono"
+                ],
+                "display-lg": [
+                        "Manrope"
+                ],
+                "body-sm": [
+                        "Inter"
+                ],
+                "headline-lg-mobile": [
+                        "Manrope"
+                ],
+                "body-lg": [
+                        "Inter"
+                ]
+        },
+        "fontSize": {
+                "headline-md": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "14px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "label-md": [
+                        "14px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "display-lg": [
+                        "48px",
+                        {
+                                "lineHeight": "56px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "800"
+                        }
+                ],
+                "body-sm": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "400"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
 <style>
   :root{
     --bg: #131313; /* Dark background */
@@ -504,6 +679,9 @@
 <div class="week-history" id="weekHistory"></div>
 </div>
 </div>
+<div class="testbar">
+<div class="warning">Mode test — ces 5 cartes forment la session d'UN jour.</div>
+</div>
 </div>
 <script>
 const todayCards = [
@@ -727,48 +905,21 @@ const wednesdayCards = [
   }
 ];
 
-// --- Contenu disponible : pour l'instant 3 jours de cartes vérifiées (15 au total). ---
-// L'app boucle dessus en attendant que d'autres lots de cartes soient ajoutés (jusqu'à 365).
-const contentPool = [todayCards, mondayCards, wednesdayCards];
+const historyDecks = { 0: mondayCards, 2: wednesdayCards };
+let cards = todayCards;
 
-const LS_LAUNCH = 'quaerite_launch_date';
-const LS_HISTORY = 'quaerite_history';
+// Données illustratives
+const weekHistory = [
+  { label: "L", date: "Lundi 29 juillet",    done: true,  score: 4 },
+  { label: "M", date: "Mardi 30 juillet",    done: false, score: 0 },
+  { label: "M", date: "Mercredi 31 juillet", done: true,  score: 5 },
+  { label: "J", date: "Jeudi 1 août",        done: true,  score: 4, isToday: true },
+  { label: "V", date: "Vendredi 2 août",     done: false, score: 0, future: true },
+  { label: "S", date: "Samedi 3 août",       done: false, score: 0, future: true },
+  { label: "D", date: "Dimanche 4 août",     done: false, score: 0, future: true }
+];
 
-function isoOf(d) {
-  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
-}
-function todayISO() { return isoOf(new Date()); }
-
-// Date de lancement PAR APPAREIL : le jour 1 démarre au premier lancement de chaque personne.
-function getLaunchDate() {
-  let v = localStorage.getItem(LS_LAUNCH);
-  if (!v) { v = todayISO(); localStorage.setItem(LS_LAUNCH, v); }
-  return v;
-}
-function daysBetween(fromISO, toISO) {
-  const a = new Date(fromISO + 'T00:00:00');
-  const b = new Date(toISO + 'T00:00:00');
-  return Math.round((b - a) / 86400000);
-}
-function getHistory() {
-  try { return JSON.parse(localStorage.getItem(LS_HISTORY)) || {}; } catch (e) { return {}; }
-}
-function saveHistory(dateISO, score) {
-  const h = getHistory();
-  h[dateISO] = { done: true, score };
-  localStorage.setItem(LS_HISTORY, JSON.stringify(h));
-}
-
-const launchDate = getLaunchDate();
-const dayIndex = daysBetween(launchDate, todayISO());
-const todayDeck = contentPool[((dayIndex % contentPool.length) + contentPool.length) % contentPool.length];
-
-let cards = todayDeck;
-let sessionAnswers = new Array(todayDeck.length).fill(null);
-let scoreSaved = false;
-
-let currentWeekData = [];
-let viewingHistoryDay = null; // null = aujourd'hui, sinon un objet du tableau ci-dessus
+let viewingHistoryDay = null;
 let current = 0;
 let answered = false;
 const total = cards.length + 1;
@@ -802,61 +953,39 @@ const els = {
   historyDateLabel: document.getElementById('historyDateLabel')
 };
 
-const DAY_LABELS = ['D', 'L', 'M', 'M', 'J', 'V', 'S']; // getDay() : 0 = dimanche
-
 function buildWeekHistory() {
-  const hist = getHistory();
-  currentWeekData = [];
-  for (let i = 6; i >= 0; i--) {
-    const d = new Date();
-    d.setDate(d.getDate() - i);
-    const iso = isoOf(d);
-    const entry = hist[iso];
-    currentWeekData.push({
-      iso,
-      label: DAY_LABELS[d.getDay()],
-      date: d.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' }),
-      done: !!(entry && entry.done),
-      score: entry ? entry.score : 0,
-      isToday: i === 0
-    });
-  }
-
   els.weekHistory.innerHTML = '';
-  currentWeekData.forEach((day) => {
+  weekHistory.forEach((day, idx) => {
     const btn = document.createElement('button');
     btn.className = 'week-dot-btn' + (day.isToday ? ' today' : '');
     btn.disabled = !day.done;
-    btn.setAttribute('aria-label', day.date + (day.done ? ` — ${day.score}/5` : ' — non fait'));
-
+    btn.setAttribute('aria-label', day.date + (day.done ? ` — ${day.score}/5` : (day.future ? ' — à venir' : ' — non fait')));
+    
     const label = document.createElement('span');
     label.className = 'week-label';
     label.textContent = day.label;
-
+    
     const dot = document.createElement('span');
-    dot.className = 'week-dot' + (day.done ? ' done' : '');
+    dot.className = 'week-dot' + (day.done ? ' done' : '') + (day.future ? ' future' : '');
     dot.textContent = day.done ? day.score : '';
-
+    
     btn.appendChild(label);
     btn.appendChild(dot);
-    btn.addEventListener('click', () => enterHistoryDay(day));
+    btn.addEventListener('click', () => enterHistoryDay(idx));
     els.weekHistory.appendChild(btn);
   });
 }
 
-function enterHistoryDay(day) {
-  if (!day.done) return;
-  viewingHistoryDay = day;
-  const dIdxForDay = daysBetween(launchDate, day.iso);
-  const poolIdx = ((dIdxForDay % contentPool.length) + contentPool.length) % contentPool.length;
-  cards = contentPool[poolIdx];
+function enterHistoryDay(idx) {
+  viewingHistoryDay = idx;
+  cards = weekHistory[idx].isToday ? todayCards : (historyDecks[idx] || todayCards);
   current = 0;
   render();
 }
 
 els.historyBackBtn.addEventListener('click', () => {
   viewingHistoryDay = null;
-  cards = todayDeck;
+  cards = todayCards;
   current = cards.length;
   render();
 });
@@ -878,12 +1007,6 @@ function render() {
     els.navControls.style.display = 'none';
     els.topBar.style.display = 'none';
     els.endView.classList.add('show');
-
-    if (viewingHistoryDay === null && !scoreSaved) {
-      const score = sessionAnswers.reduce((n, ans, idx) => n + (ans === todayDeck[idx].correct ? 1 : 0), 0);
-      saveHistory(todayISO(), score);
-      scoreSaved = true;
-    }
     buildWeekHistory();
   } else {
     els.endView.classList.remove('show');
@@ -895,7 +1018,8 @@ function render() {
     els.reference.textContent = c.reference;
     els.partTag.textContent = c.part;
     els.arboPath.innerHTML = '';
-
+    
+    // Build modern breadcrumb
     const pathParts = c.arbo.split(' › ');
     pathParts.forEach((level, idx) => {
       const d = document.createElement('div');
@@ -903,7 +1027,7 @@ function render() {
       d.textContent = idx === 0 ? level : '› ' + level;
       els.arboPath.appendChild(d);
     });
-
+    
     els.arboPath.classList.remove('show');
     els.question.textContent = c.question;
 
@@ -922,7 +1046,7 @@ function render() {
     if (viewingHistoryDay !== null) {
       els.progressContainer.style.display = 'none';
       els.historyBanner.style.display = 'flex';
-      els.historyDateLabel.textContent = viewingHistoryDay.date;
+      els.historyDateLabel.textContent = weekHistory[viewingHistoryDay].date;
       els.stackEdge1.classList.remove('visible');
       els.stackEdge2.classList.remove('visible');
       selectChoice(c.correct);
@@ -942,11 +1066,6 @@ function selectChoice(i) {
   if (answered) return;
   answered = true;
   const c = cards[current];
-
-  if (viewingHistoryDay === null) {
-    sessionAnswers[current] = i;
-  }
-
   const buttons = els.choices.querySelectorAll('.choice');
   buttons.forEach((btn, idx) => {
     btn.classList.add('locked');
@@ -958,7 +1077,7 @@ function selectChoice(i) {
   els.explanationText.textContent = c.explanation;
   els.deepenBody.textContent = c.more;
   els.explanation.classList.add('show');
-
+  
   els.nextBtn.classList.add('show');
 }
 
