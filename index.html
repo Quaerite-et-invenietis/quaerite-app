@@ -730,7 +730,175 @@ const wednesdayCards = [
 
 // --- Contenu disponible : pour l'instant 3 jours de cartes vérifiées (15 au total). ---
 // L'app boucle dessus en attendant que d'autres lots de cartes soient ajoutés (jusqu'à 365).
-const contentPool = [todayCards, mondayCards, wednesdayCards];
+// Jeudi (nouveau lot) — 5 questions distinctes, vérifiées sur vatican.va
+const thursdayCards = [
+  {
+    reference: "Trinité",
+    part: "I.2.1.1",
+    arbo: "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre premier : Je crois en Dieu le Père › Article 1 : « Je crois en Dieu le Père tout-puissant, créateur du ciel et de la terre » › Paragraphe 2 : Le Père",
+    question: "Dans la doctrine trinitaire, le CEC utilise le terme « personne » (ou « hypostase ») pour désigner quoi précisément ?",
+    choices: [
+      "L'unité de l'être divin",
+      "Le Père, le Fils et le Saint-Esprit dans leur distinction réelle",
+      "La nature humaine du Christ",
+      "L'action extérieure de Dieu dans le monde"
+    ],
+    correct: 1,
+    explanation: "Le CEC précise que « personne » ou « hypostase » désigne le Père, le Fils et l'Esprit Saint dans leur distinction réelle entre eux, tandis que « substance » désigne leur unité.",
+    source: "CEC §252",
+    more: "Le CEC précise que l'Église n'a pas soumis la foi à une sagesse humaine en employant ce vocabulaire philosophique, mais lui a donné un sens nouveau pour signifier un mystère qui dépasse tout ce que l'homme peut concevoir."
+  },
+  {
+    reference: "Péché originel",
+    part: "I.2.1.7",
+    arbo: "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre premier : Je crois en Dieu le Père › Article 7 : La chute",
+    question: "Selon le CEC, le péché originel a-t-il, chez les descendants d'Adam, le caractère d'une faute personnelle ?",
+    choices: [
+      "Oui, chacun le commet personnellement à la naissance",
+      "Non, c'est un état transmis, pas un acte commis",
+      "Oui, mais seulement chez les baptisés",
+      "Non, le CEC ne se prononce pas sur ce point"
+    ],
+    correct: 1,
+    explanation: "Le CEC est explicite : le péché originel « n'a, en aucun descendant d'Adam, un caractère de faute personnelle » — c'est un péché « contracté » et non « commis », un état et non un acte.",
+    source: "CEC §404-405",
+    more: "Le CEC précise que la nature humaine n'est pas totalement corrompue par cette privation : elle reste blessée dans ses forces naturelles, soumise à l'ignorance, à la souffrance et inclinée au péché."
+  },
+  {
+    reference: "Primauté de Pierre",
+    part: "I.2.3.9",
+    arbo: "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre troisième : Je crois en l'Esprit Saint › Article 9 : « Je crois à la Sainte Église catholique » › Sur la primauté du Pape, successeur de Pierre",
+    question: "Selon le CEC, quel pouvoir le Pontife romain exerce-t-il sur l'Église, en tant que successeur de Pierre ?",
+    choices: [
+      "Un pouvoir consultatif, partagé à égalité avec les évêques",
+      "Un pouvoir plénier, suprême et universel, qu'il peut librement exercer",
+      "Un pouvoir limité aux seules questions liturgiques",
+      "Un pouvoir transmis uniquement par élection populaire"
+    ],
+    correct: 1,
+    explanation: "Le CEC cite Lumen Gentium : le Pontife romain a sur l'Église « un pouvoir plénier, suprême et universel qu'il peut toujours librement exercer ».",
+    source: "CEC §882",
+    more: "Le CEC précise que cette charge pastorale de Pierre est continuée par les évêques sous la primauté du Pape — le Pape n'agit donc pas seul, mais comme principe visible de l'unité qui les relie tous."
+  },
+  {
+    reference: "Baptême",
+    part: "II.2.1.1",
+    arbo: "Deuxième partie : La célébration du mystère chrétien › Deuxième section : Les sept sacrements de l'Église › Chapitre premier : Les sacrements de l'initiation chrétienne › Article 1 : Le sacrement du Baptême › VI. La nécessité du baptême",
+    question: "Selon le CEC, Dieu est-il lui-même lié par le sacrement du baptême, qu'il a pourtant institué comme nécessaire au salut ?",
+    choices: [
+      "Oui, sans exception possible",
+      "Non : Dieu a lié le salut au baptême, mais il n'est pas lui-même lié à ses sacrements",
+      "Cette question n'est pas abordée par le CEC",
+      "Oui, sauf pour les enfants non baptisés"
+    ],
+    correct: 1,
+    explanation: "Le CEC affirme que « Dieu a lié le salut au sacrement du Baptême, mais il n'est pas lui-même lié à ses sacrements ».",
+    source: "CEC §1257",
+    more: "Le CEC précise ensuite que ceux qui meurent pour leur foi sans avoir reçu le baptême en reçoivent les fruits « par leur mort pour et avec le Christ » — ce que l'Église appelle le baptême de sang."
+  },
+  {
+    reference: "Indulgences",
+    part: "II.2.2.4",
+    arbo: "Deuxième partie : La célébration du mystère chrétien › Deuxième section : Les sept sacrements de l'Église › Chapitre deuxième : Les sacrements de guérison › Article 4 : Le sacrement de Pénitence et de Réconciliation › X. Les indulgences",
+    question: "Selon le CEC, que remet précisément une indulgence — le péché lui-même, ou autre chose ?",
+    choices: [
+      "Le péché lui-même, comme dans l'absolution",
+      "La peine temporelle due pour des péchés dont la faute est déjà effacée",
+      "Uniquement les péchés véniels non confessés",
+      "L'obligation de se confesser avant de communier"
+    ],
+    correct: 1,
+    explanation: "Le CEC définit l'indulgence comme « la rémission devant Dieu de la peine temporelle due pour les péchés dont la faute est déjà effacée ».",
+    source: "CEC §1471",
+    more: "Le CEC précise qu'une indulgence est partielle ou plénière selon qu'elle libère partiellement ou totalement de cette peine temporelle, et que tout fidèle peut l'obtenir pour lui-même ou l'appliquer aux défunts."
+  }
+];
+
+// Vendredi (nouveau lot) — 5 questions distinctes, vérifiées sur vatican.va
+const fridayCards = [
+  {
+    reference: "Les anges",
+    part: "I.2.1.1",
+    arbo: "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre premier : Je crois en Dieu le Père › Article 1 : « Je crois en Dieu le Père tout-puissant, créateur du ciel et de la terre » › Paragraphe 5 : Le ciel et la terre",
+    question: "Selon saint Augustin, cité par le CEC, le mot « ange » désigne-t-il une nature ou une fonction ?",
+    choices: [
+      "Une nature, celle des esprits purs",
+      "Une fonction : leur nature propre est celle d'un esprit",
+      "Ni l'une ni l'autre, c'est un titre honorifique",
+      "Une nature mixte, mi-spirituelle mi-corporelle"
+    ],
+    correct: 1,
+    explanation: "Le CEC cite saint Augustin : « 'Ange' désigne la fonction, non pas la nature. (...) d'après ce qu'il est, c'est un esprit, d'après ce qu'il fait, c'est un ange ».",
+    source: "CEC §329",
+    more: "Le CEC précise juste avant (§328) que l'existence de ces êtres spirituels non corporels est « une vérité de foi », soutenue aussi bien par le témoignage de l'Écriture que par l'unanimité de la Tradition."
+  },
+  {
+    reference: "Mariage",
+    part: "II.2.3.7",
+    arbo: "Deuxième partie : La célébration du mystère chrétien › Deuxième section : Les sept sacrements de l'Église › Chapitre troisième : Les sacrements au service de la communion › Article 7 : Le sacrement du Mariage",
+    question: "Selon l'enseignement de Jésus rapporté par le CEC, qu'en est-il de la permission mosaïque de répudier son épouse ?",
+    choices: [
+      "Elle reste pleinement valide aujourd'hui",
+      "C'était une concession à la dureté du cœur, mais l'union est indissoluble",
+      "Elle n'a jamais existé dans la Loi de Moïse",
+      "Elle s'applique seulement aux non-baptisés"
+    ],
+    correct: 1,
+    explanation: "Le CEC cite Jésus : la permission donnée par Moïse « était une concession à la dureté du cœur » ; l'union matrimoniale est indissoluble car « Dieu lui-même l'a conclue ».",
+    source: "CEC §1614",
+    more: "Le CEC reconnaît que cette insistance a pu « laisser perplexe et apparaître comme une exigence irréalisable », mais précise que le Christ donne aussi la force et la grâce nécessaires pour la vivre."
+  },
+  {
+    reference: "Communion des saints",
+    part: "I.2.3.9",
+    arbo: "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre troisième : Je crois en l'Esprit Saint › Article 9 : « Je crois à la Sainte Église catholique » › Paragraphe 5 : La communion des saints",
+    question: "Selon le CEC, l'expression « communion des saints » a deux significations étroitement liées. Lesquelles ?",
+    choices: [
+      "La communion avec les seuls anges et la communion avec les seuls hommes",
+      "La communion aux choses saintes (sancta) et la communion entre les personnes saintes (sancti)",
+      "La communion visible et la communion invisible",
+      "La communion terrestre et la communion céleste, sans lien entre elles"
+    ],
+    correct: 1,
+    explanation: "Le CEC est explicite : « le terme 'communion des saints' a dès lors deux significations, étroitement liées : communion aux choses saintes, sancta, et communion entre les personnes saintes, sancti ».",
+    source: "CEC §948",
+    more: "Le CEC précise que la communion des saints est, d'une certaine façon, une explicitation de l'article précédent du Credo : « Qu'est-ce que l'Église sinon l'assemblée de tous les saints ? »."
+  },
+  {
+    reference: "Sens de la foi",
+    part: "I.1.3.2",
+    arbo: "Première partie : La profession de la foi › Première section : « Je crois » – « Nous croyons » › Chapitre troisième : La réponse de l'homme à Dieu › Article 2 : Nous croyons",
+    question: "Selon le CEC, citant Vatican II, l'ensemble des fidèles peut-il se tromper collectivement dans la foi ?",
+    choices: [
+      "Oui, si une majorité des évêques est d'accord",
+      "Non, l'ensemble des fidèles ne peut se tromper dans la foi",
+      "Cette question dépend uniquement du Pape",
+      "Oui, l'histoire de l'Église en donne plusieurs exemples selon le CEC"
+    ],
+    correct: 1,
+    explanation: "Le CEC cite Lumen Gentium : « L'ensemble des fidèles (...) ne peut se tromper dans la foi », manifestant cela par le « sens surnaturel de la foi » de tout le peuple, des évêques jusqu'au dernier des fidèles laïcs.",
+    source: "CEC §92",
+    more: "Le CEC ajoute (§93) que ce sens de la foi, soutenu par l'Esprit de vérité et guidé par le Magistère, permet au Peuple de Dieu de pénétrer plus profondément la foi transmise et de la mettre en œuvre dans sa vie."
+  },
+  {
+    reference: "Notre Père",
+    part: "IV.2",
+    arbo: "Quatrième partie : La prière chrétienne › Deuxième section : La prière du Seigneur, « Notre Père » › I. Au centre des Écritures",
+    question: "Selon Tertullien, cité par le CEC, comment qualifier l'Oraison dominicale (le Notre Père) par rapport à l'ensemble de l'Évangile ?",
+    choices: [
+      "Une prière parmi d'autres, sans statut particulier",
+      "Le résumé de tout l'Évangile",
+      "Un texte tardif, ajouté après les Évangiles",
+      "Une prière réservée aux seuls prêtres"
+    ],
+    correct: 1,
+    explanation: "Le CEC cite Tertullien : « L'Oraison dominicale est vraiment le résumé de tout l'Évangile ».",
+    source: "CEC §2761",
+    more: "Le CEC cite aussi saint Augustin, qui affirme n'avoir trouvé dans aucune autre prière de l'Écriture quelque chose qui ne soit déjà compris dans le Notre Père."
+  }
+];
+
+const contentPool = [todayCards, mondayCards, wednesdayCards, thursdayCards, fridayCards];
 
 const LS_PROGRESS = 'quaerite_progress';
 const LS_HISTORY = 'quaerite_history';
