@@ -507,7 +507,7 @@
 </div>
 </div>
 <script>
-const todayCards = [
+const deck1Cards = [
   {
     reference: "Écriture Sainte",
     part: "I.1.2.3",
@@ -580,8 +580,8 @@ const todayCards = [
   }
 ];
 
-// Lundi (weekHistory[0]) — 5 questions distinctes, vérifiées sur vatican.va
-const mondayCards = [
+// Jeu 2 — 5 questions distinctes, vérifiées sur vatican.va
+const deck2Cards = [
   {
     reference: "Concile de Nicée, 325",
     part: "I.2.1.1",
@@ -659,8 +659,8 @@ const mondayCards = [
   }
 ];
 
-// Mercredi (weekHistory[2]) — 5 questions distinctes, vérifiées sur vatican.va
-const wednesdayCards = [
+// Jeu 3 — 5 questions distinctes, vérifiées sur vatican.va
+const deck3Cards = [
   {
     reference: "Trinité",
     part: "I.2.1.1",
@@ -730,8 +730,8 @@ const wednesdayCards = [
 
 // --- Contenu disponible : pour l'instant 3 jours de cartes vérifiées (15 au total). ---
 // L'app boucle dessus en attendant que d'autres lots de cartes soient ajoutés (jusqu'à 365).
-// Jeudi (nouveau lot) — 5 questions distinctes, vérifiées sur vatican.va
-const thursdayCards = [
+// Jeu 4 — 5 questions distinctes, vérifiées sur vatican.va
+const deck4Cards = [
   {
     reference: "Trinité",
     part: "I.2.1.1",
@@ -814,8 +814,8 @@ const thursdayCards = [
   }
 ];
 
-// Vendredi (nouveau lot) — 5 questions distinctes, vérifiées sur vatican.va
-const fridayCards = [
+// Jeu 5 — 5 questions distinctes, vérifiées sur vatican.va
+const deck5Cards = [
   {
     reference: "Les anges",
     part: "I.2.1.1",
@@ -898,7 +898,506 @@ const fridayCards = [
   }
 ];
 
-const contentPool = [todayCards, mondayCards, wednesdayCards, thursdayCards, fridayCards];
+// Jeu 6 — 5 questions distinctes, vérifiées sur vatican.va
+const deck6Cards = [
+  {
+    reference: "Immaculée Conception",
+    part: "I.2.2.3",
+    arbo: "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre deuxième : Je crois en Jésus-Christ › Article 3 : Conçu du Saint-Esprit, né de la Vierge Marie",
+    question: "Selon le dogme cité par le CEC, à quel moment précis Marie a-t-elle été préservée du péché originel ?",
+    choices: ["À sa naissance", "Au premier instant de sa conception", "Lors de l'Annonciation", "Après la naissance de Jésus"],
+    correct: 1,
+    explanation: "Le CEC cite la définition dogmatique : Marie a été, « au premier instant de sa conception (...) préservée intacte de toute souillure du péché originel ».",
+    source: "CEC §491",
+    more: "Le CEC précise que cette sainteté lui vient tout entière du Christ : elle est « rachetée de façon éminente en considération des mérites de son Fils »."
+  },
+  {
+    reference: "L'enfer",
+    part: "I.2.3.12",
+    arbo: "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre troisième : Je crois en l'Esprit Saint › Article 12 : « Je crois à la vie éternelle » › IV. L'enfer",
+    question: "Selon le CEC, en quoi consiste précisément la « peine principale » de l'enfer ?",
+    choices: [
+      "Des souffrances physiques uniquement",
+      "La séparation éternelle d'avec Dieu, par choix libre",
+      "Un jugement collectif sans responsabilité individuelle",
+      "Une punition temporaire avant la résurrection"
+    ],
+    correct: 1,
+    explanation: "Le CEC définit l'enfer comme « cet état d'auto-exclusion définitive de la communion avec Dieu et avec les bienheureux », résultant d'un choix libre de mourir en péché mortel sans repentir.",
+    source: "CEC §1033-1035",
+    more: "Le CEC ajoute (§1037) que Dieu ne prédestine personne à l'enfer : il faut pour cela une aversion volontaire à l'égard de Dieu, et y persister jusqu'à la fin."
+  },
+  {
+    reference: "Dons du Saint-Esprit",
+    part: "III.1.1.7",
+    arbo: "Troisième partie : La vie dans le Christ › Première section : La vocation de l'homme, la vie dans l'Esprit › Chapitre premier : La dignité de la personne humaine › Article 7 : Les vertus › III. Les dons et les fruits du Saint-Esprit",
+    question: "Selon le CEC, combien de dons du Saint-Esprit y a-t-il, et lesquels ?",
+    choices: [
+      "Trois : foi, espérance, charité",
+      "Quatre : les mêmes que les vertus cardinales",
+      "Sept : sagesse, intelligence, conseil, force, science, piété et crainte de Dieu",
+      "Douze, comme les fruits de l'Esprit"
+    ],
+    correct: 2,
+    explanation: "Le CEC énumère : « Les sept dons du Saint-Esprit sont la sagesse, l'intelligence, le conseil, la force, la science, la piété et la crainte de Dieu ».",
+    source: "CEC §1831",
+    more: "Le CEC précise que ces dons « appartiennent en leur plénitude au Christ » et qu'ils « complètent et mènent à leur perfection les vertus de ceux qui les reçoivent »."
+  },
+  {
+    reference: "Conscience morale",
+    part: "III.1.1.6",
+    arbo: "Troisième partie : La vie dans le Christ › Première section : La vocation de l'homme, la vie dans l'Esprit › Chapitre premier : La dignité de la personne humaine › Article 6 : La conscience morale",
+    question: "Selon le CEC, citant Gaudium et Spes, qu'est-ce que la conscience morale, au fond de l'homme ?",
+    choices: [
+      "Une simple opinion personnelle, sans autorité extérieure",
+      "Le sanctuaire où l'homme est seul avec Dieu et entend sa voix",
+      "Une construction sociale variable selon les cultures",
+      "Une faculté réservée aux seuls baptisés"
+    ],
+    correct: 1,
+    explanation: "Le CEC cite Gaudium et Spes : « La conscience est le centre le plus intime et le plus secret de l'homme, le sanctuaire où il est seul avec Dieu et où sa voix se fait entendre ».",
+    source: "CEC §1776",
+    more: "Le CEC précise que l'homme y découvre « la présence d'une loi qu'il ne s'est pas donnée lui-même, mais à laquelle il est tenu d'obéir » — une loi inscrite par Dieu au cœur de l'homme."
+  },
+  {
+    reference: "Infaillibilité du Pape",
+    part: "I.2.3.9",
+    arbo: "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre troisième : Je crois en l'Esprit Saint › Article 9 : « Je crois à la Sainte Église catholique » › Sur l'infaillibilité du Magistère",
+    question: "Selon le CEC, dans quelles conditions le Pontife romain jouit-il de l'infaillibilité ?",
+    choices: [
+      "Chaque fois qu'il s'exprime publiquement",
+      "Quand, comme pasteur suprême, il proclame par un acte définitif un point de doctrine sur la foi ou les mœurs",
+      "Uniquement lors d'un concile œcuménique",
+      "Jamais individuellement, seulement collégialement avec les évêques"
+    ],
+    correct: 1,
+    explanation: "Le CEC précise que le Pontife romain jouit de l'infaillibilité « quand, en tant que pasteur et docteur suprême de tous les fidèles (...) il proclame, par un acte définitif, un point de doctrine touchant la foi et les mœurs ».",
+    source: "CEC §891",
+    more: "Le CEC ajoute que cette même infaillibilité réside aussi dans le corps des évêques réunis en union avec le successeur de Pierre, notamment lors d'un concile œcuménique."
+  }
+];
+
+// Jeu 7 — 5 questions distinctes, vérifiées sur vatican.va
+const deck7Cards = [
+  {
+    reference: "La grâce",
+    part: "III.1.3.2",
+    arbo: "Troisième partie : La vie dans le Christ › Première section : La vocation de l'homme, la vie dans l'Esprit › Chapitre troisième : Le salut de Dieu, la Loi et la Grâce › Article 2 : La grâce et la justification",
+    question: "Selon le CEC, comment définir la grâce, à l'origine de notre justification ?",
+    choices: [
+      "Une récompense méritée par les bonnes œuvres",
+      "La faveur, le secours gratuit que Dieu nous donne pour répondre à son appel",
+      "Un simple sentiment de paix intérieure",
+      "Un pouvoir transmis uniquement par les sacrements"
+    ],
+    correct: 1,
+    explanation: "Le CEC définit : « La grâce est la faveur, le secours gratuit que Dieu nous donne pour répondre à son appel : devenir enfants de Dieu ».",
+    source: "CEC §1996",
+    more: "Le CEC précise (§1997) qu'elle est une participation à la vie de Dieu : elle nous introduit dans l'intimité de la vie trinitaire."
+  },
+  {
+    reference: "Résurrection de la chair",
+    part: "I.2.3.11",
+    arbo: "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre troisième : Je crois en l'Esprit Saint › Article 11 : Je crois à la résurrection de la chair",
+    question: "Selon Tertullien, cité par le CEC, quel est le rôle de « la chair » dans le salut ?",
+    choices: [
+      "Elle est un obstacle au salut, à rejeter",
+      "Elle est « le pivot du salut »",
+      "Elle n'a aucune importance théologique",
+      "Elle disparaît définitivement après la mort"
+    ],
+    correct: 1,
+    explanation: "Le CEC cite Tertullien : « La chair est le pivot du salut ». Nous croyons en la résurrection de la chair, achèvement de la création et de la rédemption de la chair.",
+    source: "CEC §1015",
+    more: "Le CEC précise (§1016) que dans la résurrection, Dieu rendra la vie incorruptible à notre corps transformé, en le réunissant à notre âme."
+  },
+  {
+    reference: "L'Église, sacrement",
+    part: "I.2.3.9",
+    arbo: "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre troisième : Je crois en l'Esprit Saint › Article 9 : « Je crois à la Sainte Église catholique » › L'Église, sacrement universel du salut",
+    question: "Selon le CEC, en tant que « sacrement », quel rôle l'Église joue-t-elle ?",
+    choices: [
+      "Elle est un simple rassemblement humain, sans fonction sacramentelle",
+      "Elle est instrument du Christ, « le sacrement universel du salut »",
+      "Elle remplace les sept sacrements",
+      "Elle n'a de rôle sacramentel qu'au moment du baptême"
+    ],
+    correct: 1,
+    explanation: "Le CEC affirme : « Comme sacrement, l'Église est instrument du Christ (...), le sacrement universel du salut, par lequel le Christ manifeste et actualise l'amour de Dieu pour les hommes ».",
+    source: "CEC §776",
+    more: "Le CEC précise qu'elle est « le projet visible de l'amour de Dieu pour l'humanité », qui veut que le genre humain tout entier soit rassemblé en un seul Corps du Christ."
+  },
+  {
+    reference: "Onction des malades",
+    part: "II.2.2.5",
+    arbo: "Deuxième partie : La célébration du mystère chrétien › Deuxième section : Les sept sacrements de l'Église › Chapitre deuxième : Les sacrements de guérison › Article 5 : L'Onction des malades",
+    question: "Selon le CEC, quel texte de saint Jacques atteste le rite propre de l'Église en faveur des malades ?",
+    choices: [
+      "« Guérissez les malades, ressuscitez les morts » (Mt 10)",
+      "« Qu'il appelle les presbytres (...) et qu'ils prient sur lui, après l'avoir oint d'huile » (Jc 5, 14-15)",
+      "« Ma grâce te suffit » (2 Co 12, 9)",
+      "« Je complète dans ma chair ce qui manque aux épreuves du Christ » (Col 1, 24)"
+    ],
+    correct: 1,
+    explanation: "Le CEC cite l'épître de Jacques : « Quelqu'un parmi vous est malade ? Qu'il appelle les presbytres de l'Église et qu'ils prient sur lui, après l'avoir oint d'huile au nom du Seigneur ». La Tradition y a reconnu un des sept sacrements.",
+    source: "CEC §1510",
+    more: "Le CEC précise (§1499) que par cette onction et la prière des prêtres, c'est l'Église tout entière qui recommande les malades au Seigneur souffrant et glorifié, pour qu'il les soulage et les sauve."
+  },
+  {
+    reference: "Ascension",
+    part: "I.2.2.6",
+    arbo: "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre deuxième : Je crois en Jésus-Christ › Article 6 : « Il est monté aux cieux, il est assis à la droite de Dieu le Père tout-puissant »",
+    question: "Selon le CEC, que signifie l'expression « assis à la droite du Père » à propos du Christ ressuscité ?",
+    choices: [
+      "Une simple image poétique, sans portée réelle",
+      "L'entrée définitive de l'humanité de Jésus dans la gloire de Dieu et l'inauguration de son règne",
+      "Un lieu géographique précis situé au-dessus des cieux",
+      "Le retour du Christ sur terre, déjà accompli"
+    ],
+    correct: 1,
+    explanation: "Le CEC explique que « la session à la droite du Père signifie l'inauguration du règne du Messie », et que l'Ascension « marque l'entrée définitive de l'humanité de Jésus dans le domaine céleste de Dieu ».",
+    source: "CEC §659, §664-665",
+    more: "Le CEC précise que le corps du Christ a été glorifié dès sa Résurrection, mais que sa gloire est restée voilée durant les quarante jours où il a mangé et bu avec ses disciples, avant l'Ascension."
+  }
+];
+
+// Jeu 8 — 5 questions distinctes, vérifiées sur vatican.va
+const deck8Cards = [
+  {
+    reference: "Confirmation",
+    part: "II.2.1.2",
+    arbo: "Deuxième partie : La célébration du mystère chrétien › Deuxième section : Les sept sacrements de l'Église › Chapitre premier : Les sacrements de l'initiation chrétienne › Article 2 : Le sacrement de la Confirmation › III. Les effets de la Confirmation",
+    question: "Selon le CEC, quelle est la particularité du « caractère » imprimé par le sacrement de Confirmation ?",
+    choices: [
+      "Il peut être effacé par un péché grave",
+      "C'est une marque spirituelle indélébile, si bien que la Confirmation n'est donnée qu'une seule fois",
+      "Il doit être renouvelé chaque année",
+      "Il ne concerne que les prêtres"
+    ],
+    correct: 1,
+    explanation: "Le CEC précise : « La Confirmation imprime en effet dans l'âme une marque spirituelle indélébile, le 'caractère' (...). Ces sacrements ne peuvent donc jamais être réitérés. »",
+    source: "CEC §1304",
+    more: "Le CEC ajoute (§1302) que l'effet du sacrement est « l'effusion spéciale de l'Esprit Saint, comme elle fut accordée jadis aux Apôtres au jour de la Pentecôte »."
+  },
+  {
+    reference: "La prière",
+    part: "IV.1",
+    arbo: "Quatrième partie : La prière chrétienne › Première section : La prière dans la vie chrétienne › Préambule",
+    question: "Selon saint Jean Damascène, cité par le CEC, qu'est-ce que la prière ?",
+    choices: [
+      "Une technique de concentration mentale",
+      "L'élévation de l'âme vers Dieu, ou la demande à Dieu des biens convenables",
+      "Un rite réservé aux moments de crise",
+      "Une pratique propre à une seule tradition religieuse"
+    ],
+    correct: 1,
+    explanation: "Le CEC cite saint Jean Damascène : « La prière est l'élévation de l'âme vers Dieu ou la demande à Dieu des biens convenables ».",
+    source: "CEC §2559",
+    more: "Le CEC précise (§2562) que quel que soit le langage de la prière, gestes ou paroles, « c'est tout l'homme qui prie » — et plus précisément, « c'est le cœur qui prie »."
+  },
+  {
+    reference: "Jugement particulier",
+    part: "I.2.3.12",
+    arbo: "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre troisième : Je crois en l'Esprit Saint › Article 12 : « Je crois à la vie éternelle » › I. Le jugement particulier",
+    question: "Selon le CEC, quand chaque homme reçoit-il sa rétribution éternelle : uniquement au jugement dernier, ou dès sa mort ?",
+    choices: [
+      "Uniquement au jugement dernier, à la fin des temps",
+      "Dès sa mort, dans un jugement particulier qui réfère sa vie au Christ",
+      "Jamais, le sort de l'âme reste indéterminé",
+      "Seulement pour les saints canonisés"
+    ],
+    correct: 1,
+    explanation: "Le CEC affirme : « Chaque homme reçoit dans son âme immortelle sa rétribution éternelle dès sa mort en un jugement particulier qui réfère sa vie au Christ ».",
+    source: "CEC §1021-1022",
+    more: "Le CEC cite à l'appui la parabole du pauvre Lazare et la parole de Jésus au bon larron en croix, qui évoquent une destinée immédiate de l'âme après la mort."
+  },
+  {
+    reference: "Création",
+    part: "I.2.1.1",
+    arbo: "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre premier : Je crois en Dieu le Père › Article 1 : « Je crois en Dieu le Père tout-puissant, créateur du ciel et de la terre » › Paragraphe 4 : Le Créateur",
+    question: "Selon le CEC, Dieu a-t-il créé le monde à partir d'une matière préexistante ?",
+    choices: [
+      "Oui, à partir du chaos originel",
+      "Non, Dieu crée librement « de rien » (ex nihilo)",
+      "Oui, à partir de sa propre substance divine",
+      "Le CEC ne se prononce pas sur cette question"
+    ],
+    correct: 1,
+    explanation: "Le CEC affirme : « Dieu n'a besoin de rien de préexistant ni d'aucune aide pour créer. (...) Dieu crée librement 'de rien' ».",
+    source: "CEC §296",
+    more: "Le CEC précise que la création n'est pas non plus « une émanation nécessaire de la substance divine » — Dieu crée par un acte libre, non par nécessité."
+  },
+  {
+    reference: "Image de Dieu",
+    part: "III.1.1.1",
+    arbo: "Troisième partie : La vie dans le Christ › Première section : La vocation de l'homme, la vie dans l'Esprit › Chapitre premier : La dignité de la personne humaine › Article 1 : L'homme, image de Dieu",
+    question: "Selon le CEC, citant Gaudium et Spes, qui « manifeste pleinement l'homme à lui-même » ?",
+    choices: [
+      "La philosophie",
+      "Le Christ, dans la révélation du mystère du Père",
+      "La science moderne",
+      "Chaque homme, par introspection personnelle"
+    ],
+    correct: 1,
+    explanation: "Le CEC cite Gaudium et Spes : « Le Christ, dans la révélation du mystère du Père et de son Amour, manifeste pleinement l'homme à lui-même et lui découvre la sublimité de sa vocation ».",
+    source: "CEC §1701",
+    more: "Le CEC précise que c'est dans le Christ, « image du Dieu invisible », que l'homme a été créé « à l'image et à la ressemblance » du Créateur."
+  }
+];
+
+// Jeu 9 — 5 questions distinctes, vérifiées sur vatican.va
+const deck9Cards = [
+  {
+    reference: "Écriture Sainte",
+    part: "I.1.2.3",
+    arbo: "Première partie : La profession de la foi › Première section : « Je crois » – « Nous croyons » › Chapitre deuxième : Dieu à la rencontre de l'homme › Article 3 : La Sainte Écriture › II. Inspiration et vérité de la Sainte Écriture",
+    question: "Selon le CEC, qui est l'auteur véritable de l'Écriture Sainte ?",
+    choices: [
+      "Uniquement les auteurs humains qui l'ont rédigée",
+      "Dieu lui-même, qui a inspiré les auteurs humains",
+      "L'Église, qui l'a compilée a posteriori",
+      "Une question laissée ouverte par le CEC"
+    ],
+    correct: 1,
+    explanation: "Le CEC affirme : « Dieu est l'Auteur de l'Écriture Sainte » — la vérité qu'elle contient « y a été consignée sous l'inspiration de l'Esprit Saint ».",
+    source: "CEC §105",
+    more: "Le CEC précise (§106) que Dieu a inspiré les auteurs humains « dans le plein usage de leurs facultés », de sorte qu'ils sont restés « en vrais auteurs » du texte."
+  },
+  {
+    reference: "Dix commandements",
+    part: "III.2",
+    arbo: "Troisième partie : La vie dans le Christ › Deuxième section : Les dix commandements › Préambule",
+    question: "Selon le CEC, la division et la numérotation des dix commandements ont-elles toujours été identiques dans l'histoire ?",
+    choices: [
+      "Oui, depuis Moïse, sans aucune variation",
+      "Non, elles ont varié ; le catéchisme suit la division établie par saint Augustin",
+      "Non, chaque diocèse en choisit une librement",
+      "Cette question n'est pas abordée par le CEC"
+    ],
+    correct: 1,
+    explanation: "Le CEC précise : « La division et la numérotation des commandements a varié au cours de l'histoire. Le présent catéchisme suit la division des commandements établie par saint Augustin ».",
+    source: "CEC §2066",
+    more: "Le CEC ajoute (§2067) que les dix commandements énoncent les exigences de l'amour de Dieu et du prochain, en développant les implications de ce double amour."
+  },
+  {
+    reference: "Espérance",
+    part: "III.1.1.7",
+    arbo: "Troisième partie : La vie dans le Christ › Première section : La vocation de l'homme, la vie dans l'Esprit › Chapitre premier : La dignité de la personne humaine › Article 7 : Les vertus › II. Les vertus théologales",
+    question: "Selon le CEC, sur quoi l'espérance théologale s'appuie-t-elle, pour désirer le Royaume des cieux ?",
+    choices: [
+      "Sur nos propres forces et mérites",
+      "Sur la confiance dans les promesses du Christ et le secours de la grâce de l'Esprit Saint",
+      "Sur des probabilités calculées",
+      "Sur la seule tradition familiale"
+    ],
+    correct: 1,
+    explanation: "Le CEC définit l'espérance comme la vertu « par laquelle nous désirons comme notre bonheur le Royaume des cieux (...), en mettant notre confiance dans les promesses du Christ et en nous appuyant (...) sur le secours de la grâce du Saint-Esprit ».",
+    source: "CEC §1817",
+    more: "Le CEC cite sainte Thérèse de Jésus : « Espère, ô mon âme, espère (...) plus tu combattras, plus tu prouveras l'amour que tu portes à ton Dieu »."
+  },
+  {
+    reference: "Charité",
+    part: "III.1.1.7",
+    arbo: "Troisième partie : La vie dans le Christ › Première section : La vocation de l'homme, la vie dans l'Esprit › Chapitre premier : La dignité de la personne humaine › Article 7 : Les vertus › II. Les vertus théologales",
+    question: "Selon le CEC, comment définir précisément la vertu théologale de charité ?",
+    choices: [
+      "Aimer son prochain uniquement, sans référence à Dieu",
+      "Aimer Dieu par-dessus toute chose pour Lui-même, et son prochain comme soi-même pour l'amour de Dieu",
+      "Un sentiment de bienveillance générale envers l'humanité",
+      "Une vertu réservée aux religieux consacrés"
+    ],
+    correct: 1,
+    explanation: "Le CEC définit : « La charité est la vertu théologale par laquelle nous aimons Dieu par-dessus toute chose pour Lui-même, et notre prochain comme nous-mêmes pour l'amour de Dieu ».",
+    source: "CEC §1822",
+    more: "Le CEC cite saint Paul (1 Co 13) : « la charité prend patience (...), elle excuse tout, elle croit tout, elle espère tout, elle endure tout »."
+  },
+  {
+    reference: "Le dimanche",
+    part: "III.2.1.3",
+    arbo: "Troisième partie : La vie dans le Christ › Deuxième section : Les dix commandements › Chapitre premier : « Tu aimeras le Seigneur ton Dieu... » › Article 3 : Le troisième commandement › II. Le jour du Seigneur",
+    question: "Selon le CEC, pourquoi le dimanche est-il devenu, pour les chrétiens, le « jour du Seigneur » ?",
+    choices: [
+      "Par simple convention administrative de l'Église",
+      "Parce qu'il est le jour de la Résurrection du Christ, le « huitième jour » qui accomplit le sabbat",
+      "Parce que c'est le jour de la naissance du Christ",
+      "Parce que les Romains l'avaient déjà institué comme jour de fête"
+    ],
+    correct: 1,
+    explanation: "Le CEC explique que le dimanche est « huitième jour » qui suit le sabbat et « signifie la nouvelle création inaugurée avec la Résurrection du Christ » — devenant ainsi « le premier de tous les jours (...), le jour du Seigneur ».",
+    source: "CEC §2174",
+    more: "Le CEC précise (§2175) que le dimanche « accomplit, dans la Pâque du Christ, la vérité spirituelle du sabbat juif », dont il remplace la prescription cérémonielle."
+  }
+];
+
+// Jeu 10 — 5 questions distinctes, vérifiées sur vatican.va
+const deck10Cards = [
+  {
+    reference: "Mystère pascal",
+    part: "II.1.1.1",
+    arbo: "Deuxième partie : La célébration du mystère chrétien › Première section : L'économie sacramentelle › Chapitre premier : Le mystère pascal dans le temps de l'Église › Article 1 : La liturgie, œuvre de la Sainte Trinité › II. L'œuvre du Christ dans la liturgie",
+    question: "Selon le CEC, que signifie et réalise principalement le Christ dans la Liturgie de l'Église ?",
+    choices: [
+      "Un simple souvenir historique de sa vie terrestre",
+      "Son Mystère pascal",
+      "Une démonstration de puissance destinée à convaincre",
+      "Rien de particulier, la liturgie est un cadre neutre"
+    ],
+    correct: 1,
+    explanation: "Le CEC affirme : « Dans la Liturgie de l'Église le Christ signifie et réalise principalement son Mystère pascal ».",
+    source: "CEC §1085",
+    more: "Le CEC précise que Jésus « vit l'unique événement de l'histoire qui ne passe pas » : il meurt, est enseveli, ressuscite et est assis à la droite du Père, « une fois pour toutes »."
+  },
+  {
+    reference: "Respect de la vie",
+    part: "III.2.1.5",
+    arbo: "Troisième partie : La vie dans le Christ › Deuxième section : Les dix commandements › Chapitre premier : « Tu aimeras le Seigneur ton Dieu... » › Article 5 : Le cinquième commandement › I. Le respect de la vie humaine",
+    question: "Selon le CEC, à partir de quel moment la vie humaine doit-elle être respectée et protégée de manière absolue ?",
+    choices: [
+      "À partir de la naissance",
+      "Dès le moment de la conception",
+      "À partir du moment où l'enfant est viable hors de l'utérus",
+      "Le CEC laisse cette question ouverte"
+    ],
+    correct: 1,
+    explanation: "Le CEC affirme : « La vie humaine doit être respectée et protégée de manière absolue depuis le moment de la conception ».",
+    source: "CEC §2270",
+    more: "Le CEC cite le prophète Jérémie : « Avant de te façonner dans le ventre maternel, je te connaissais » — pour situer cette dignité avant même la naissance."
+  },
+  {
+    reference: "Sacerdoce commun",
+    part: "II.2.1.1",
+    arbo: "Deuxième partie : La célébration du mystère chrétien › Deuxième section : Les sept sacrements de l'Église › Chapitre premier : Les sacrements de l'initiation chrétienne › Article 1 : Le sacrement du Baptême › V. Les effets du Baptême",
+    question: "Selon le CEC, à quoi le Baptême donne-t-il part, en configurant le fidèle au Christ Prêtre, Prophète et Roi ?",
+    choices: [
+      "Au sacerdoce ministériel, comme un prêtre ordonné",
+      "Au sacerdoce commun des fidèles",
+      "À aucune fonction particulière",
+      "Uniquement à une fonction d'enseignement"
+    ],
+    correct: 1,
+    explanation: "Le CEC affirme que par le Baptême, les fidèles « participent au sacerdoce du Christ, à sa mission prophétique et royale » — « le Baptême donne part au sacerdoce commun des fidèles ».",
+    source: "CEC §1268",
+    more: "Le CEC cite saint Pierre : les baptisés sont « une race élue, un sacerdoce royal, une nation sainte, un peuple acquis »."
+  },
+  {
+    reference: "Vocation à la sainteté",
+    part: "III.1.3.2",
+    arbo: "Troisième partie : La vie dans le Christ › Première section : La vocation de l'homme, la vie dans l'Esprit › Chapitre troisième : Le salut de Dieu, la Loi et la Grâce › Article 2 : La grâce et la justification › IV. La sainteté chrétienne",
+    question: "Selon le CEC, citant Lumen Gentium, à qui s'adresse l'appel à la sainteté ?",
+    choices: [
+      "Aux seuls prêtres et religieux",
+      "À tous ceux qui croient au Christ, quels que soient leur rang et leur état",
+      "Uniquement à ceux qui ont fait vœu de pauvreté",
+      "Aux seuls saints déjà canonisés"
+    ],
+    correct: 1,
+    explanation: "Le CEC cite Lumen Gentium : « L'appel à la plénitude de la vie chrétienne et à la perfection de la charité s'adresse à tous ceux qui croient au Christ, quels que soient leur rang et leur état ».",
+    source: "CEC §2013",
+    more: "Le CEC cite Matthieu : « Soyez parfaits comme votre Père céleste est parfait » — une exigence adressée à tout croyant, sans exception d'état de vie."
+  },
+  {
+    reference: "Marie, nouvelle Ève",
+    part: "I.2.1.7",
+    arbo: "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre premier : Je crois en Dieu le Père › Article 7 : La chute",
+    question: "Selon le CEC, citant saint Irénée, quel rôle Marie a-t-elle joué comme « nouvelle Ève » ?",
+    choices: [
+      "Aucun rôle particulier dans l'histoire du salut",
+      "Par son obéissance, elle est devenue cause de salut pour elle-même et pour tout le genre humain",
+      "Un rôle purement symbolique, sans effet réel",
+      "Un rôle limité à sa seule descendance"
+    ],
+    correct: 1,
+    explanation: "Le CEC cite saint Irénée : « Par son obéissance elle est devenue, pour elle-même et pour tout le genre humain, cause de salut ».",
+    source: "CEC §411",
+    more: "Le CEC rapporte le dicton des Pères : « Le nœud dû à la désobéissance d'Ève s'est dénoué par l'obéissance de Marie »."
+  }
+];
+
+// Jeu 11 — 5 questions distinctes, vérifiées sur vatican.va
+const deck11Cards = [
+  {
+    reference: "Le fils prodigue",
+    part: "II.2.2.4",
+    arbo: "Deuxième partie : La célébration du mystère chrétien › Deuxième section : Les sept sacrements de l'Église › Chapitre deuxième : Les sacrements de guérison › Article 4 : Le sacrement de Pénitence et de Réconciliation",
+    question: "Selon le CEC, quelle parabole décrit « merveilleusement » le mouvement de la conversion et de la pénitence ?",
+    choices: [
+      "La parabole des talents",
+      "La parabole du fils prodigue, centrée sur le père miséricordieux",
+      "La parabole du bon Samaritain",
+      "La parabole des dix vierges"
+    ],
+    correct: 1,
+    explanation: "Le CEC affirme : « Le mouvement de la conversion et de la pénitence a été merveilleusement décrit par Jésus dans la parabole dite 'du fils prodigue' dont le centre est 'le père miséricordieux' ».",
+    source: "CEC §1439",
+    more: "Le CEC détaille chaque étape : l'abandon de la maison, la misère, le repentir, le chemin du retour, et « la joie du père » à l'accueil généreux du fils."
+  },
+  {
+    reference: "Liberté humaine",
+    part: "III.1.1.3",
+    arbo: "Troisième partie : La vie dans le Christ › Première section : La vocation de l'homme, la vie dans l'Esprit › Chapitre premier : La dignité de la personne humaine › Article 3 : La liberté de l'homme › I. Liberté et responsabilité",
+    question: "Selon le CEC, comment définir précisément la liberté humaine ?",
+    choices: [
+      "Le droit de faire absolument tout ce que l'on désire",
+      "Le pouvoir, enraciné dans la raison et la volonté, d'agir ou de ne pas agir",
+      "Une illusion, l'homme étant entièrement déterminé",
+      "Un privilège réservé aux baptisés"
+    ],
+    correct: 1,
+    explanation: "Le CEC définit : « La liberté est le pouvoir, enraciné dans la raison et la volonté, d'agir ou de ne pas agir, de faire ceci ou cela, de poser ainsi par soi-même des actions délibérées ».",
+    source: "CEC §1731",
+    more: "Le CEC précise (§1733) : « Plus on fait le bien, plus on devient libre » — la vraie liberté ne se réalise qu'au service du bien."
+  },
+  {
+    reference: "Unité du genre humain",
+    part: "I.2.1.1",
+    arbo: "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre premier : Je crois en Dieu le Père › Article 1 : « Je crois en Dieu le Père tout-puissant, créateur du ciel et de la terre » › Paragraphe 6 : L'homme",
+    question: "Selon le CEC, citant les Actes des Apôtres, pourquoi le genre humain forme-t-il une unité ?",
+    choices: [
+      "Grâce à un traité international moderne",
+      "Grâce à une communauté d'origine : Dieu a fait sortir d'une souche unique toute la descendance des hommes",
+      "Il n'y a pas d'unité réelle entre les peuples selon le CEC",
+      "Grâce à une langue commune primitive uniquement"
+    ],
+    correct: 1,
+    explanation: "Le CEC affirme : « Grâce à la communauté d'origine le genre humain forme une unité. Car Dieu 'a fait sortir d'une souche unique toute la descendance des hommes' » (citant Ac 17, 26).",
+    source: "CEC §360",
+    more: "Ce texte s'inscrit dans le commentaire du récit de la Genèse, où le CEC lit dans la diversité des peuples issus d'une même origine « une merveilleuse vision » de la famille humaine."
+  },
+  {
+    reference: "Homme et femme",
+    part: "III.2.1.6",
+    arbo: "Troisième partie : La vie dans le Christ › Deuxième section : Les dix commandements › Chapitre premier : « Tu aimeras le Seigneur ton Dieu... » › Article 6 : Le sixième commandement › I. « Homme et femme, il les créa... »",
+    question: "Selon le CEC, citant Familiaris Consortio, comment Dieu a-t-il créé la dignité personnelle de l'homme et de la femme ?",
+    choices: [
+      "De manière inégale, l'homme précédant la femme en dignité",
+      "D'une manière égale pour l'homme et pour la femme",
+      "Cette question n'est pas abordée par le CEC",
+      "Seule la femme reçoit une dignité personnelle propre"
+    ],
+    correct: 1,
+    explanation: "Le CEC cite Familiaris Consortio : « En créant l'être humain homme et femme, Dieu donne la dignité personnelle d'une manière égale à l'homme et à la femme ».",
+    source: "CEC §2334",
+    more: "Le CEC ajoute (§2335) que chacun des deux sexes est, « avec une égale dignité, quoique de façon différente, image de la puissance et de la tendresse de Dieu »."
+  },
+  {
+    reference: "Image de Dieu",
+    part: "I.2.1.1",
+    arbo: "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre premier : Je crois en Dieu le Père › Article 1 : « Je crois en Dieu le Père tout-puissant, créateur du ciel et de la terre » › Paragraphe 6 : L'homme, I. À l'image de Dieu",
+    question: "Selon le CEC, qu'est-ce qui distingue l'homme des autres créatures visibles ?",
+    choices: [
+      "Sa force physique supérieure",
+      "Il est « la seule créature sur terre que Dieu a voulue pour elle-même »",
+      "Rien ne le distingue vraiment selon le CEC",
+      "Sa capacité à fabriquer des outils"
+    ],
+    correct: 1,
+    explanation: "Le CEC affirme : « De toutes les créatures visibles, seul l'homme est capable de connaître et d'aimer son Créateur » ; il est « la seule créature sur terre que Dieu a voulue pour elle-même ».",
+    source: "CEC §356",
+    more: "Le CEC précise que l'homme, seul parmi les créatures visibles, « est appelé à partager, par la connaissance et l'amour, la vie de Dieu »."
+  }
+];
+
+const contentPool = [deck1Cards, deck2Cards, deck3Cards, deck4Cards, deck5Cards, deck6Cards, deck7Cards, deck8Cards, deck9Cards, deck10Cards, deck11Cards];
 
 const LS_PROGRESS = 'quaerite_progress';
 const LS_HISTORY = 'quaerite_history';
