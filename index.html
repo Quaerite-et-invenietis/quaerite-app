@@ -628,17 +628,17 @@ const deck2Cards = [
     reference: "Vertus théologales",
     part: "III.1.1.7",
     arbo: "Troisième partie : La vie dans le Christ › Première section : La vocation de l'homme, la vie dans l'Esprit › Chapitre premier : La dignité de la personne humaine › Article 7 : Les vertus › II. Les vertus théologales",
-    question: "Selon le CEC, combien de vertus théologales y a-t-il, et lesquelles ?",
+    question: "Selon le CEC, comment les vertus théologales sont-elles acquises par les fidèles ?",
     choices: [
-      "Trois : la foi, l'espérance et la charité",
-      "Sept, en comptant les dons de l'Esprit",
-      "Deux : la foi et la charité",
-      "Quatre : les mêmes que les vertus cardinales"
+      "Elles sont infusées par Dieu dans l'âme des fidèles",
+      "Par l'effort personnel et la répétition d'actes, comme les vertus humaines",
+      "Uniquement par la réception du sacrement de Confirmation",
+      "Elles ne peuvent jamais être perdues, même par un péché grave"
     ],
     correct: 0,
-    explanation: "Le CEC cite 1 Corinthiens 13,13 : « il y a trois vertus théologales : la foi, l'espérance et la charité ».",
-    source: "CEC §1813",
-    more: "Contrairement aux vertus humaines acquises par l'effort, le CEC précise qu'elles sont « infusées par Dieu dans l'âme des fidèles »."
+    explanation: "Le CEC précise qu'à la différence des vertus humaines, acquises par l'éducation et des actes délibérés et persévérants, les vertus théologales sont « infusées par Dieu dans l'âme des fidèles ».",
+    source: "CEC §1810, §1813",
+    more: "Le CEC en cite la liste, à la suite de saint Paul (1 Co 13,13) : « il y a trois vertus théologales : la foi, l'espérance et la charité »."
   },
   {
     reference: "Vertus cardinales",
@@ -1432,7 +1432,175 @@ const deck11Cards = [
   }
 ];
 
-const contentPool = [deck1Cards, deck2Cards, deck3Cards, deck4Cards, deck5Cards, deck6Cards, deck7Cards, deck8Cards, deck9Cards, deck10Cards, deck11Cards];
+// Jeu 12 — 5 questions distinctes, vérifiées sur vatican.va
+const deck12Cards = [
+  {
+    reference: "Contemplation",
+    part: "IV.1.3.2",
+    arbo: "Quatrième partie : La prière chrétienne › Première section : La prière dans la vie chrétienne › Chapitre troisième : La vie de prière › III. La prière de contemplation",
+    question: "Selon sainte Thérèse d'Avila, citée par le CEC, qu'est-ce que l'oraison mentale ?",
+    choices: [
+      "La récitation répétée de formules apprises",
+      "Un commerce intime d'amitié où l'on s'entretient seul à seul avec Dieu",
+      "Une technique de relaxation spirituelle",
+      "Une pratique réservée aux religieux cloîtrés"
+    ],
+    correct: 1,
+    explanation: "Le CEC cite sainte Thérèse : « L'oraison mentale n'est, à mon avis, qu'un commerce intime d'amitié où l'on s'entretient souvent seul à seul avec ce Dieu dont on se sait aimé ».",
+    source: "CEC §2709",
+    more: "Le CEC précise que l'oraison « cherche celui que mon cœur aime » — c'est Jésus, et en lui, le Père."
+  },
+  {
+    reference: "« Notre » Père",
+    part: "IV.2",
+    arbo: "Quatrième partie : La prière chrétienne › Deuxième section : La prière du Seigneur, « Notre Père » › Article 2 : « Notre Père qui es aux cieux »",
+    question: "Selon saint Jean Chrysostome, cité par le CEC, pourquoi Jésus nous apprend-il à dire « Notre » Père plutôt que « mon » Père ?",
+    choices: [
+      "Par simple habitude linguistique de l'époque",
+      "Parce que Dieu ne peut pas être le Père d'un seul homme",
+      "Afin que notre prière soit, d'une seule âme, pour tout le Corps de l'Église",
+      "Le CEC ne donne aucune raison à cet usage"
+    ],
+    correct: 2,
+    explanation: "Le CEC cite saint Jean Chrysostome : « Il ne dit pas 'mon Père' qui es dans les cieux, mais 'notre' Père, afin que notre prière soit, d'une seule âme, pour tout le Corps de l'Église ».",
+    source: "CEC §2777",
+    more: "Le CEC ajoute (§2792) que prier en vérité « Notre Père » nous fait sortir de l'individualisme, car l'Amour que nous accueillons nous en libère."
+  },
+  {
+    reference: "Action de grâce",
+    part: "IV.1.3.1",
+    arbo: "Quatrième partie : La prière chrétienne › Première section : La prière dans la vie chrétienne › Chapitre troisième : La vie de prière › Article 1 : Les expressions de la prière › IV. La prière d'action de grâces",
+    question: "Selon le CEC, quels événements peuvent devenir matière à l'action de grâce ?",
+    choices: [
+      "Seulement les fêtes liturgiques prévues au calendrier",
+      "Rien selon le CEC : l'action de grâce ne concerne que la messe",
+      "Toute joie et toute peine, tout événement et tout besoin",
+      "Uniquement les grandes joies et les succès"
+    ],
+    correct: 2,
+    explanation: "Le CEC affirme : « Toute joie et toute peine, tout événement et tout besoin peuvent être la matière de l'action de grâce qui, participant à celle du Christ, doit emplir toute la vie ».",
+    source: "CEC §2648",
+    more: "Le CEC cite saint Paul : « En toute condition, soyez dans l'action de grâce » (1 Th 5, 18)."
+  },
+  {
+    reference: "Consentement matrimonial",
+    part: "II.2.3.7",
+    arbo: "Deuxième partie : La célébration du mystère chrétien › Deuxième section : Les sept sacrements de l'Église › Chapitre troisième : Les sacrements au service de la communion › Article 7 : Le sacrement du Mariage › III. Le consentement matrimonial",
+    question: "Selon le CEC, que se passe-t-il si le consentement des époux manque au moment du mariage ?",
+    choices: [
+      "Il n'y a pas de mariage",
+      "Le mariage reste valide si la cérémonie a eu lieu",
+      "Le mariage devient valide rétroactivement si les époux vivent ensemble",
+      "L'Église peut le valider a posteriori sur simple demande"
+    ],
+    correct: 0,
+    explanation: "Le CEC affirme : « L'Église considère l'échange des consentements entre les époux comme l'élément indispensable 'qui fait le mariage'. Si le consentement manque, il n'y a pas de mariage ».",
+    source: "CEC §1626",
+    more: "Le CEC précise (§1627) que ce consentement consiste en un « acte humain par lequel les époux se donnent et se reçoivent mutuellement »."
+  },
+  {
+    reference: "La messe",
+    part: "II.2.1.3",
+    arbo: "Deuxième partie : La célébration du mystère chrétien › Deuxième section : Les sept sacrements de l'Église › Chapitre premier : Les sacrements de l'initiation chrétienne › Article 3 : Le sacrement de l'Eucharistie › IV. La célébration liturgique de l'eucharistie",
+    question: "Selon le CEC, en combien de grands moments la liturgie de l'Eucharistie se déploie-t-elle ?",
+    choices: [
+      "Cela varie entièrement selon chaque paroisse",
+      "Un seul moment continu, sans division",
+      "Quatre moments distincts et indépendants",
+      "Deux : la liturgie de la Parole, puis la liturgie eucharistique"
+    ],
+    correct: 3,
+    explanation: "Le CEC affirme que la liturgie de l'Eucharistie « se déploie en deux grands moments qui forment une unité foncière » : le rassemblement avec la liturgie de la Parole, puis la liturgie eucharistique.",
+    source: "CEC §1346",
+    more: "Le CEC précise que ces deux moments constituent ensemble « un seul et même acte du culte », la table étant à la fois celle de la Parole et celle du Corps du Seigneur."
+  }
+];
+
+// Jeu 13 — 5 questions distinctes, vérifiées sur vatican.va
+const deck13Cards = [
+  {
+    reference: "Confession",
+    part: "II.2.2.4",
+    arbo: "Deuxième partie : La célébration du mystère chrétien › Deuxième section : Les sept sacrements de l'Église › Chapitre deuxième : Les sacrements de guérison › Article 4 : Le sacrement de Pénitence et de Réconciliation › VI. Le sacrement de la pénitence et de la réconciliation",
+    question: "Selon le CEC, quel demeure le seul moyen ordinaire de réconciliation avec Dieu et l'Église pour un péché grave ?",
+    choices: [
+      "La participation régulière à la messe dominicale",
+      "La confession individuelle et intégrale des péchés graves, suivie de l'absolution",
+      "Le seul regret intérieur, sans confession",
+      "Une donation aux œuvres de charité"
+    ],
+    correct: 1,
+    explanation: "Le CEC affirme : « La confession individuelle et intégrale des péchés graves suivie de l'absolution demeure le seul moyen ordinaire pour la réconciliation avec Dieu et avec l'Église ».",
+    source: "CEC §1497",
+    more: "Le CEC précise que ce sacrement porte aussi le nom de sacrement de conversion, de pénitence, du pardon ou de réconciliation, selon l'aspect qu'on souligne."
+  },
+  {
+    reference: "Pureté du cœur",
+    part: "III.2.2.9",
+    arbo: "Troisième partie : La vie dans le Christ › Deuxième section : Les dix commandements › Chapitre deuxième : « Tu aimeras ton prochain comme toi-même » › Article 9 : Le neuvième commandement › I. La purification du cœur",
+    question: "Selon le CEC, que promet la sixième béatitude aux « cœurs purs » ?",
+    choices: [
+      "L'accès immédiat à la prêtrise",
+      "De voir Dieu",
+      "La richesse matérielle sur cette terre",
+      "Une vie sans aucune épreuve"
+    ],
+    correct: 1,
+    explanation: "Le CEC cite Matthieu 5,8 : « Bienheureux les cœurs purs, car ils verront Dieu ». Les cœurs purs sont ceux qui ont accordé leur intelligence et leur volonté aux exigences de la sainteté de Dieu.",
+    source: "CEC §2518",
+    more: "Le CEC précise (§2519) qu'aux cœurs purs est promis de voir Dieu face à face et de Lui être semblables — la pureté du cœur est le préalable à cette vision."
+  },
+  {
+    reference: "Loi nouvelle",
+    part: "III.1.3.1",
+    arbo: "Troisième partie : La vie dans le Christ › Première section : La vocation de l'homme, la vie dans l'Esprit › Chapitre troisième : Le salut de Dieu, la Loi et la Grâce › Article 1 : La loi morale › III. La Loi nouvelle ou Loi évangélique",
+    question: "Selon le CEC, pourquoi la Loi nouvelle est-elle appelée « loi de liberté » ?",
+    choices: [
+      "Parce qu'elle abolit toute obligation morale",
+      "Parce qu'elle ne s'applique qu'aux personnes libres socialement",
+      "Parce qu'elle nous libère des observances rituelles et juridiques de la Loi ancienne",
+      "Cette expression n'apparaît pas dans le CEC"
+    ],
+    correct: 2,
+    explanation: "Le CEC explique que la Loi nouvelle est une « loi de liberté » parce qu'elle « nous libère des observances rituelles et juridiques de la Loi ancienne » et nous incline à agir spontanément sous l'impulsion de la charité.",
+    source: "CEC §1972",
+    more: "Le CEC ajoute qu'elle est aussi appelée « loi d'amour » (elle fait agir par l'amour qu'infuse l'Esprit Saint) et « loi de grâce » (elle confère la force d'agir par la foi et les sacrements)."
+  },
+  {
+    reference: "Bien commun",
+    part: "III.1.2.2",
+    arbo: "Troisième partie : La vie dans le Christ › Première section : La vocation de l'homme, la vie dans l'Esprit › Chapitre deuxième : La communauté humaine › Article 2 : La participation à la vie sociale › II. Le Bien Commun",
+    question: "Selon le CEC, citant Gaudium et Spes, qu'est-ce que le bien commun ?",
+    choices: [
+      "L'ensemble des conditions sociales qui permettent d'atteindre plus aisément sa perfection",
+      "Un concept que le CEC ne définit pas précisément",
+      "La somme des intérêts individuels de chacun",
+      "Le patrimoine matériel appartenant à l'État"
+    ],
+    correct: 0,
+    explanation: "Le CEC définit : « Par bien commun, il faut entendre l'ensemble des conditions sociales qui permettent, tant aux groupes qu'à chacun de leurs membres, d'atteindre leur perfection d'une façon plus totale et plus aisée ».",
+    source: "CEC §1906",
+    more: "Le CEC précise qu'il comporte trois éléments essentiels : le respect de la personne, le bien-être social et le développement, ainsi que la paix et la sécurité."
+  },
+  {
+    reference: "Septième commandement",
+    part: "III.2.2.7",
+    arbo: "Troisième partie : La vie dans le Christ › Deuxième section : Les dix commandements › Chapitre deuxième : « Tu aimeras ton prochain comme toi-même » › Article 7 : Le septième commandement",
+    question: "Selon le CEC, que défend précisément le septième commandement, au-delà de la simple interdiction du vol ?",
+    choices: [
+      "Le CEC limite ce commandement au seul cadre commercial",
+      "Seulement les questions liées à la propriété immobilière",
+      "Uniquement l'interdiction de voler directement",
+      "Prendre ou retenir injustement le bien du prochain, de quelque manière que ce soit"
+    ],
+    correct: 3,
+    explanation: "Le CEC affirme : « Le septième commandement défend de prendre ou de retenir le bien du prochain injustement et de faire du tort au prochain en ses biens de quelque manière que ce soit ».",
+    source: "CEC §2401",
+    more: "Le CEC précise qu'il demande aussi, en vue du bien commun, le respect à la fois de la destination universelle des biens et du droit de propriété privée."
+  }
+];
+
+const contentPool = [deck1Cards, deck2Cards, deck3Cards, deck4Cards, deck5Cards, deck6Cards, deck7Cards, deck8Cards, deck9Cards, deck10Cards, deck11Cards, deck12Cards, deck13Cards];
 
 const LS_PROGRESS = 'quaerite_progress';
 const LS_HISTORY = 'quaerite_history';
