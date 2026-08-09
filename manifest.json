@@ -1,42 +1,42 @@
 {
   "_lisez_moi": "Fichier de suivi du projet Quaerite. Mis à jour à chaque nouveau lot de cartes ajouté au fichier principal (quaerite_proto.html).",
-  "_methode": "Chaque carte est vérifiée individuellement contre le texte du CEC sur vatican.va (explication ET détails) avant d'être ajoutée. Ne jamais ajouter une carte sans vérification directe. Positions des bonnes réponses équilibrées par jeu de 5 (chaque position 1-4 au moins 1 fois, jamais plus de 2 fois). Questions 'combien' limitées à ~10% du total.",
-  "_derniere_maj": "65 cartes, 13 jeux",
+  "_methode": "Chaque carte vérifiée individuellement (explication ET détails) contre vatican.va. Positions équilibrées par jeu de 5. 'Combien' limité à ~10% du total.",
+  "_derniere_maj": "75 cartes, 15 jeux (2 semaines + 1 jour)",
   "progression": {
-    "cartes_validees": 65,
-    "jeux_de_5": 13,
+    "cartes_validees": 75,
+    "jeux_de_5": 15,
     "objectif_total_cartes": 1825,
-    "jours_couverts": 13,
+    "jours_couverts": 15,
     "jours_objectif": 365
   },
   "qualite": {
     "questions_combien": 5,
-    "pct_combien": 7.7,
+    "pct_combien": 6.7,
     "cible_pct_combien": 10
   },
   "repartition_par_partie_cec": {
     "I_profession_de_la_foi": {
-      "cartes": 24,
-      "pct_de_nos_cartes": 36.9,
+      "cartes": 26,
+      "pct_de_nos_cartes": 34.7,
       "pct_du_cec_reel": 36.3
     },
     "II_celebration_mystere": {
-      "cartes": 14,
-      "pct_de_nos_cartes": 21.5,
+      "cartes": 17,
+      "pct_de_nos_cartes": 22.7,
       "pct_du_cec_reel": 21.8
     },
     "III_vie_dans_le_christ": {
-      "cartes": 21,
-      "pct_de_nos_cartes": 32.3,
+      "cartes": 24,
+      "pct_de_nos_cartes": 32.0,
       "pct_du_cec_reel": 30.2
     },
     "IV_priere_chretienne": {
-      "cartes": 6,
-      "pct_de_nos_cartes": 9.2,
+      "cartes": 8,
+      "pct_de_nos_cartes": 10.7,
       "pct_du_cec_reel": 10.7
     }
   },
-  "_repartition_note": "Partie IV encore légèrement sous-représentée (9.2% vs 10.7% réel) — à continuer de privilégier dans les prochains lots.",
+  "_repartition_note": "Répartition désormais très proche des vraies proportions du CEC sur les 4 parties.",
   "paragraphes_cec_deja_utilises": [
     92,
     105,
@@ -45,6 +45,7 @@
     246,
     247,
     252,
+    268,
     296,
     329,
     356,
@@ -53,6 +54,7 @@
     405,
     411,
     491,
+    633,
     659,
     665,
     776,
@@ -69,6 +71,8 @@
     1035,
     1085,
     1121,
+    1146,
+    1203,
     1211,
     1257,
     1268,
@@ -81,6 +85,7 @@
     1510,
     1614,
     1626,
+    1670,
     1701,
     1716,
     1731,
@@ -98,19 +103,23 @@
     1996,
     2013,
     2066,
+    2114,
     2174,
+    2263,
     2270,
+    2284,
     2334,
     2401,
     2518,
     2559,
     2648,
+    2701,
     2709,
+    2729,
     2761,
     2777,
     2803
   ],
-  "_paragraphes_deja_utilises_note": "Vérifier cette liste avant tout nouveau lot pour ne jamais réutiliser un paragraphe.",
   "cartes": [
     {
       "id": "jeu1-carte1",
@@ -1712,6 +1721,251 @@
       "correct_index": 3,
       "explanation": "Le CEC affirme : « Le septième commandement défend de prendre ou de retenir le bien du prochain injustement et de faire du tort au prochain en ses biens de quelque manière que ce soit ».",
       "details": "Le CEC précise qu'il demande aussi, en vue du bien commun, le respect à la fois de la destination universelle des biens et du droit de propriété privée."
+    },
+    {
+      "id": "jeu14-carte1",
+      "deck": 14,
+      "position_in_deck": 1,
+      "theme": "Descente aux enfers",
+      "cec_reference": "633",
+      "part_code": "I.2.2.5",
+      "arbo": [
+        "Première partie : La profession de la foi",
+        "Deuxième section : La profession de la foi chrétienne",
+        "Chapitre deuxième : Je crois en Jésus-Christ",
+        "Article 5 : « Jésus-Christ est descendu aux enfers, est ressuscité des morts le troisième jour »",
+        "Paragraphe 1 : Le Christ est descendu aux enfers"
+      ],
+      "question": "Selon le CEC, dans quel but précis le Christ est-il descendu aux enfers (le séjour des morts) ?",
+      "choices": [
+        "Pour détruire définitivement l'enfer de la damnation",
+        "Pour libérer les justes qui l'avaient précédé",
+        "Pour délivrer les damnés de leur peine",
+        "Le CEC ne précise pas le motif de cette descente"
+      ],
+      "correct_index": 1,
+      "explanation": "Le CEC précise : « Jésus n'est pas descendu aux enfers pour y délivrer les damnés (...) ni pour détruire l'enfer de la damnation, mais pour libérer les justes qui l'avaient précédé ».",
+      "details": "Le CEC explique qu'il y est descendu « en Sauveur, proclamant la bonne nouvelle aux esprits qui y étaient détenus », rejoignant par son âme tous ceux qui, avant lui, attendaient leur Libérateur."
+    },
+    {
+      "id": "jeu14-carte2",
+      "deck": 14,
+      "position_in_deck": 2,
+      "theme": "Sacramentaux",
+      "cec_reference": "1670",
+      "part_code": "II.2.4.1",
+      "arbo": [
+        "Deuxième partie : La célébration du mystère chrétien",
+        "Deuxième section : Les sept sacrements de l'Église",
+        "Chapitre quatrième : Les autres célébrations liturgiques",
+        "Article 1 : Les sacramentaux"
+      ],
+      "question": "Selon le CEC, les sacramentaux confèrent-ils la grâce de la même manière que les sept sacrements ?",
+      "choices": [
+        "Les sacramentaux sont en réalité un huitième sacrement",
+        "Le CEC ne fait aucune différence entre les deux",
+        "Non : par la prière de l'Église, ils préparent à recevoir la grâce et disposent à y coopérer",
+        "Oui, exactement de la même manière"
+      ],
+      "correct_index": 2,
+      "explanation": "Le CEC précise : « Les sacramentaux ne confèrent pas la grâce de l'Esprit Saint à la manière des sacrements, mais par la prière de l'Église ils préparent à recevoir la grâce et disposent à y coopérer ».",
+      "details": "Le CEC les définit comme « des signes sacrés qui, selon une certaine imitation des sacrements, signifient des effets (...) obtenus par l'intercession de l'Église »."
+    },
+    {
+      "id": "jeu14-carte3",
+      "deck": 14,
+      "position_in_deck": 3,
+      "theme": "Légitime défense",
+      "cec_reference": "2263",
+      "part_code": "III.2.2.5",
+      "arbo": [
+        "Troisième partie : La vie dans le Christ",
+        "Deuxième section : Les dix commandements",
+        "Chapitre deuxième : « Tu aimeras ton prochain comme toi-même »",
+        "Article 5 : Le cinquième commandement"
+      ],
+      "question": "Selon le CEC, citant saint Thomas d'Aquin, que se passe-t-il quand quelqu'un se défend et cause, sans le vouloir directement, la mort de son agresseur ?",
+      "choices": [
+        "Seuls les représentants de l'autorité publique peuvent se défendre",
+        "Le CEC interdit absolument toute forme de défense physique",
+        "L'acte peut avoir un double effet : la conservation de sa vie est voulue, la mort de l'agresseur ne l'est pas",
+        "Il est toujours coupable d'homicide volontaire"
+      ],
+      "correct_index": 2,
+      "explanation": "Le CEC cite saint Thomas d'Aquin : « L'action de se défendre peut entraîner un double effet : l'un est la conservation de sa propre vie, l'autre la mort de l'agresseur (...). L'un seulement est voulu ; l'autre ne l'est pas ».",
+      "details": "Le CEC ajoute (§2264) que l'amour de soi reste un principe fondamental de la moralité, et qu'il est donc légitime de faire respecter son propre droit à la vie, à condition de garder une réponse mesurée."
+    },
+    {
+      "id": "jeu14-carte4",
+      "deck": 14,
+      "position_in_deck": 4,
+      "theme": "Prière vocale",
+      "cec_reference": "2701",
+      "part_code": "IV.1.3.1",
+      "arbo": [
+        "Quatrième partie : La prière chrétienne",
+        "Première section : La prière dans la vie chrétienne",
+        "Chapitre troisième : La vie de prière",
+        "Article 1 : Les expressions de la prière",
+        "I. La prière vocale"
+      ],
+      "question": "Selon le CEC, quelle prière vocale précise Jésus enseigne-t-il à ses disciples, attirés par sa prière silencieuse ?",
+      "choices": [
+        "Une prière improvisée à chaque fois",
+        "Aucune : Jésus n'enseignait que le silence intérieur",
+        "Un psaume choisi librement selon les circonstances",
+        "Le « Notre Père »"
+      ],
+      "correct_index": 3,
+      "explanation": "Le CEC affirme : « La prière vocale est une donnée indispensable de la vie chrétienne. Aux disciples, attirés par la prière silencieuse de leur Maître, Celui-ci enseigne une prière vocale : le 'Notre Père' ».",
+      "details": "Le CEC précise (§2700) que ce qui importe le plus n'est pas la quantité des paroles mais « la présence du cœur à Celui à qui nous parlons »."
+    },
+    {
+      "id": "jeu14-carte5",
+      "deck": 14,
+      "position_in_deck": 5,
+      "theme": "Idolâtrie",
+      "cec_reference": "2114",
+      "part_code": "III.2.1.1",
+      "arbo": [
+        "Troisième partie : La vie dans le Christ",
+        "Deuxième section : Les dix commandements",
+        "Chapitre premier : « Tu aimeras le Seigneur ton Dieu... »",
+        "Article 1 : Le premier commandement",
+        "III. « Tu n'auras pas d'autres dieux devant moi »"
+      ],
+      "question": "Selon le CEC, citant Origène, qui est « l'idolâtre » ?",
+      "choices": [
+        "Celui qui rapporte à n'importe quoi, plutôt qu'à Dieu, son indestructible notion de Dieu",
+        "Uniquement celui qui pratique un culte païen antique",
+        "Une catégorie de personnes qui n'existe plus aujourd'hui",
+        "Seulement celui qui adore une statue"
+      ],
+      "correct_index": 0,
+      "explanation": "Le CEC cite Origène : l'idolâtre est celui qui « rapporte à n'importe quoi plutôt qu'à Dieu son indestructible notion de Dieu ». L'idolâtrie consiste à diviniser ce qui n'est pas Dieu.",
+      "details": "Le CEC précise (§2113) que l'idolâtrie « reste une tentation constante de la foi » et ne concerne pas seulement les faux cultes anciens : on peut idolâtrer le pouvoir, le plaisir ou toute autre créature mise à la place de Dieu."
+    },
+    {
+      "id": "jeu15-carte1",
+      "deck": 15,
+      "position_in_deck": 1,
+      "theme": "Toute-puissance de Dieu",
+      "cec_reference": "268",
+      "part_code": "I.2.1.1",
+      "arbo": [
+        "Première partie : La profession de la foi",
+        "Deuxième section : La profession de la foi chrétienne",
+        "Chapitre premier : Je crois en Dieu le Père",
+        "Article 1 : « Je crois en Dieu le Père tout-puissant, créateur du ciel et de la terre »",
+        "Paragraphe 3 : Le Tout-Puissant"
+      ],
+      "question": "Selon le CEC, la Toute-Puissance de Dieu est qualifiée de trois manières. Lesquelles ?",
+      "choices": [
+        "Visible, mesurable et prévisible",
+        "Le CEC ne qualifie pas cet attribut divin",
+        "Universelle, aimante et mystérieuse",
+        "Redoutable, distante et incompréhensible"
+      ],
+      "correct_index": 2,
+      "explanation": "Le CEC affirme : « Nous croyons qu'elle est universelle, car Dieu qui a tout créé (...) régit tout et peut tout ; aimante, car Dieu est notre Père ; mystérieuse, car seule la foi peut la discerner lorsqu'elle se déploie dans la faiblesse ».",
+      "details": "Le CEC précise (§272) que cette Toute-Puissance s'est révélée « de la façon la plus mystérieuse » dans l'abaissement volontaire et la Résurrection du Christ, non dans une démonstration de force."
+    },
+    {
+      "id": "jeu15-carte2",
+      "deck": 15,
+      "position_in_deck": 2,
+      "theme": "Diversité liturgique",
+      "cec_reference": "1203",
+      "part_code": "II.1.2.2",
+      "arbo": [
+        "Deuxième partie : La célébration du mystère chrétien",
+        "Première section : L'économie sacramentelle",
+        "Chapitre deuxième : La célébration sacramentelle du mystère pascal",
+        "Article 2 : Diversité liturgique et unité du mystère"
+      ],
+      "question": "Selon le CEC, citant Vatican II, comment l'Église considère-t-elle les différents rites liturgiques légitimement reconnus (latin, byzantin, copte, etc.) ?",
+      "choices": [
+        "Comme égaux en droit et en dignité, à conserver et favoriser",
+        "Le rite latin est supérieur aux autres en dignité",
+        "Comme des tolérances provisoires, à unifier à terme",
+        "Le CEC ne mentionne qu'un seul rite légitime"
+      ],
+      "correct_index": 0,
+      "explanation": "Le CEC cite Sacrosanctum Concilium : « La sainte Mère l'Église considère comme égaux en droit et en dignité tous les rites légitimement reconnus, et elle veut, à l'avenir, les conserver et les favoriser de toutes manières ».",
+      "details": "Le CEC liste ces traditions liturgiques : le rite latin (romain, ambrosien...) et les rites byzantin, alexandrin, syriaque, arménien, maronite et chaldéen."
+    },
+    {
+      "id": "jeu15-carte3",
+      "deck": 15,
+      "position_in_deck": 3,
+      "theme": "Le scandale",
+      "cec_reference": "2284",
+      "part_code": "III.2.2.5",
+      "arbo": [
+        "Troisième partie : La vie dans le Christ",
+        "Deuxième section : Les dix commandements",
+        "Chapitre deuxième : « Tu aimeras ton prochain comme toi-même »",
+        "Article 5 : Le cinquième commandement",
+        "II. Le respect de la dignité des personnes"
+      ],
+      "question": "Selon le CEC, comment se définit précisément le « scandale » ?",
+      "choices": [
+        "Un péché qui ne concerne que celui qui le commet",
+        "Une faute uniquement publique, jamais privée",
+        "Une simple rumeur sans conséquence morale",
+        "L'attitude ou le comportement qui portent autrui à faire le mal"
+      ],
+      "correct_index": 3,
+      "explanation": "Le CEC définit : « Le scandale est l'attitude ou le comportement qui portent autrui à faire le mal. Celui qui scandalise se fait le tentateur de son prochain (...) ; il peut entraîner son frère dans la mort spirituelle ».",
+      "details": "Le CEC précise (§2285) que le scandale revêt une gravité particulière selon l'autorité de ceux qui le causent ou la faiblesse de ceux qui le subissent."
+    },
+    {
+      "id": "jeu15-carte4",
+      "deck": 15,
+      "position_in_deck": 4,
+      "theme": "Distraction dans la prière",
+      "cec_reference": "2729",
+      "part_code": "IV.1.3.2",
+      "arbo": [
+        "Quatrième partie : La prière chrétienne",
+        "Première section : La prière dans la vie chrétienne",
+        "Chapitre troisième : La vie de prière",
+        "Article 2 : Le combat de la prière",
+        "II. L'humble vigilance du cœur"
+      ],
+      "question": "Selon le CEC, que faut-il faire face à la distraction, difficulté habituelle de la prière ?",
+      "choices": [
+        "Partir activement à la chasse de chaque distraction jusqu'à l'éliminer",
+        "Prier plus fort et plus vite pour ne pas y penser",
+        "Revenir simplement à son cœur, la distraction révélant ce à quoi on est attaché",
+        "Abandonner la prière ce jour-là et réessayer plus tard"
+      ],
+      "correct_index": 2,
+      "explanation": "Le CEC affirme : « Partir à la chasse des distractions serait tomber dans leurs pièges, alors qu'il suffit de revenir à notre cœur : une distraction nous révèle ce à quoi nous sommes attachés ».",
+      "details": "Le CEC précise que cette prise de conscience humble devant le Seigneur doit réveiller notre amour de préférence pour lui, en lui offrant résolument notre cœur pour qu'il le purifie."
+    },
+    {
+      "id": "jeu15-carte5",
+      "deck": 15,
+      "position_in_deck": 5,
+      "theme": "Signes et symboles",
+      "cec_reference": "1146",
+      "part_code": "II.1",
+      "arbo": [
+        "Deuxième partie : La célébration du mystère chrétien",
+        "Première section : L'économie sacramentelle",
+        "Une célébration sacramentelle tissée de signes et de symboles"
+      ],
+      "question": "Selon le CEC, pourquoi l'homme, « être social », a-t-il besoin de signes et de symboles jusque dans sa relation à Dieu ?",
+      "choices": [
+        "Ce n'est qu'une habitude culturelle sans fondement anthropologique",
+        "Parce qu'il en a besoin pour communiquer avec autrui, par le langage, les gestes, les actions",
+        "Le CEC ne donne aucune justification à l'usage des signes",
+        "Uniquement parce que Dieu l'exige arbitrairement"
+      ],
+      "correct_index": 1,
+      "explanation": "Le CEC affirme : « Comme être social, l'homme a besoin de signes et de symboles pour communiquer avec autrui, par le langage, par des gestes, par des actions. Il en est de même pour sa relation à Dieu ».",
+      "details": "Le CEC précise (§1145) qu'une célébration sacramentelle est « tissée de signes et de symboles » dont la signification s'enracine dans l'œuvre de la création et se révèle pleinement dans la personne du Christ."
     }
   ]
 }
