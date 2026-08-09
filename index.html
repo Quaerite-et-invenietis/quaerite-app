@@ -1600,7 +1600,175 @@ const deck13Cards = [
   }
 ];
 
-const contentPool = [deck1Cards, deck2Cards, deck3Cards, deck4Cards, deck5Cards, deck6Cards, deck7Cards, deck8Cards, deck9Cards, deck10Cards, deck11Cards, deck12Cards, deck13Cards];
+// Jeu 14 — 5 questions distinctes, vérifiées sur vatican.va
+const deck14Cards = [
+  {
+    reference: "Descente aux enfers",
+    part: "I.2.2.5",
+    arbo: "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre deuxième : Je crois en Jésus-Christ › Article 5 : « Jésus-Christ est descendu aux enfers, est ressuscité des morts le troisième jour » › Paragraphe 1 : Le Christ est descendu aux enfers",
+    question: "Selon le CEC, dans quel but précis le Christ est-il descendu aux enfers (le séjour des morts) ?",
+    choices: [
+      "Pour détruire définitivement l'enfer de la damnation",
+      "Pour libérer les justes qui l'avaient précédé",
+      "Pour délivrer les damnés de leur peine",
+      "Le CEC ne précise pas le motif de cette descente"
+    ],
+    correct: 1,
+    explanation: "Le CEC précise : « Jésus n'est pas descendu aux enfers pour y délivrer les damnés (...) ni pour détruire l'enfer de la damnation, mais pour libérer les justes qui l'avaient précédé ».",
+    source: "CEC §633",
+    more: "Le CEC explique qu'il y est descendu « en Sauveur, proclamant la bonne nouvelle aux esprits qui y étaient détenus », rejoignant par son âme tous ceux qui, avant lui, attendaient leur Libérateur."
+  },
+  {
+    reference: "Sacramentaux",
+    part: "II.2.4.1",
+    arbo: "Deuxième partie : La célébration du mystère chrétien › Deuxième section : Les sept sacrements de l'Église › Chapitre quatrième : Les autres célébrations liturgiques › Article 1 : Les sacramentaux",
+    question: "Selon le CEC, les sacramentaux confèrent-ils la grâce de la même manière que les sept sacrements ?",
+    choices: [
+      "Les sacramentaux sont en réalité un huitième sacrement",
+      "Le CEC ne fait aucune différence entre les deux",
+      "Non : par la prière de l'Église, ils préparent à recevoir la grâce et disposent à y coopérer",
+      "Oui, exactement de la même manière"
+    ],
+    correct: 2,
+    explanation: "Le CEC précise : « Les sacramentaux ne confèrent pas la grâce de l'Esprit Saint à la manière des sacrements, mais par la prière de l'Église ils préparent à recevoir la grâce et disposent à y coopérer ».",
+    source: "CEC §1670",
+    more: "Le CEC les définit comme « des signes sacrés qui, selon une certaine imitation des sacrements, signifient des effets (...) obtenus par l'intercession de l'Église »."
+  },
+  {
+    reference: "Légitime défense",
+    part: "III.2.2.5",
+    arbo: "Troisième partie : La vie dans le Christ › Deuxième section : Les dix commandements › Chapitre deuxième : « Tu aimeras ton prochain comme toi-même » › Article 5 : Le cinquième commandement",
+    question: "Selon le CEC, citant saint Thomas d'Aquin, que se passe-t-il quand quelqu'un se défend et cause, sans le vouloir directement, la mort de son agresseur ?",
+    choices: [
+      "Seuls les représentants de l'autorité publique peuvent se défendre",
+      "Le CEC interdit absolument toute forme de défense physique",
+      "L'acte peut avoir un double effet : la conservation de sa vie est voulue, la mort de l'agresseur ne l'est pas",
+      "Il est toujours coupable d'homicide volontaire"
+    ],
+    correct: 2,
+    explanation: "Le CEC cite saint Thomas d'Aquin : « L'action de se défendre peut entraîner un double effet : l'un est la conservation de sa propre vie, l'autre la mort de l'agresseur (...). L'un seulement est voulu ; l'autre ne l'est pas ».",
+    source: "CEC §2263",
+    more: "Le CEC ajoute (§2264) que l'amour de soi reste un principe fondamental de la moralité, et qu'il est donc légitime de faire respecter son propre droit à la vie, à condition de garder une réponse mesurée."
+  },
+  {
+    reference: "Prière vocale",
+    part: "IV.1.3.1",
+    arbo: "Quatrième partie : La prière chrétienne › Première section : La prière dans la vie chrétienne › Chapitre troisième : La vie de prière › Article 1 : Les expressions de la prière › I. La prière vocale",
+    question: "Selon le CEC, quelle prière vocale précise Jésus enseigne-t-il à ses disciples, attirés par sa prière silencieuse ?",
+    choices: [
+      "Une prière improvisée à chaque fois",
+      "Aucune : Jésus n'enseignait que le silence intérieur",
+      "Un psaume choisi librement selon les circonstances",
+      "Le « Notre Père »"
+    ],
+    correct: 3,
+    explanation: "Le CEC affirme : « La prière vocale est une donnée indispensable de la vie chrétienne. Aux disciples, attirés par la prière silencieuse de leur Maître, Celui-ci enseigne une prière vocale : le 'Notre Père' ».",
+    source: "CEC §2701",
+    more: "Le CEC précise (§2700) que ce qui importe le plus n'est pas la quantité des paroles mais « la présence du cœur à Celui à qui nous parlons »."
+  },
+  {
+    reference: "Idolâtrie",
+    part: "III.2.1.1",
+    arbo: "Troisième partie : La vie dans le Christ › Deuxième section : Les dix commandements › Chapitre premier : « Tu aimeras le Seigneur ton Dieu... » › Article 1 : Le premier commandement › III. « Tu n'auras pas d'autres dieux devant moi »",
+    question: "Selon le CEC, citant Origène, qui est « l'idolâtre » ?",
+    choices: [
+      "Celui qui rapporte à n'importe quoi, plutôt qu'à Dieu, son indestructible notion de Dieu",
+      "Uniquement celui qui pratique un culte païen antique",
+      "Une catégorie de personnes qui n'existe plus aujourd'hui",
+      "Seulement celui qui adore une statue"
+    ],
+    correct: 0,
+    explanation: "Le CEC cite Origène : l'idolâtre est celui qui « rapporte à n'importe quoi plutôt qu'à Dieu son indestructible notion de Dieu ». L'idolâtrie consiste à diviniser ce qui n'est pas Dieu.",
+    source: "CEC §2114",
+    more: "Le CEC précise (§2113) que l'idolâtrie « reste une tentation constante de la foi » et ne concerne pas seulement les faux cultes anciens : on peut idolâtrer le pouvoir, le plaisir ou toute autre créature mise à la place de Dieu."
+  }
+];
+
+// Jeu 15 — 5 questions distinctes, vérifiées sur vatican.va
+const deck15Cards = [
+  {
+    reference: "Toute-puissance de Dieu",
+    part: "I.2.1.1",
+    arbo: "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre premier : Je crois en Dieu le Père › Article 1 : « Je crois en Dieu le Père tout-puissant, créateur du ciel et de la terre » › Paragraphe 3 : Le Tout-Puissant",
+    question: "Selon le CEC, la Toute-Puissance de Dieu est qualifiée de trois manières. Lesquelles ?",
+    choices: [
+      "Visible, mesurable et prévisible",
+      "Le CEC ne qualifie pas cet attribut divin",
+      "Universelle, aimante et mystérieuse",
+      "Redoutable, distante et incompréhensible"
+    ],
+    correct: 2,
+    explanation: "Le CEC affirme : « Nous croyons qu'elle est universelle, car Dieu qui a tout créé (...) régit tout et peut tout ; aimante, car Dieu est notre Père ; mystérieuse, car seule la foi peut la discerner lorsqu'elle se déploie dans la faiblesse ».",
+    source: "CEC §268",
+    more: "Le CEC précise (§272) que cette Toute-Puissance s'est révélée « de la façon la plus mystérieuse » dans l'abaissement volontaire et la Résurrection du Christ, non dans une démonstration de force."
+  },
+  {
+    reference: "Diversité liturgique",
+    part: "II.1.2.2",
+    arbo: "Deuxième partie : La célébration du mystère chrétien › Première section : L'économie sacramentelle › Chapitre deuxième : La célébration sacramentelle du mystère pascal › Article 2 : Diversité liturgique et unité du mystère",
+    question: "Selon le CEC, citant Vatican II, comment l'Église considère-t-elle les différents rites liturgiques légitimement reconnus (latin, byzantin, copte, etc.) ?",
+    choices: [
+      "Comme égaux en droit et en dignité, à conserver et favoriser",
+      "Le rite latin est supérieur aux autres en dignité",
+      "Comme des tolérances provisoires, à unifier à terme",
+      "Le CEC ne mentionne qu'un seul rite légitime"
+    ],
+    correct: 0,
+    explanation: "Le CEC cite Sacrosanctum Concilium : « La sainte Mère l'Église considère comme égaux en droit et en dignité tous les rites légitimement reconnus, et elle veut, à l'avenir, les conserver et les favoriser de toutes manières ».",
+    source: "CEC §1203",
+    more: "Le CEC liste ces traditions liturgiques : le rite latin (romain, ambrosien...) et les rites byzantin, alexandrin, syriaque, arménien, maronite et chaldéen."
+  },
+  {
+    reference: "Le scandale",
+    part: "III.2.2.5",
+    arbo: "Troisième partie : La vie dans le Christ › Deuxième section : Les dix commandements › Chapitre deuxième : « Tu aimeras ton prochain comme toi-même » › Article 5 : Le cinquième commandement › II. Le respect de la dignité des personnes",
+    question: "Selon le CEC, comment se définit précisément le « scandale » ?",
+    choices: [
+      "Un péché qui ne concerne que celui qui le commet",
+      "Une faute uniquement publique, jamais privée",
+      "Une simple rumeur sans conséquence morale",
+      "L'attitude ou le comportement qui portent autrui à faire le mal"
+    ],
+    correct: 3,
+    explanation: "Le CEC définit : « Le scandale est l'attitude ou le comportement qui portent autrui à faire le mal. Celui qui scandalise se fait le tentateur de son prochain (...) ; il peut entraîner son frère dans la mort spirituelle ».",
+    source: "CEC §2284",
+    more: "Le CEC précise (§2285) que le scandale revêt une gravité particulière selon l'autorité de ceux qui le causent ou la faiblesse de ceux qui le subissent."
+  },
+  {
+    reference: "Distraction dans la prière",
+    part: "IV.1.3.2",
+    arbo: "Quatrième partie : La prière chrétienne › Première section : La prière dans la vie chrétienne › Chapitre troisième : La vie de prière › Article 2 : Le combat de la prière › II. L'humble vigilance du cœur",
+    question: "Selon le CEC, que faut-il faire face à la distraction, difficulté habituelle de la prière ?",
+    choices: [
+      "Partir activement à la chasse de chaque distraction jusqu'à l'éliminer",
+      "Prier plus fort et plus vite pour ne pas y penser",
+      "Revenir simplement à son cœur, la distraction révélant ce à quoi on est attaché",
+      "Abandonner la prière ce jour-là et réessayer plus tard"
+    ],
+    correct: 2,
+    explanation: "Le CEC affirme : « Partir à la chasse des distractions serait tomber dans leurs pièges, alors qu'il suffit de revenir à notre cœur : une distraction nous révèle ce à quoi nous sommes attachés ».",
+    source: "CEC §2729",
+    more: "Le CEC précise que cette prise de conscience humble devant le Seigneur doit réveiller notre amour de préférence pour lui, en lui offrant résolument notre cœur pour qu'il le purifie."
+  },
+  {
+    reference: "Signes et symboles",
+    part: "II.1",
+    arbo: "Deuxième partie : La célébration du mystère chrétien › Première section : L'économie sacramentelle › Une célébration sacramentelle tissée de signes et de symboles",
+    question: "Selon le CEC, pourquoi l'homme, « être social », a-t-il besoin de signes et de symboles jusque dans sa relation à Dieu ?",
+    choices: [
+      "Ce n'est qu'une habitude culturelle sans fondement anthropologique",
+      "Parce qu'il en a besoin pour communiquer avec autrui, par le langage, les gestes, les actions",
+      "Le CEC ne donne aucune justification à l'usage des signes",
+      "Uniquement parce que Dieu l'exige arbitrairement"
+    ],
+    correct: 1,
+    explanation: "Le CEC affirme : « Comme être social, l'homme a besoin de signes et de symboles pour communiquer avec autrui, par le langage, par des gestes, par des actions. Il en est de même pour sa relation à Dieu ».",
+    source: "CEC §1146",
+    more: "Le CEC précise (§1145) qu'une célébration sacramentelle est « tissée de signes et de symboles » dont la signification s'enracine dans l'œuvre de la création et se révèle pleinement dans la personne du Christ."
+  }
+];
+
+const contentPool = [deck1Cards, deck2Cards, deck3Cards, deck4Cards, deck5Cards, deck6Cards, deck7Cards, deck8Cards, deck9Cards, deck10Cards, deck11Cards, deck12Cards, deck13Cards, deck14Cards, deck15Cards];
 
 const LS_PROGRESS = 'quaerite_progress';
 const LS_HISTORY = 'quaerite_history';
