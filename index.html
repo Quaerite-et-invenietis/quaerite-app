@@ -234,7 +234,6 @@
         html { scrollbar-gutter: stable; }
         *, *::before, *::after { box-sizing: border-box; }
         body { min-height: 100dvh; }
-        #bottom-nav { bottom: 0 !important; }
 
         @keyframes quaeriteBlink {
             0%, 100% { opacity: 1; }
@@ -401,7 +400,7 @@
 </main>
 </div>
 <!-- BottomNavBar -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-pure-white border-t border-absolute-black transition-transform duration-300 transform group-[.history-active]:hidden" id="bottom-nav" style="min-height: 80px; padding-bottom: env(safe-area-inset-bottom, 0px);">
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-pure-white border-t border-absolute-black transition-transform duration-300 transform group-[.history-active]:hidden" id="bottom-nav">
 <button class="nav-btn flex flex-col items-center justify-center text-sacred-red border-t-2 border-sacred-red scale-95 pt-2 w-full h-full relative -top-[1px] transition-colors" id="nav-deck" onclick="document.getElementById('view-end-session').classList.add('hidden'); switchView('deck');">
 <span class="material-symbols-outlined mb-1 filled">style</span>
 <span class="font-label-caps">CARTES</span>
