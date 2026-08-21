@@ -11,7 +11,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Quaerite!">
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <script id="tailwind-config">
         tailwind.config = {
           darkMode: "class",
@@ -95,9 +95,11 @@
                               "Playfair Display"
                       ],
                       "body-md": [
+                              "EB Garamond",
                               "Playfair Display"
                       ],
                       "body-lg": [
+                              "EB Garamond",
                               "Playfair Display"
                       ],
                       "headline-lg": [
@@ -216,6 +218,12 @@
 
         .brutalist-border-bottom { border-bottom: 1px solid #000000; }
         .brutalist-border-all { border: 1px solid #000000; }
+        #deck-question-text, #feedback-explanation, #feedback-details, .choice-item span {
+            font-family: 'EB Garamond', 'Playfair Display', serif;
+        }
+        .choice-item span { font-size: 19px; }
+        #deck-question-text { font-size: 27px; }
+        #feedback-explanation, #feedback-details { font-size: 18px; }
         #feedback-details {
             line-height: 1.75;
             color: #1a1a1a;
