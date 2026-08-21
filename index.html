@@ -221,8 +221,11 @@
         #deck-question-text, #feedback-explanation, #feedback-details, .choice-item span {
             font-family: 'EB Garamond', 'Playfair Display', serif;
         }
-        .choice-item span { font-size: 19px; }
-        #deck-question-text { font-size: 27px; line-height: 1.4; }
+        .choice-item span { font-size: 19px; line-height: 1.5; }
+        #deck-question-text { font-size: 22px; line-height: 1.4; }
+        @media (min-width: 768px) {
+            #deck-question-text { font-size: 27px; }
+        }
         #feedback-explanation, #feedback-details { font-size: 18px; }
         #feedback-details {
             line-height: 1.75;
@@ -234,9 +237,7 @@
         #feedback-details p:last-child {
             margin-bottom: 0;
         }
-        #feedback-details .quote {
-            font-weight: 700;
-        }
+        /* citations: identifiees par les guillemets seuls, sans emphase supplementaire */
         .brutalist-border-active { border: 2px solid #B90000; }
 
         html { scrollbar-gutter: stable; }
