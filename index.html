@@ -221,15 +221,29 @@
         #deck-question-text, #feedback-explanation, #feedback-details, .choice-item span {
             font-family: 'EB Garamond', 'Playfair Display', serif;
         }
-        .choice-item span { font-size: 19px; line-height: 1.5; }
-        #deck-question-text { font-size: 19px; line-height: 1.4; }
+        .choice-item span { font-size: 18px; line-height: 1.5; }
+        #deck-question-text { font-size: 21px; line-height: 1.4; }
         @media (min-width: 768px) {
             #deck-question-text { font-size: 27px; }
         }
-        #feedback-explanation, #feedback-details { font-size: 18px; }
+        #feedback-explanation, #feedback-details { font-size: 18px; line-height: 1.5; }
         #feedback-details {
-            line-height: 1.75;
             color: #1a1a1a;
+        }
+        @media (max-width: 767px) {
+            #feedback-details:not(.hidden) {
+                position: fixed;
+                top: 64px; left: 0;
+                width: 100%;
+                height: calc(100% - 64px);
+                background: #FFFFFF;
+                z-index: 60;
+                padding: 24px 16px 90px;
+                margin: 0;
+                border: none;
+                overflow-y: auto;
+                box-sizing: border-box;
+            }
         }
         #feedback-details p {
             margin: 0 0 14px;
@@ -336,7 +350,7 @@
 <h3 class="font-headline-md text-error" id="feedback-title">Incorrect</h3>
 <p class="font-body-md text-absolute-black" id="feedback-explanation">Le CEC liste 46 livres pour l'Ancien Testament et 27 pour le Nouveau, soit 73 au total.</p>
 <p class="font-label-caps text-sacred-red mt-2" id="feedback-source">CEC §120</p>
-<button class="mt-2 text-left font-label-caps text-secondary underline hover:text-sacred-red transition-colors" onclick="document.getElementById('feedback-details').classList.toggle('hidden')">
+<button class="mt-2 text-left font-label-caps text-secondary underline hover:text-sacred-red transition-colors" onclick="toggleDetails()">
             DÉTAILS
         </button>
 <div class="hidden mt-2 pt-2 border-t border-absolute-black font-body-md text-secondary" id="feedback-details"><p class="">Le CEC précise que c'est la Tradition apostolique — pas un critère uniquement scripturaire — qui a permis à l'Église de discerner cette liste des Livres Saints.</p></div>
@@ -423,6 +437,7 @@
 <span class="font-label-caps" id="nav-archive-label">ARCHIVES</span>
 </button>
 </nav>
+<button id="details-close-btn" onclick="toggleDetails()" class="hidden font-label-caps text-label-caps text-absolute-black hover:bg-sacred-red hover:text-pure-white transition-all" style="display:none; position:fixed; bottom:0; left:0; width:100%; z-index:61; height:80px; padding:12px 24px; border-top:1px solid #000000; background:#FFFFFF; box-sizing:border-box;">FERMER</button>
 <script>
     // Nos 5 cartes 2.0 (jour 1) + 7 jeux lorem ipsum (structure à 3 choix)
     const deck1Cards = [{"reference": "Sacrifice de la messe", "part": "II.2.1.3", "arbo": "Deuxième partie : La célébration du mystère chrétien › Deuxième section : Les sept sacrements de l'Église › Chapitre premier : Les sacrements de l'initiation chrétienne › Article 3 : Le sacrement de l'Eucharistie › V. Le sacrifice sacramentel : action de grâce, mémorial, présence", "question": "Le sacrifice de la messe est-il un nouveau sacrifice distinct de celui de la Croix ?", "choices": ["Oui, chaque messe renouvelle un sacrifice réellement distinct, offert par le prêtre", "Non, c'est l'unique et même sacrifice, offert seulement d'une manière non sanglante", "Non, ce n'est qu'un mémorial symbolique, sans sacrifice réel"], "correct": 1, "explanation": "« C'est une seule et même victime, c'est le même qui offre maintenant par le ministère des prêtres, qui s'est offert lui-même alors sur la Croix. Seule la manière d'offrir diffère » (§1367).", "source": "CEC §1367", "more": "L'Eucharistie est également le sacrifice de l'Église elle-même : « Avec Lui, elle est offerte elle-même tout entière » (§1368).\n\nUne image ancienne l'illustre : dans les catacombes, l'Église est souvent représentée « comme une femme en prière, les bras largement ouverts en attitude d'orante », comme le Christ qui a étendu les bras sur la croix.", "vaticanUrl": "https://www.vatican.va/archive/FRA0013/__P3W.HTM"}, {"reference": "Le mal moral", "part": "I.2.1.1", "arbo": "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre premier : Je crois en Dieu le Père › Article 1 : « Je crois en Dieu le Père tout-puissant, créateur du ciel et de la terre » › Paragraphe 4 : Le Créateur", "question": "Comment concilier la toute-puissance et la bonté de Dieu avec l'existence du mal moral ?", "choices": ["Dieu découvre le mal au fur et à mesure qu'il survient, sans l'avoir prévu", "Dieu n'est en aucune façon la cause du mal, mais il permet qu'il existe pour en tirer un plus grand bien", "Le mal découle indirectement du don de la liberté que Dieu a fait aux hommes"], "correct": 1, "explanation": "« Dieu n'est en aucune façon, ni directement ni indirectement, la cause du mal moral » (§311).", "source": "CEC §311", "more": "« Pourquoi Dieu n'a-t-il pas créé un monde aussi parfait qu'aucun mal ne puisse y exister ? » « Selon sa puissance infinie, Dieu pourrait toujours créer quelque chose de meilleur », mais « dans sa sagesse et sa bonté infinies, Dieu a voulu librement créer un monde 'en état de voie' vers sa perfection ultime » (§310).\n\n« Les anges et les hommes, créatures intelligentes et libres, doivent cheminer vers leur destinée ultime par choix libre et amour de préférence » (§311) — c'est cette liberté de cheminement qui rend le mal moral possible, sans que Dieu en soit l'auteur.\n\nLe mal ne vient donc pas du don de la liberté lui-même, qui est un bien : « le péché est un abus de la liberté que Dieu donne aux personnes créées pour qu'elles puissent l'aimer et s'aimer mutuellement » (§387). C'est le mauvais usage de ce don par la créature qui est en cause, pas le don en tant que tel.", "vaticanUrl": "https://www.vatican.va/archive/FRA0013/__P1A.HTM"}, {"reference": "Prédestination", "part": "I.2.3.12", "arbo": "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre troisième : Je crois en l'Esprit Saint › Article 12 : « Je crois à la vie éternelle » › IV. L'enfer", "question": "Dieu prédestine-t-il certaines personnes à l'enfer ?", "choices": ["Oui, certains sont destinés à la damnation dès avant leur naissance, indépendamment de leurs actes", "Non, car la miséricorde divine finit toujours par sauver tous les hommes, même ceux qui semblent damnés", "Non, l'enfer résulte uniquement d'une aversion volontaire et persistante de l'homme envers Dieu"], "correct": 2, "explanation": "« Dieu ne prédestine personne à aller en enfer ; il faut pour cela une aversion volontaire de Dieu (un péché mortel), et y persister jusqu'à la fin » (§1037).", "source": "CEC §1037", "more": "Dans la liturgie eucharistique elle-même, l'Église « implore la miséricorde de Dieu », qui veut « que personne ne périsse, mais que tous arrivent au repentir » (2 P 3,9).\n\nLa prière elle-même le dit : « Voici l'offrande que nous présentons devant toi... arrache-nous à la damnation et reçois-nous parmi tes élus » (Missel romain, Canon romain — cité au §1037).", "vaticanUrl": "https://www.vatican.va/archive/FRA0013/__P2J.HTM"}, {"reference": "Conscience erronée", "part": "III.1.1.6", "arbo": "Troisième partie : La vie dans le Christ › Première section : La vocation de l'homme, la vie dans l'Esprit › Chapitre premier : La dignité de la personne humaine › Article 6 : La conscience morale › IV. Le jugement erroné", "question": "Si quelqu'un agit selon une conscience gravement erronée mais de bonne foi (ignorance invincible), est-il tenu pour coupable ?", "choices": ["Oui, car il doit toujours obéir au jugement certain de sa conscience, quel qu'il soit", "Non, le mal commis ne peut lui être imputé, même si l'acte reste objectivement un mal", "Non, et l'acte cesse alors d'être un mal, puisqu'il a été fait de bonne foi"], "correct": 1, "explanation": "« Si l'ignorance est invincible, ou le jugement erroné sans responsabilité du sujet moral, le mal commis par la personne ne peut lui être imputé. Il n'en demeure pas moins un mal, une privation, un désordre » (§1793).", "source": "CEC §1790, §1793", "more": "Cette ignorance « peut souvent être imputée à la responsabilité personnelle » (§1791), notamment « lorsque l'homme se soucie peu de rechercher le vrai et le bien » ou que « l'habitude du péché rend peu à peu la conscience presque aveugle » (citant Gaudium et Spes 16).", "vaticanUrl": "https://www.vatican.va/archive/FRA0013/__P5W.HTM"}, {"reference": "Les deux volontés du Christ", "part": "I.2.2.3", "arbo": "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre deuxième : Je crois en Jésus-Christ › Article 3 : Conçu du Saint-Esprit, né de la Vierge Marie", "question": "Le Christ possède-t-il une seule volonté (divine) ou deux volontés distinctes ?", "choices": ["Une seule volonté, purement divine — sa nature humaine n'a pas de volonté propre", "Deux volontés, humaine et divine, non opposées mais coopérantes", "Deux volontés, mais parfois en tension l'une avec l'autre, comme à Gethsémani"], "correct": 1, "explanation": "« L'Église a confessé au sixième concile œcuménique que le Christ possède deux volontés et deux opérations naturelles, divines et humaines, non pas opposées, mais coopérantes » (§475).", "source": "CEC §475", "more": "Cette volonté humaine du Christ n'était pas illimitée : elle « était exercée dans les conditions historiques de son existence dans l'espace et le temps » (§472).\n\n« Le Verbe fait chair a voulu humainement, dans l'obéissance à son Père, tout ce qu'il a décidé divinement avec le Père et l'Esprit Saint » (§475) — les deux volontés convergent donc vers un seul et même choix.", "vaticanUrl": "https://www.vatican.va/archive/FRA0013/__P1G.HTM"}];
@@ -684,6 +699,11 @@
 
         document.getElementById('deck-feedback').classList.add('hidden');
         document.getElementById('feedback-details').classList.add('hidden');
+        document.getElementById('details-close-btn').style.display = 'none';
+        if (!isArchiveMode && !isRevealedMode && window.matchMedia('(max-width: 767px)').matches) {
+            document.getElementById('bottom-nav').style.display = 'flex';
+            document.getElementById('bottom-nav').classList.remove('hidden');
+        }
 
         updateNavigationButtons();
         updateProgressBar();
@@ -787,6 +807,35 @@
         } else {
             currentCardIndex++;
             loadCard();
+        }
+    }
+
+    function toggleDetails() {
+        const details = document.getElementById('feedback-details');
+        const closeBtn = document.getElementById('details-close-btn');
+        const bottomNav = document.getElementById('bottom-nav');
+        const nowHidden = details.classList.toggle('hidden');
+
+        if (!nowHidden) {
+            // a l'ouverture : calculer le vrai bas du header + bandeau (date/archive), s'il est visible
+            const header = document.getElementById('top-bar');
+            const banner = document.getElementById('history-banner');
+            let topOffset = header.getBoundingClientRect().bottom;
+            if (banner && getComputedStyle(banner).display !== 'none' && !banner.classList.contains('hidden')) {
+                topOffset = banner.getBoundingClientRect().bottom;
+            }
+            details.style.top = topOffset + 'px';
+            details.style.height = `calc(100% - ${topOffset}px)`;
+        }
+
+        closeBtn.classList.toggle('hidden', nowHidden);
+        closeBtn.style.display = nowHidden ? 'none' : 'block';
+
+        if (window.matchMedia('(max-width: 767px)').matches) {
+            const shouldShowNav = nowHidden && !isArchiveMode && !isRevealedMode;
+            bottomNav.classList.toggle('hidden', !shouldShowNav);
+            bottomNav.style.display = shouldShowNav ? 'flex' : 'none';
+            bottomNav.style.transform = 'none';
         }
     }
 
