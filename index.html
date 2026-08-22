@@ -270,7 +270,7 @@
 
         html { scrollbar-gutter: stable; }
         *, *::before, *::after { box-sizing: border-box; }
-        body { min-height: 100dvh; }
+        body { min-height: 100dvh; padding-bottom: env(safe-area-inset-bottom); }
         .choice-hover-red:hover {
             background-color: rgba(185, 0, 0, 0.08);
         }
