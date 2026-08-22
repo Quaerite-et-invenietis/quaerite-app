@@ -222,11 +222,17 @@
             font-family: 'EB Garamond', 'Playfair Display', serif;
         }
         .choice-item span { font-size: 18px; line-height: 1.5; }
-        #deck-question-text { font-size: 19px !important; line-height: 1.5 !important; }
+        @media (min-width: 768px) {
+            .choice-item span { font-size: 19px; }
+        }
+        #deck-question-text { font-size: 18px !important; line-height: 1.5 !important; }
         @media (min-width: 768px) {
             #deck-question-text { font-size: 23px !important; }
         }
         #feedback-explanation, #feedback-details { font-size: 18px; line-height: 1.5; }
+        @media (min-width: 768px) {
+            #feedback-explanation, #feedback-details { font-size: 19px; }
+        }
         #feedback-details {
             color: #1a1a1a;
         }
@@ -398,7 +404,7 @@
 <!-- Views Container -->
 <div class="flex-grow w-full mx-auto relative z-10" id="views-container">
 <!-- DECK VIEW -->
-<main class="w-full max-w-[672px] mx-auto px-margin-mobile md:px-margin-desktop pt-md pb-lg flex flex-col gap-md mt-4" id="view-deck">
+<main class="w-full max-w-[672px] mx-auto px-margin-mobile md:px-margin-desktop pt-3 pb-3 flex flex-col gap-md mt-2" id="view-deck">
 <!-- Card Wrapper -->
 <div class="relative w-full">
 <div class="bg-pure-white border border-absolute-black flex flex-col gap-sm relative transition-all z-10 shadow-[0_4px_10px_rgba(0,0,0,0.1)]" id="card-wrapper" style="padding: 16px 8px;">
@@ -442,7 +448,7 @@
 </div>
 </div>
 <!-- Action / Progress -->
-<section class="flex flex-col items-center gap-md mt-auto pt-lg transition-all" id="action-section" style="display: flex;">
+<section class="flex flex-col items-center gap-md mt-auto pt-3 transition-all" id="action-section" style="display: flex;">
 <!-- Segmented Progress Bar -->
 <div class="flex items-center justify-center gap-xs h-4 w-full max-w-[330px] mx-auto" id="progress-bar"><div class="flex-1 h-[3px] bg-sacred-red"></div><div class="flex-1 h-[3px] bg-surface-container-highest"></div><div class="flex-1 h-[3px] bg-surface-container-highest"></div><div class="flex-1 h-[3px] bg-surface-container-highest"></div><div class="flex-1 h-[3px] bg-surface-container-highest"></div></div>
 <div class="flex w-full gap-sm mt-4">
@@ -458,11 +464,11 @@
 </section>
 </main>
 <!-- END SESSION VIEW -->
-<main class="hidden w-full max-w-[672px] mx-auto px-margin-mobile md:px-margin-desktop py-xl flex flex-col gap-lg items-center text-center" id="view-end-session"><h2 class="font-display text-display text-absolute-black mt-xl">C'est fait pour aujourd'hui !</h2>
+<main class="hidden w-full max-w-[672px] mx-auto px-margin-mobile md:px-margin-desktop py-xl flex flex-col gap-lg items-center text-center" id="view-end-session" style="display:none;"><h2 class="font-display text-display text-absolute-black mt-xl">C'est fait pour aujourd'hui !</h2>
 <p class="font-body-lg text-secondary">5 nouvelles cartes t'attendent demain.</p>
 <button class="mt-8 px-6 py-3 border border-absolute-black font-label-caps text-absolute-black choice-hover-red transition-colors" onclick="switchView('history')">VOIR L'HISTORIQUE</button></main>
 <!-- HISTORY VIEW -->
-<main class="hidden flex-1 w-full max-w-[672px] mx-auto px-margin-mobile md:px-margin-desktop pt-md pb-xl flex flex-col gap-lg" id="view-history">
+<main class="hidden flex-1 w-full max-w-[672px] mx-auto px-margin-mobile md:px-margin-desktop pt-3 pb-3 flex flex-col gap-lg" id="view-history" style="display:none;">
 <!-- Calendar View -->
 <section class="flex flex-col gap-base">
 <div class="flex justify-between items-center">
@@ -487,7 +493,7 @@
 </section>
 </main>
 <!-- ARCHIVE VIEW -->
-<main class="hidden flex-1 w-full max-w-[672px] mx-auto px-margin-mobile md:px-margin-desktop py-lg flex flex-col gap-lg" id="view-archive">
+<main class="hidden flex-1 w-full max-w-[672px] mx-auto px-margin-mobile md:px-margin-desktop pt-3 pb-3 flex flex-col gap-lg" id="view-archive" style="display:none;">
 <!-- Search Section -->
 <section class="flex flex-col gap-base">
 <h2 class="font-headline-md text-absolute-black text-center mb-sm">Index du Catéchisme</h2>
@@ -656,12 +662,15 @@
     // (indicateur visuel de cadenas retire ; seul le blocage reel de l'acces est conserve, voir renderHistoryGrid/renderArchiveFolders)
 
     function switchView(viewName) {
-        document.getElementById('view-deck').classList.add('hidden');
-        document.getElementById('view-history').classList.add('hidden');
-        document.getElementById('view-archive').classList.add('hidden');
-        document.getElementById('view-end-session').classList.add('hidden');
+        ['view-deck', 'view-history', 'view-archive', 'view-end-session'].forEach(id => {
+            const el = document.getElementById(id);
+            el.classList.add('hidden');
+            el.style.display = 'none';
+        });
 
-        document.getElementById('view-' + viewName).classList.remove('hidden');
+        const activeView = document.getElementById('view-' + viewName);
+        activeView.classList.remove('hidden');
+        activeView.style.display = 'flex';
 
         const navBtns = document.querySelectorAll('.nav-btn');
         navBtns.forEach(btn => {
