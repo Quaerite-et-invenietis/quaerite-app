@@ -6,21 +6,7 @@
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
-<meta name="theme-color" content="#212121" id="theme-color-meta">
-<script>
-(function () {
-    function updateSystemBarColor() {
-        var dark = document.body && document.body.classList.contains('dark-mode');
-        var color = dark ? '#212121' : '#FFFFFF';
-        var meta = document.getElementById('theme-color-meta');
-        if (meta) meta.setAttribute('content', color);
-        document.documentElement.style.backgroundColor = color;
-        if (document.body) document.body.style.backgroundColor = color;
-    }
-    document.addEventListener('DOMContentLoaded', updateSystemBarColor);
-    new MutationObserver(updateSystemBarColor).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-})();
-</script>
+<meta name="theme-color" content="#212121">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Quaerite!">
@@ -284,7 +270,7 @@
 
         html { scrollbar-gutter: stable; }
         *, *::before, *::after { box-sizing: border-box; }
-        body { min-height: 100dvh; }
+        body { min-height: 100dvh; padding-bottom: env(safe-area-inset-bottom); }
         .choice-hover-red:hover {
             background-color: rgba(185, 0, 0, 0.08);
         }
