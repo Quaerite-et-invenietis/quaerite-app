@@ -614,7 +614,9 @@
     // Calcule (et memorise) le deck du jour n idx (1 = premier jour jamais engage).
     function getOrCreateAssignment(idx) {
         const assignments = getAssignments();
-        if (assignments[idx]) return assignments[idx];
+        if (assignments[idx] && assignments[idx].deckIndex < contentPool.length) {
+            return assignments[idx];
+        }
 
         const weekNumber = Math.ceil(idx / 7);
         const dayInWeek = ((idx - 1) % 7) + 1;
