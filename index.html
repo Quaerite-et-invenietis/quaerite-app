@@ -552,15 +552,12 @@
         } catch (e) {}
         return null;
     }
-    function advanceProgress() {
-        const today = todayISO();
+    function getOrInitProgress() {
         let p = getProgress();
         if (!p) {
-            p = { daysEngaged: 1, lastDate: today };
-        } else if (p.lastDate !== today) {
-            p = { daysEngaged: p.daysEngaged + 1, lastDate: today };
+            p = { daysEngaged: 0, lastDate: null }; // 0 session terminee au tout premier lancement
+            localStorage.setItem(LS_PROGRESS, JSON.stringify(p));
         }
-        localStorage.setItem(LS_PROGRESS, JSON.stringify(p));
         return p;
     }
     function getHistory() {
@@ -638,8 +635,9 @@
         return result;
     }
 
-    const progress = advanceProgress();
-    const todayAssignment = getOrCreateAssignment(progress.daysEngaged);
+    const progress = getOrInitProgress();
+    const currentSessionNumber = progress.daysEngaged + 1;
+    const todayAssignment = getOrCreateAssignment(currentSessionNumber);
     const todayDeck = contentPool[todayAssignment.deckIndex];
 
     // ===================== ETAT =====================
@@ -889,6 +887,8 @@
                     const score = sessionAnswers.reduce((n, ans, idx) => n + (ans === todayDeck[idx].correct ? 1 : 0), 0);
                     saveHistory(todayISO(), score, todayAssignment.deckIndex);
                     scoreSaved = true;
+                    // avancer le compteur de sessions terminees, seulement maintenant que c'est vraiment fini
+                    localStorage.setItem(LS_PROGRESS, JSON.stringify({ daysEngaged: progress.daysEngaged + 1, lastDate: todayISO() }));
                 }
                 document.getElementById('history-banner').classList.add('hidden');
                 switchView('end-session');
