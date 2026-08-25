@@ -215,6 +215,7 @@
         .level-2 { margin-left: 16px; opacity: 0.7; }
         .level-3 { margin-left: 32px; opacity: 0.8; }
         .level-4 { margin-left: 48px; opacity: 1; font-weight: bold; border-left: 2px solid #000000; padding-left: 10px; }
+        .current-position { font-weight: bold; border-left: 2px solid #000000; padding-left: 10px; }
 
         .brutalist-border-bottom { border-bottom: 1px solid #000000; }
         .brutalist-border-all { border: 1px solid #000000; }
@@ -767,10 +768,14 @@
         const parts = card.arbo.split('›').map(p => p.trim().replace(/^›\s*/, ''));
         parts.forEach((part, idx) => {
             if (!part) return;
+            const isLast = idx === parts.length - 1;
             let cls = `level-${Math.min(idx+1, 4)}`;
-            let innerCls = idx === parts.length - 1 ? 'text-absolute-black bg-surface-container-low font-semibold' : 'text-on-surface-variant';
+            let innerCls = isLast ? 'text-absolute-black bg-surface-container-low font-semibold' : 'text-on-surface-variant';
             if (idx === 0) innerCls = 'text-secondary';
-            if (idx === parts.length - 1) cls += ' bg-surface-container-low';
+            if (isLast) {
+                cls += ' bg-surface-container-low';
+                if (!cls.includes('level-4')) cls += ' current-position'; // garantit la bordure meme si on n'atteint pas le niveau 4
+            }
 
             arboPath.innerHTML += `<div class="breadcrumb-item ${cls} py-xs"><span class="breadcrumb-text ${innerCls}">${part}</span></div>`;
         });
