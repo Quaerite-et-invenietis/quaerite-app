@@ -1189,9 +1189,10 @@
                 html += `<p class="font-body-md text-secondary-fixed-dim italic p-sm">Aucune carte de cette partie pour l'instant.</p>`;
             }
 
-            (filter !== '' ? filteredCards : folder.deck).forEach((card, cardIdx) => {
+            (filter !== '' ? filteredCards : folder.deck).forEach((card) => {
+                const realIdx = folder.deck.indexOf(card); // vrai index dans le deck complet, meme si la liste affichee est filtree
                 html += `
-                    <div class="p-sm bg-surface-container-lowest border border-absolute-black flex justify-between items-center cursor-pointer choice-hover-red" onclick="loadArchiveCard(${idx}, ${cardIdx}, '${folder.title}')">
+                    <div class="p-sm bg-surface-container-lowest border border-absolute-black flex justify-between items-center cursor-pointer choice-hover-red" onclick="loadArchiveCard(${idx}, ${realIdx}, '${folder.title}')">
                         <div class="flex flex-col flex-1">
                             <span class="font-label-caps text-secondary text-xs">${card.part}</span>
                             <span class="font-body-md truncate-none">${card.reference}</span>
