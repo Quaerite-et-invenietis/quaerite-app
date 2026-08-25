@@ -1,54 +1,24 @@
-const CACHE_NAME = 'quaerite-v2';
-const ASSETS = [
-  './',
-  './index.html',
-  './manifest.json',
-  './icon-192.png',
-  './icon-512.png'
-];
+// Ce service worker n'a qu'un seul but : nettoyer un ancien service worker
+// enregistré par une version précédente de l'app, qui pourrait servir
+// une version en cache obsolète du site.
+// Une fois ce fichier déployé et exécuté une fois sur chaque appareil concerné,
+// il peut être retiré définitivement.
 
-self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS))
-  );
-  self.skipWaiting();
+self.addEventListener('install', () => {
+    self.skipWaiting();
 });
 
 self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))
-    )
-  );
-  self.clients.claim();
-});
-
-self.addEventListener('fetch', (event) => {
-  const isPage = event.request.mode === 'navigate' || event.request.url.endsWith('index.html') || event.request.url.endsWith('/');
-
-  if (isPage) {
-    // page principale : toujours essayer le réseau en premier, pour que les mises à jour arrivent
-    // sans que personne ait besoin de vider son cache. Repli sur le cache seulement hors-ligne.
-    event.respondWith(
-      fetch(event.request).then((response) => {
-        const clone = response.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
-        return response;
-      }).catch(() => caches.match(event.request))
+    event.waitUntil(
+        (async () => {
+            // vider tous les caches existants
+            const keys = await caches.keys();
+            await Promise.all(keys.map((key) => caches.delete(key)));
+            // se desinstaller soi-meme
+            await self.registration.unregister();
+            // forcer tous les onglets ouverts a se recharger avec la vraie version
+            const clientsList = await self.clients.matchAll({ type: 'window' });
+            clientsList.forEach((client) => client.navigate(client.url));
+        })()
     );
-    return;
-  }
-
-  // reste des fichiers (icônes, manifest...) : cache prioritaire, ils changent rarement
-  event.respondWith(
-    caches.match(event.request).then((cached) => {
-      return cached || fetch(event.request).then((response) => {
-        if (event.request.url.startsWith(self.location.origin)) {
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
-        }
-        return response;
-      }).catch(() => cached);
-    })
-  );
 });
