@@ -222,6 +222,7 @@
             font-family: 'EB Garamond', 'Playfair Display', serif;
         }
         .choice-item span { font-size: 18px; line-height: 1.5; }
+        .dark-mode .choice-item span:not(.text-pure-white) { color: #CCCCCC !important; }
         @media (min-width: 768px) {
             .choice-item span { font-size: 19px; }
         }
@@ -784,6 +785,7 @@
                 <span class="font-body-lg text-body-lg text-absolute-black transition-colors w-full block text-left">${choice}</span>
             </div>`;
         });
+        applyChoiceTextColor();
 
         document.getElementById('deck-feedback').classList.add('hidden');
         document.getElementById('feedback-details').classList.add('hidden');
@@ -995,6 +997,7 @@
             feedbackTitle.classList.add('text-error');
         }
 
+        applyChoiceTextColor();
         updateNavigationButtons();
     }
 
@@ -1242,9 +1245,21 @@
     }
 
 
+    function applyChoiceTextColor() {
+        const isDark = document.body.classList.contains('dark-mode');
+        document.querySelectorAll('.choice-item span').forEach(span => {
+            if (span.classList.contains('text-pure-white')) {
+                span.style.color = '#FFFFFF'; // bonne reponse revelee : toujours blanc
+            } else {
+                span.style.color = isDark ? '#CCCCCC' : '';
+            }
+        });
+    }
+
     function toggleDarkMode() {
         const isDark = document.body.classList.toggle('dark-mode');
         localStorage.setItem('quaerite_dark_mode', isDark ? '1' : '0');
+        applyChoiceTextColor();
     }
 
     // Applique le theme sauvegarde des l'ouverture, avant meme le premier rendu de carte
