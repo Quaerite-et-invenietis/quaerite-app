@@ -1,0 +1,1280 @@
+<!DOCTYPE html><html lang="fr" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>Quaerite - Cartes d'Étude</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<meta name="theme-color" content="#212121">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Quaerite!">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-container": "#d2d3d3",
+                      "on-secondary-fixed-variant": "#474747",
+                      "on-error-container": "#93000a",
+                      "surface-container": "#eeeeee",
+                      "inverse-primary": "#ffb4a8",
+                      "on-error": "#ffffff",
+                      "sacred-red": "#B90000",
+                      "surface-variant": "#e2e2e2",
+                      "paper-shadow": "#E2E2E2",
+                      "error": "#ba1a1a",
+                      "on-tertiary-fixed-variant": "#454747",
+                      "surface-container-high": "#e8e8e8",
+                      "pure-white": "#FFFFFF",
+                      "on-primary-container": "#ffc5bb",
+                      "on-secondary-container": "#646464",
+                      "on-tertiary-fixed": "#1a1c1c",
+                      "on-tertiary": "#ffffff",
+                      "secondary": "#5e5e5e",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "primary-fixed": "#ffdad4",
+                      "outline-variant": "#e6bdb6",
+                      "on-secondary-fixed": "#1b1b1b",
+                      "background": "#f9f9f9",
+                      "tertiary-container": "#595b5b",
+                      "tertiary-fixed-dim": "#c6c6c7",
+                      "primary": "#8c0000",
+                      "surface": "#f9f9f9",
+                      "primary-container": "#b90000",
+                      "on-secondary": "#ffffff",
+                      "outline": "#916f69",
+                      "on-background": "#1a1c1c",
+                      "tertiary-fixed": "#e2e2e2",
+                      "secondary-fixed": "#e2e2e2",
+                      "on-primary-fixed": "#410000",
+                      "absolute-black": "#000000",
+                      "surface-container-highest": "#e2e2e2",
+                      "inverse-on-surface": "#f0f1f1",
+                      "primary-fixed-dim": "#ffb4a8",
+                      "secondary-container": "#e2e2e2",
+                      "on-surface-variant": "#5d403b",
+                      "surface-dim": "#dadada",
+                      "surface-bright": "#f9f9f9",
+                      "tertiary": "#424444",
+                      "inverse-surface": "#2f3131",
+                      "secondary-fixed-dim": "#c6c6c6",
+                      "surface-tint": "#bf0804",
+                      "on-primary-fixed-variant": "#930000",
+                      "surface-container-low": "#f3f3f4",
+                      "on-surface": "#1a1c1c",
+                      "error-container": "#ffdad6"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "sm": "12px",
+                      "base": "8px",
+                      "xl": "80px",
+                      "lg": "48px",
+                      "xs": "4px",
+                      "margin-desktop": "64px",
+                      "md": "24px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "label-caps": [
+                              "Playfair Display"
+                      ],
+                      "headline-md": [
+                              "Playfair Display"
+                      ],
+                      "body-md": [
+                              "EB Garamond",
+                              "Playfair Display"
+                      ],
+                      "body-lg": [
+                              "EB Garamond",
+                              "Playfair Display"
+                      ],
+                      "headline-lg": [
+                              "Playfair Display"
+                      ],
+                      "display": [
+                              "Playfair Display"
+                      ],
+                      "label-md": [
+                              "Playfair Display"
+                      ],
+                      "headline-lg-mobile": [
+                              "Playfair Display"
+                      ]
+              },
+              "fontSize": {
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.15em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body { background-color: #FFFFFF; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Arborescence Breadcrumb Styles */
+        .breadcrumb-container {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .breadcrumb-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 12px;
+            background-color: transparent;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .breadcrumb-item:hover {
+            background-color: #f0f1f1;
+        }
+        .breadcrumb-text {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .level-1 { margin-left: 0; opacity: 0.6; }
+        .level-2 { margin-left: 16px; opacity: 0.7; }
+        .level-3 { margin-left: 32px; opacity: 0.8; }
+        .level-4 { margin-left: 48px; opacity: 1; font-weight: bold; border-left: 2px solid #000000; padding-left: 10px; }
+        .current-position { font-weight: bold; border-left: 2px solid #000000; padding-left: 10px; }
+
+        .brutalist-border-bottom { border-bottom: 1px solid #000000; }
+        .brutalist-border-all { border: 1px solid #000000; }
+        #deck-question-text, #feedback-explanation, #feedback-details, .choice-item span {
+            font-family: 'EB Garamond', 'Playfair Display', serif;
+        }
+        .choice-item span { font-size: 18px; line-height: 1.5; }
+        .dark-mode .choice-item span:not(.text-pure-white) { color: #CCCCCC !important; }
+        @media (min-width: 768px) {
+            .choice-item span { font-size: 19px; }
+        }
+        #deck-question-text { font-size: 18px !important; line-height: 1.5 !important; }
+        .dark-mode #deck-question-text { font-weight: 400 !important; }
+        @media (min-width: 768px) {
+            #deck-question-text { font-size: 23px !important; }
+        }
+        #feedback-explanation, #feedback-details { font-size: 18px; line-height: 1.5; }
+        @media (min-width: 768px) {
+            #feedback-explanation, #feedback-details { font-size: 19px; }
+        }
+        #feedback-details {
+            color: #1a1a1a;
+        }
+        .dark-mode #feedback-details {
+            color: #FFFFFF !important;
+        }
+        @media (max-width: 767px) {
+            #feedback-details:not(.hidden) {
+                position: fixed;
+                top: 64px; left: 0;
+                width: 100%;
+                height: calc(100% - 64px);
+                background: #FFFFFF;
+                z-index: 60;
+                padding: 24px 16px 90px;
+                margin: 0;
+                border: none;
+                overflow-y: auto;
+                box-sizing: border-box;
+            }
+        }
+        @media (max-width: 767px) {
+            .dark-mode #feedback-details:not(.hidden) {
+                background: #0F0F0F !important;
+            }
+        }
+        #feedback-details p {
+            margin: 0 0 14px;
+        }
+        #feedback-details p:last-child {
+            margin-bottom: 0;
+        }
+        /* citations: identifiees par les guillemets seuls, sans emphase supplementaire */
+        .brutalist-border-active { border: 2px solid #B90000; }
+
+        html { scrollbar-gutter: stable; }
+        *, *::before, *::after { box-sizing: border-box; }
+        body { min-height: 100dvh; padding-bottom: env(safe-area-inset-bottom); }
+        .choice-hover-red:hover {
+            background-color: rgba(185, 0, 0, 0.08);
+        }
+        .dark-mode .choice-hover-red:hover {
+            background-color: rgba(122, 34, 38, 0.18);
+        }
+        .dark-mode #bottom-nav .text-secondary,
+        .dark-mode #bottom-nav .text-sacred-red {
+            color: #FFFFFF !important;
+        }
+
+        /* Complements mode sombre : elements a styles inline, non couverts par le systeme base sur les classes */
+        .dark-mode #details-close-btn { background-color: #212121 !important; color: #FFFFFF !important; border-color: #383838 !important; }
+        .dark-mode #history-full-grid th,
+        .dark-mode #history-full-grid td { border-color: #383838 !important; }
+
+        /* ===================== MODE SOMBRE ===================== */
+        body.dark-mode {
+            --dm-bg: #0F0F0F;
+            --dm-card: #212121;
+            --dm-card-alt: #383838;
+            --dm-red: #7A2226;
+            --dm-ink: #FFFFFF;
+            --dm-ink-soft: #AAAAAA;
+            --dm-line: #383838;
+        }
+        body.dark-mode { background-color: var(--dm-bg) !important; }
+        body.dark-mode .bg-pure-white,
+        body.dark-mode .bg-surface-container-lowest { background-color: var(--dm-card) !important; }
+        body.dark-mode .bg-surface-bright { background-color: var(--dm-bg) !important; }
+        body.dark-mode .bg-surface-container-high,
+        body.dark-mode .bg-surface-container-highest,
+        body.dark-mode .bg-surface-container-low { background-color: var(--dm-card-alt) !important; }
+        body.dark-mode #deck-feedback { border-color: #666666 !important; }
+        body.dark-mode .bg-absolute-black { background-color: var(--dm-card) !important; }
+        /* exception : les points "COMPLÉTÉ" de l'historique et de la légende doivent rester visibles (clairs), pas se fondre dans le fond sombre */
+        body.dark-mode .w-2.h-2.bg-absolute-black,
+        body.dark-mode .rounded-full.bg-absolute-black {
+            background-color: var(--dm-ink) !important;
+        }
+
+        /* rouge : reserve exclusivement au remplissage de la bonne reponse */
+        body.dark-mode .bg-sacred-red { background-color: var(--dm-red) !important; }
+
+        body.dark-mode .border-absolute-black,
+        body.dark-mode .border-secondary,
+        body.dark-mode .border-surface-container-highest,
+        body.dark-mode .brutalist-border-all,
+        body.dark-mode .brutalist-border-bottom { border-color: var(--dm-line) !important; }
+        /* les bordures rouges (repere, actif) deviennent neutres, pas de rouge hors bonne reponse */
+        body.dark-mode .border-sacred-red { border-color: var(--dm-ink-soft) !important; }
+
+        body.dark-mode .text-absolute-black,
+        body.dark-mode .text-on-surface,
+        body.dark-mode .text-on-surface-variant { color: var(--dm-ink) !important; }
+        body.dark-mode .text-secondary,
+        body.dark-mode .text-secondary-fixed-dim,
+        body.dark-mode .text-error { color: var(--dm-ink-soft) !important; }
+        body.dark-mode .text-pure-white { color: var(--dm-ink) !important; }
+        /* texte rouge (nav actif, repere, source) devient neutre, meme logique que les bordures */
+        body.dark-mode .text-sacred-red { color: var(--dm-ink-soft) !important; }
+
+        /* le texte a l'interieur du bloc "bonne reponse" (fond rouge) reste clair et lisible */
+        body.dark-mode .choice-item.bg-sacred-red span,
+        body.dark-mode .bg-sacred-red .text-pure-white { color: var(--dm-ink) !important; }
+
+        body.dark-mode #top-bar,
+        body.dark-mode #bottom-nav,
+        body.dark-mode #card-wrapper,
+        body.dark-mode .brutalist-border-all { background-color: var(--dm-card) !important; }
+
+        header h1 { cursor: pointer; }
+
+        @keyframes quaeriteBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        .quaerite-blink {
+            animation: quaeriteBlink 1.8s ease-in-out infinite;
+        }
+    </style>
+<style class="">
+    #history-full-grid { border-collapse: collapse; display: table !important; }
+    #history-full-grid thead { display: table-header-group !important; }
+    #history-full-grid tbody { display: table-row-group !important; }
+    #history-full-grid tr { display: table-row !important; }
+    #history-full-grid th, #history-full-grid td {
+        display: table-cell !important;
+        border-right: 1px solid #B0B0B0;
+        border-bottom: 1px solid #B0B0B0;
+        box-sizing: border-box;
+        width: 14.2857%;
+    }
+    #history-full-grid tr > *:last-child {
+        border-right: none;
+    }
+    #history-full-grid tbody tr:last-child td {
+        border-bottom: none;
+    }
+    .history-header-cell {
+        border-bottom: 2px solid #000000 !important;
+    }
+    #history-full-grid td:not(.history-header-cell) {
+        text-align: center;
+        vertical-align: top;
+        padding-top: 4px !important;
+        height: 50px;
+        position: relative;
+    }
+    #history-full-grid .font-label-caps {
+        position: static !important;
+        margin-bottom: 4px;
+        display: block;
+    }
+    #history-full-grid .w-2.h-2 {
+        margin: 4px auto 0;
+    }
+</style></head>
+<body class="bg-surface-bright text-on-surface font-body-md min-h-screen flex flex-col selection:bg-sacred-red selection:text-pure-white pb-[100px]">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-40 bg-pure-white border-b border-absolute-black flex justify-center items-center h-16 px-margin-mobile md:px-margin-desktop" id="top-bar" style="display: flex;">
+<h1 class="font-display text-headline-lg tracking-tighter text-absolute-black uppercase truncate text-center" style="cursor:pointer; transition: transform 0.1s ease;" onclick="toggleDarkMode()" title="Cliquer pour changer de thème" onmousedown="this.style.transform='scale(0.93)'" onmouseup="this.style.transform='scale(1)'" onmouseleave="this.style.transform='scale(1)'" ontouchstart="this.style.transform='scale(0.93)'" ontouchend="this.style.transform='scale(1)'">
+            QUAERITE!
+        </h1>
+</header>
+<!-- History Banner (Hidden by Default) -->
+<div class="hidden w-full bg-surface-container-low border-b border-absolute-black py-2 px-margin-mobile md:px-margin-desktop flex justify-between items-center z-30 sticky top-16 z-50" id="history-banner">
+<span class="font-label-caps text-sacred-red" id="history-banner-text">SESSION DU X</span>
+<button class="font-label-caps text-absolute-black underline hover:text-sacred-red" onclick="exitHistoryMode(); loadCard();">RETOUR</button>
+</div>
+<!-- Views Container -->
+<div class="flex-grow w-full mx-auto relative z-10" id="views-container">
+<!-- DECK VIEW -->
+<main class="w-full max-w-[672px] mx-auto px-margin-mobile md:px-margin-desktop pt-3 pb-3 flex flex-col gap-md mt-2" id="view-deck">
+<!-- Card Wrapper -->
+<div class="relative w-full">
+<div class="bg-pure-white border border-absolute-black flex flex-col gap-sm relative transition-all z-10 shadow-[0_4px_10px_rgba(0,0,0,0.1)]" id="card-wrapper" style="padding: 16px 8px;">
+<!-- Context / Arborescence -->
+<section class="flex flex-col gap-base border-surface-container-highest pb-1">
+<div class="breadcrumb-container font-label-md text-label-md">
+<div class="part-tag flex items-center gap-xs text-sacred-red font-label-caps text-label-caps tracking-widest mb-1">
+<span class="cursor-pointer flex items-center gap-xs border border-sacred-red px-2 py-1" onclick="const el=document.getElementById('arbo-path-deck'); const willShow = el.style.display==='none'; el.style.display = willShow ? 'flex' : 'none'; el.classList.toggle('hidden', !willShow);">
+<span class="material-symbols-outlined text-[16px]">account_tree</span>
+<span class="" id="deck-part-text">I.1.2.3</span>
+</span>
+<span class="text-absolute-black font-semibold ml-2" id="deck-reference-text">Écriture Sainte</span>
+</div>
+<div class="arbo-path hidden flex flex-col gap-xs border-l-2 border-sacred-red ml-1 pl-sm mt-2 bg-pure-white" id="arbo-path-deck" style="display:none;"><div class="breadcrumb-item level-1 py-xs"><span class="breadcrumb-text text-secondary">Première partie : La profession de la foi</span></div><div class="breadcrumb-item level-2 py-xs"><span class="breadcrumb-text text-on-surface-variant">Première section : « Je crois » – « Nous croyons »</span></div><div class="breadcrumb-item level-3 py-xs"><span class="breadcrumb-text text-on-surface-variant">Chapitre deuxième : Dieu à la rencontre de l'homme</span></div><div class="breadcrumb-item level-4 py-xs"><span class="breadcrumb-text text-on-surface-variant">Article 3 : La Sainte Écriture</span></div><div class="breadcrumb-item level-4 bg-surface-container-low py-xs"><span class="breadcrumb-text text-absolute-black bg-surface-container-low font-semibold">IV. Le Canon des Écritures</span></div></div>
+</div>
+</section>
+<!-- Question -->
+<section class="flex flex-col gap-sm">
+<h2 class="font-headline-md text-headline-md text-absolute-black" id="deck-question-text">Combien de livres au total compose le canon catholique de la Bible (Ancien et Nouveau Testament réunis)  ?</h2>
+</section>
+<!-- Choices -->
+<section class="flex flex-col w-full border-t border-absolute-black mt-2" id="deck-choices">
+            <div class="choice-item flex items-center justify-start text-left border-b border-absolute-black cursor-pointer choice-hover-red transition-colors group w-full py-3" data-index="0" data-correct="false" onclick="handleChoiceClick(this)"><span class="font-body-md text-body-md text-absolute-black transition-colors w-full block text-left">66</span></div>
+            <div class="choice-item flex items-center justify-start text-left border-b border-absolute-black cursor-pointer choice-hover-red transition-colors group w-full py-3" data-index="1" data-correct="false" onclick="handleChoiceClick(this)"><span class="font-body-md text-body-md text-absolute-black transition-colors w-full block text-left">66</span></div>
+            <div class="choice-item flex items-center justify-start text-left border-b border-absolute-black cursor-pointer choice-hover-red transition-colors group w-full py-3" data-index="2" data-correct="true" onclick="handleChoiceClick(this)"><span class="font-body-md text-body-md text-absolute-black transition-colors w-full block text-left">66</span></div>
+            <div class="choice-item flex items-center justify-start text-left border-b border-absolute-black cursor-pointer choice-hover-red transition-colors group w-full py-3" data-index="3" data-correct="false" onclick="handleChoiceClick(this)"><span class="font-body-md text-body-md text-absolute-black transition-colors w-full block text-left">66</span></div></section>
+<!-- Feedback Section (Hidden by default) -->
+<section class="flex flex-col gap-base bg-surface-container-low py-3 px-3 border border-absolute-black mt-4 hidden" id="deck-feedback" style="border-width: 1px; border-style: solid;">
+<h3 class="font-headline-md text-error" id="feedback-title">Incorrect</h3>
+<p class="font-body-md text-absolute-black" id="feedback-explanation">Le CEC liste 46 livres pour l'Ancien Testament et 27 pour le Nouveau, soit 73 au total.</p>
+<p class="font-label-caps text-sacred-red mt-2" id="feedback-source">CEC §120</p>
+<button class="mt-2 text-left font-label-caps text-secondary underline hover:text-sacred-red transition-colors" onclick="toggleDetails()">
+            DÉTAILS
+        </button>
+<div class="hidden mt-2 pt-2 border-t border-absolute-black font-body-md text-secondary" id="feedback-details"><p class="">Le CEC précise que c'est la Tradition apostolique — pas un critère uniquement scripturaire — qui a permis à l'Église de discerner cette liste des Livres Saints.</p></div>
+</section>
+</div>
+<div class="relative w-full" id="card-stack-edges">
+<div class="stack-edge-1 absolute left-1 w-[calc(100%-8px)] h-[4px] border-b border-l border-r border-absolute-black bg-pure-white z-[0] block shadow-[0_2px_5px_rgba(0,0,0,0.08)]" style="bottom: -5px; display: block;"></div>
+<div class="stack-edge-2 absolute left-2 w-[calc(100%-16px)] h-[4px] border-b border-l border-r border-absolute-black bg-pure-white z-[-1] block shadow-[0_2px_5px_rgba(0,0,0,0.08)]" style="bottom: -10px; display: block;"></div>
+</div>
+</div>
+<!-- Action / Progress -->
+<section class="flex flex-col items-center gap-md mt-auto pt-3 transition-all" id="action-section" style="display: flex;">
+<!-- Segmented Progress Bar -->
+<div class="flex items-center justify-center gap-xs h-4 w-full max-w-[330px] mx-auto" id="progress-bar"><div class="flex-1 h-[3px] bg-sacred-red"></div><div class="flex-1 h-[3px] bg-surface-container-highest"></div><div class="flex-1 h-[3px] bg-surface-container-highest"></div><div class="flex-1 h-[3px] bg-surface-container-highest"></div><div class="flex-1 h-[3px] bg-surface-container-highest"></div></div>
+<div class="flex w-full gap-sm mt-4">
+<button class="hidden flex-1 py-md border border-absolute-black text-center font-label-caps text-label-caps text-secondary hover:text-sacred-red hover:border-sacred-red transition-colors flex items-center justify-center gap-sm bg-pure-white" id="prev-btn" onclick="goToPrevCard()" style="transition: transform 0.1s ease;" onmousedown="this.style.transform='scale(0.95)'" onmouseup="this.style.transform='scale(1)'" onmouseleave="this.style.transform='scale(1)'" ontouchstart="this.style.transform='scale(0.95)'" ontouchend="this.style.transform='scale(1)'">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+<span class="">PRÉCÉDENT</span>
+</button>
+<button class="flex-1 py-md border border-absolute-black text-center font-label-caps text-label-caps text-absolute-black hover:text-sacred-red hover:border-sacred-red transition-colors flex items-center justify-center gap-sm bg-pure-white hidden" id="next-btn" onclick="goToNextCard()" style="transition: transform 0.1s ease;" onmousedown="this.style.transform='scale(0.95)'" onmouseup="this.style.transform='scale(1)'" onmouseleave="this.style.transform='scale(1)'" ontouchstart="this.style.transform='scale(0.95)'" ontouchend="this.style.transform='scale(1)'">
+<span class="">SUIVANT</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</section>
+</main>
+<!-- END SESSION VIEW -->
+<main class="hidden w-full max-w-[672px] mx-auto px-margin-mobile md:px-margin-desktop py-xl flex flex-col gap-lg items-center text-center" id="view-end-session" style="display:none;"><h2 class="font-display text-display text-absolute-black mt-xl">C'est fait pour aujourd'hui !</h2>
+<p class="font-body-lg text-secondary">5 nouvelles cartes t'attendent demain.</p>
+<button class="mt-8 px-6 py-3 border border-absolute-black font-label-caps text-absolute-black choice-hover-red transition-colors" onclick="switchView('history')">VOIR L'HISTORIQUE</button></main>
+<!-- HISTORY VIEW -->
+<main class="hidden flex-1 w-full max-w-[672px] mx-auto px-margin-mobile md:px-margin-desktop pt-3 pb-3 flex flex-col gap-lg" id="view-history" style="display:none;">
+<!-- Calendar View -->
+<section class="flex flex-col gap-base">
+<div class="flex justify-between items-center">
+<h3 class="font-label-caps text-label-caps text-secondary tracking-widest uppercase">DERNIÈRES SESSIONS</h3>
+</div>
+<div class="w-full brutalist-border-all bg-pure-white p-xs shadow-[0_4px_10px_rgba(0,0,0,0.1)]">
+<table id="history-full-grid" style="width:100%; border-collapse:collapse; table-layout:fixed;">
+<thead><tr>
+<th class="history-header-cell bg-pure-white py-xs text-center font-label-caps text-label-caps text-secondary">L</th>
+<th class="history-header-cell bg-pure-white py-xs text-center font-label-caps text-label-caps text-secondary">M</th>
+<th class="history-header-cell bg-pure-white py-xs text-center font-label-caps text-label-caps text-secondary">M</th>
+<th class="history-header-cell bg-pure-white py-xs text-center font-label-caps text-label-caps text-secondary">J</th>
+<th class="history-header-cell bg-pure-white py-xs text-center font-label-caps text-label-caps text-secondary">V</th>
+<th class="history-header-cell bg-pure-white py-xs text-center font-label-caps text-label-caps text-secondary">S</th>
+<th class="history-header-cell bg-pure-white py-xs text-center font-label-caps text-label-caps text-secondary">D</th>
+</tr></thead>
+<tbody id="history-full-grid-body">
+<!-- History Days Injected Here, 2 lignes de 7 -->
+</tbody>
+</table>
+</div><div class="flex justify-center items-center gap-md mt-4 font-label-caps text-label-caps tracking-widest"><div class="flex items-center gap-xs"><div class="w-2 h-2 rounded-full bg-absolute-black"></div><span class="text-secondary">COMPLÉTÉ</span></div><div class="flex items-center gap-xs"><div class="w-2 h-2 rounded-full bg-sacred-red"></div><span class="text-secondary">PARFAIT</span></div></div>
+</section>
+</main>
+<!-- ARCHIVE VIEW -->
+<main class="hidden flex-1 w-full max-w-[672px] mx-auto px-margin-mobile md:px-margin-desktop pt-3 pb-3 flex flex-col gap-sm" id="view-archive" style="display:none;">
+<!-- Search Section -->
+<section class="flex flex-col gap-base">
+<div class="relative w-full border border-absolute-black bg-pure-white flex items-center group focus-within:border-sacred-red focus-within:border-2 transition-all">
+<span class="material-symbols-outlined ml-sm text-secondary group-focus-within:text-sacred-red">search</span>
+<input class="w-full bg-transparent border-none focus:ring-0 font-body-md text-absolute-black placeholder-secondary py-sm px-sm" id="archive-search" onkeyup="handleArchiveSearch()" placeholder="Rechercher par numéro de paragraphe ou mot-clé..." type="text">
+</div>
+</section>
+<!-- Hierarchy Folders -->
+<section class="flex flex-col gap-md" id="archive-folders">
+<!-- Populated by JS -->
+</section>
+</main>
+</div>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-pure-white border-t border-absolute-black transition-transform duration-300 transform group-[.history-active]:hidden" id="bottom-nav">
+<button class="nav-btn flex flex-col items-center justify-center text-sacred-red border-t-2 border-sacred-red scale-95 pt-2 w-full h-full relative -top-[1px] transition-colors" id="nav-deck" onclick="document.getElementById('view-end-session').classList.add('hidden'); switchView('deck');">
+<span class="material-symbols-outlined mb-1 filled">style</span>
+<span class="font-label-caps">CARTES</span>
+</button>
+<button class="nav-btn flex flex-col items-center justify-center text-secondary pt-2 hover:text-sacred-red transition-colors w-full h-full border-t-2 border-transparent relative" id="nav-history" onclick="switchView('history')">
+<span class="material-symbols-outlined mb-1">history_edu</span>
+<span class="font-label-caps" id="nav-history-label">HISTORIQUE</span>
+</button>
+<button class="nav-btn flex flex-col items-center justify-center text-secondary pt-2 hover:text-sacred-red transition-colors w-full h-full border-t-2 border-transparent relative" id="nav-archive" onclick="switchView('archive')">
+<span class="material-symbols-outlined mb-1">menu_book</span>
+<span class="font-label-caps" id="nav-archive-label">ARCHIVES</span>
+</button>
+</nav>
+<button id="details-close-btn" onclick="toggleDetails()" class="hidden font-label-caps text-label-caps text-absolute-black hover:bg-sacred-red hover:text-pure-white transition-all" style="display:none; position:fixed; bottom:0; left:0; width:100%; z-index:61; height:80px; padding:12px 24px; border-top:1px solid #000000; background:#FFFFFF; box-sizing:border-box;">FERMER</button>
+<script>
+    // Nos 5 cartes 2.0 (jour 1) + 7 jeux lorem ipsum (structure à 3 choix)
+    const deck1Cards = [{"reference": "Sacrifice de la messe", "part": "II.2.1.3", "arbo": "Deuxième partie : La célébration du mystère chrétien › Deuxième section : Les sept sacrements de l'Église › Chapitre premier : Les sacrements de l'initiation chrétienne › Article 3 : Le sacrement de l'Eucharistie › V. Le sacrifice sacramentel : action de grâce, mémorial, présence", "question": "Le sacrifice de la messe est-il un nouveau sacrifice distinct de celui de la Croix ?", "choices": ["Oui, chaque messe renouvelle un sacrifice réellement distinct, offert par le prêtre", "Non, c'est l'unique et même sacrifice, offert seulement d'une manière non sanglante", "Non, ce n'est qu'un mémorial symbolique, sans sacrifice réel"], "correct": 1, "explanation": "« C'est une seule et même victime, c'est le même qui offre maintenant par le ministère des prêtres, qui s'est offert lui-même alors sur la Croix. Seule la manière d'offrir diffère » (§1367).", "source": "CEC §1367", "more": "L'Eucharistie est également le sacrifice de l'Église elle-même : « Avec Lui, elle est offerte elle-même tout entière » (§1368).\n\nUne image ancienne l'illustre : dans les catacombes, l'Église est souvent représentée « comme une femme en prière, les bras largement ouverts en attitude d'orante », comme le Christ qui a étendu les bras sur la croix.\n\nUn mot mérite d'être précisé : « mémorial ». Dans notre langage courant, un mémorial n'est qu'un souvenir. Mais le CEC souligne que ce n'est pas le sens biblique : « Dans le sens de l'Écriture Sainte le mémorial n'est pas seulement le souvenir des événements du passé, mais la proclamation des merveilles que Dieu a accomplies pour les hommes » — et surtout, « ils deviennent d'une certaine façon présents et actuels » (§1363). C'est cette même logique biblique qui explique pourquoi la messe peut être dite « mémorial » sans être une simple commémoration symbolique : elle rend réellement présent ce qu'elle commémore.", "vaticanUrl": "https://www.vatican.va/archive/FRA0013/__P3W.HTM"}, {"reference": "Le mal moral", "part": "I.2.1.1", "arbo": "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre premier : Je crois en Dieu le Père › Article 1 : « Je crois en Dieu le Père tout-puissant, créateur du ciel et de la terre » › Paragraphe 4 : Le Créateur", "question": "Comment concilier la toute-puissance et la bonté de Dieu avec l'existence du mal moral ?", "choices": ["Dieu n'est en aucune façon la cause du mal, mais il permet qu'il existe pour en tirer un plus grand bien", "Le mal découle indirectement du don de la liberté que Dieu a fait aux hommes"], "correct": 0, "explanation": "« Dieu n'est en aucune façon, ni directement ni indirectement, la cause du mal moral » (§311).", "source": "CEC §311", "more": "« Pourquoi Dieu n'a-t-il pas créé un monde aussi parfait qu'aucun mal ne puisse y exister  ? » « Selon sa puissance infinie, Dieu pourrait toujours créer quelque chose de meilleur », mais « dans sa sagesse et sa bonté infinies, Dieu a voulu librement créer un monde 'en état de voie' vers sa perfection ultime » (§310).\n\n« Les anges et les hommes, créatures intelligentes et libres, doivent cheminer vers leur destinée ultime par choix libre et amour de préférence » (§311) — c'est cette liberté de cheminement qui rend le mal moral possible, sans que Dieu en soit l'auteur.\n\nLe mal ne vient donc pas du don de la liberté lui-même, qui est un bien : « le péché est un abus de la liberté que Dieu donne aux personnes créées pour qu'elles puissent l'aimer et s'aimer mutuellement » (§387). C'est le mauvais usage de ce don par la créature qui est en cause, pas le don en tant que tel.", "vaticanUrl": "https://www.vatican.va/archive/FRA0013/__P1A.HTM"}, {"reference": "Prédestination", "part": "I.2.3.12", "arbo": "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre troisième : Je crois en l'Esprit Saint › Article 12 : « Je crois à la vie éternelle » › IV. L'enfer", "question": "Dieu prédestine-t-il certaines personnes à l'enfer ?", "choices": ["Oui, certains sont destinés à la damnation dès avant leur naissance, indépendamment de leurs actes", "Non, car la miséricorde divine finit toujours par sauver tous les hommes, même ceux qui semblent damnés", "Non, l'enfer résulte uniquement d'une aversion volontaire et persistante de l'homme envers Dieu"], "correct": 2, "explanation": "« Dieu ne prédestine personne à aller en enfer ; il faut pour cela une aversion volontaire de Dieu (un péché mortel), et y persister jusqu'à la fin » (§1037).", "source": "CEC §1037", "more": "Dans la liturgie eucharistique elle-même, l'Église « implore la miséricorde de Dieu », qui veut « que personne ne périsse, mais que tous arrivent au repentir » (2 P 3,9).\n\nLa prière elle-même le dit : « Voici l'offrande que nous présentons devant toi... arrache-nous à la damnation et reçois-nous parmi tes élus » (Missel romain, Canon romain — cité au §1037).\n\nLe CEC répond à cette question précise, dans le même article consacré à la prédestination : « À Dieu tous les moments du temps sont présents dans leur actualité. Il établit donc son dessein éternel de 'prédestination' en y incluant la réponse libre de chaque homme à sa grâce » (§600). Dieu ne voit donc pas l'avenir d'une personne comme déjà figé avant son choix réel — pour Lui, tous les instants sont déjà présents, sans que cela retire à l'homme la réalité de son choix libre.\n\nUne précision de vocabulaire utile : le CEC emploie aussi le mot « prédestination » dans un sens positif et différent, pour désigner l'appel de Dieu à devenir son enfant adoptif : « Tel est le 'dessein bienveillant' qu'il a conçu dès avant la création du monde en son Fils bien-aimé, 'nous prédestinant à l'adoption filiale en celui-ci', c'est-à-dire 'à reproduire l'image de Son Fils' » (§257). Le mot n'a donc rien d'automatiquement effrayant : son usage principal dans le CEC est un appel à devenir enfant de Dieu, pas une menace de damnation programmée.", "vaticanUrl": "https://www.vatican.va/archive/FRA0013/__P2J.HTM"}, {"reference": "Conscience erronée", "part": "III.1.1.6", "arbo": "Troisième partie : La vie dans le Christ › Première section : La vocation de l'homme, la vie dans l'Esprit › Chapitre premier : La dignité de la personne humaine › Article 6 : La conscience morale › IV. Le jugement erroné", "question": "Si quelqu'un agit selon une conscience gravement erronée mais de bonne foi (ignorance invincible), est-il tenu pour coupable ?", "choices": ["Oui, car il doit toujours obéir au jugement certain de sa conscience, quel qu'il soit", "Non, le mal commis ne peut lui être imputé, même si l'acte reste objectivement un mal", "Non, et l'acte cesse alors d'être un mal, puisqu'il a été fait de bonne foi"], "correct": 1, "explanation": "« Si l'ignorance est invincible, ou le jugement erroné sans responsabilité du sujet moral, le mal commis par la personne ne peut lui être imputé. Il n'en demeure pas moins un mal, une privation, un désordre » (§1793).", "source": "CEC §1790, §1793", "more": "Cette ignorance « peut souvent être imputée à la responsabilité personnelle » (§1791), notamment « lorsque l'homme se soucie peu de rechercher le vrai et le bien » ou que « l'habitude du péché rend peu à peu la conscience presque aveugle » (citant Gaudium et Spes 16).", "vaticanUrl": "https://www.vatican.va/archive/FRA0013/__P5W.HTM"}, {"reference": "Les deux volontés du Christ", "part": "I.2.2.3", "arbo": "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre deuxième : Je crois en Jésus-Christ › Article 3 : Conçu du Saint-Esprit, né de la Vierge Marie", "question": "Le Christ possède-t-il une seule volonté (divine) ou deux volontés distinctes ?", "choices": ["Une seule volonté, purement divine — sa nature humaine n'a pas de volonté propre", "Deux volontés, humaine et divine, non opposées mais coopérantes", "Deux volontés, mais parfois en tension l'une avec l'autre, comme à Gethsémani"], "correct": 1, "explanation": "« L'Église a confessé au sixième concile œcuménique que le Christ possède deux volontés et deux opérations naturelles, divines et humaines, non pas opposées, mais coopérantes » (§475).", "source": "CEC §475", "more": "Cette volonté humaine du Christ n'était pas illimitée : elle « était exercée dans les conditions historiques de son existence dans l'espace et le temps » (§472).\n\n« Le Verbe fait chair a voulu humainement, dans l'obéissance à son Père, tout ce qu'il a décidé divinement avec le Père et l'Esprit Saint » (§475) — les deux volontés convergent donc vers un seul et même choix.", "vaticanUrl": "https://www.vatican.va/archive/FRA0013/__P1G.HTM"}];
+    const deck2Cards = [{"reference": "Vénération des images", "part": "III.2.1.1", "arbo": "Troisième partie : La vie dans le Christ › Deuxième section : Les dix commandements › Chapitre premier : « Tu aimeras le Seigneur ton Dieu... » › Article 1 : Le premier commandement › IV. « Tu ne te feras aucune image sculptée... »", "question": "Vénérer une statue ou une icône de saint est-il compatible avec le premier commandement, qui interdit les idoles ?", "choices": ["Oui, car l'honneur rendu à l'image remonte à la personne qui y est représentée, sans être une adoration", "Non, toute représentation matérielle du sacré reste une forme d'idolâtrie simplement tolérée par tradition", "Oui : on distingue l'adoration, réservée à Dieu seul, de la vénération, qui elle s'arrête à l'image en tant qu'objet sacré"], "correct": 0, "explanation": "« L'honneur rendu aux saintes images est une 'vénération respectueuse', non une adoration qui ne convient qu'à Dieu seul » (§2132).", "source": "CEC §2132", "more": "Saint Basile l'exprime ainsi : « L'honneur rendu à une image remonte au modèle original » ; et le deuxième concile de Nicée : « Quiconque vénère une image, vénère en elle la personne qui y est dépeinte ».\n\nSaint Thomas d'Aquin précise que « le mouvement qui s'adresse à l'image en tant que telle ne s'arrête pas à elle, mais tend à la réalité dont elle est l'image ».", "vaticanUrl": "https://www.vatican.va/archive/FRA0013/__P7A.HTM"}, {"reference": "Enfants morts sans baptême", "part": "II.2.1.1", "arbo": "Deuxième partie : La célébration du mystère chrétien › Deuxième section : Les sept sacrements de l'Église › Chapitre premier : Les sacrements de l'initiation chrétienne › Article 1 : Le sacrement du Baptême › VI. La nécessité du baptême", "question": "Le baptême est nécessaire au salut. Qu'en est-il alors des enfants qui meurent sans avoir été baptisés ?", "choices": ["Ils rejoignent les limbes, un lieu distinct du paradis, selon l'enseignement officiel du CEC", "Ils sont définitivement exclus du salut, faute d'avoir reçu le sacrement", "L'Église les confie à la miséricorde de Dieu et permet d'espérer un chemin de salut pour eux"], "correct": 2, "explanation": "« Quant aux enfants morts sans Baptême, l'Église ne peut que les confier à la miséricorde de Dieu (...). La grande miséricorde de Dieu (...) nous permet d'espérer qu'il y ait un chemin de salut pour les enfants morts sans baptême » (§1261).", "source": "CEC §1261", "more": "Cette espérance repose sur deux points précis : la volonté de Dieu « que tous les hommes soient sauvés » (1 Tm 2, 4), et la tendresse de Jésus envers les enfants, qui lui fait dire : « Laissez les enfants venir à moi, ne les empêchez pas » (Mc 10, 14).\n\nElle rend « d'autant plus pressant » l'appel à ne pas empêcher les petits enfants de recevoir le baptême quand cela est possible.", "vaticanUrl": "https://www.vatican.va/archive/FRA0013/__P3H.HTM"}, {"reference": "Vertu et salut", "part": "III.1.3.2", "arbo": "Troisième partie : La vie dans le Christ › Première section : La vocation de l'homme, la vie dans l'Esprit › Chapitre troisième : Le salut de Dieu, la Loi et la Grâce › Article 2 : La grâce et la justification › II. La grâce", "question": "Une personne très vertueuse a-t-elle malgré tout besoin de la grâce de Dieu pour parvenir au salut (la vie éternelle) ?", "choices": ["Oui, même une vie très vertueuse a besoin de la grâce de Dieu", "Non, une vie suffisamment vertueuse peut suffire à elle seule à obtenir le salut"], "correct": 0, "explanation": "Le CEC est clair : cette vocation à la vie éternelle « surpasse les capacités de l'intelligence et les forces de la volonté humaine, comme de toute créature » (§1998) — aucune vertu humaine, même la plus grande, n'atteint par elle-même cet ordre surnaturel.", "source": "CEC §1998", "vaticanUrl": "https://www.vatican.va/archive/FRA0013/__P6T.HTM", "more": "« La grâce est la faveur, le secours gratuit que Dieu nous donne pour répondre à son appel » (§1996). En clair : c'est l'aide de Dieu qui nous permet de faire le bien, de croire, d'aimer Dieu — pas juste une récompense qu'on reçoit à la fin, mais un vrai coup de main pendant tout le trajet.\n\nLa vocation à la vie éternelle « dépend entièrement de l'initiative gratuite de Dieu, car Lui seul peut se révéler et se donner Lui-même » (§1998). Le salut n'est pas un aboutissement naturel de la vertu poussée assez loin — le CEC situe la vie éternelle dans un ordre qualifié explicitement de « surnaturel », distinct par nature de tout ce que l'effort humain peut produire seul.\n\nC'est précisément pour cette raison que la réponse « Non » est fausse : elle suppose que le salut serait de même nature que la vertu humaine, juste porté à un degré supérieur — comme si accumuler assez de mérite suffisait à franchir la même ligne d'arrivée. Or le CEC précise qu'« à l'égard de Dieu, il n'y a pas, au sens d'un droit strict, de mérite de la part de l'homme » (§2007) : même la vertu la plus achevée ne crée aucun droit à exiger le salut, parce que celui-ci se situe sur un plan que la nature humaine, seule, ne peut jamais atteindre.\n\nCet appel n'est d'ailleurs pas réservé à quelques-uns : le CEC affirme que Dieu « se fait proche de l'homme » et « l'appelle » en tout temps et en tout lieu (§1), et qu'il « veut que tous les hommes soient sauvés » (§74). Dieu ne dit pas « j'appelle ceux qui l'ont bien mérité » : il appelle tout le monde, gratuitement, sans condition de départ. « Tout le monde est appelé » et « l'initiative vient de Dieu » ne s'opposent donc pas — c'est même la même vérité vue sous deux angles : l'appel est universel précisément parce que son origine est la pure gratuité de Dieu, et non le mérite de qui que ce soit."}, {"reference": "Une personne, deux natures", "part": "I.2.2.2", "arbo": "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre deuxième : Je crois en Jésus-Christ › Article 3 : « Jésus-Christ a été conçu du Saint-Esprit, il est né de la Vierge Marie » › Paragraphe 1 : Le Fils de Dieu s'est fait homme", "question": "Face à l'hérésie monophysite du moine Eutychès, qui affirmait que la nature humaine du Christ avait été absorbée par sa nature divine, que confesse le concile de Chalcédoine (451) ?", "choices": ["Deux personnes distinctes, unies seulement par une communion de volonté", "Une nature unique, mais composée à parts égales de divin et d'humain", "Un seul et même Christ, reconnu en deux natures, sans confusion, sans changement, sans division, sans séparation"], "correct": 2, "explanation": "Le concile de Chalcédoine définit : « Un seul et même Christ (...), que nous devons reconnaître en deux natures, sans confusion, sans changement, sans division, sans séparation » (§467).", "source": "CEC §467", "more": "Les monophysites « affirmaient que la nature humaine avait cessé d'exister comme telle dans le Christ en étant assumée par sa personne divine de Fils de Dieu ».\n\nFace à cette hérésie, Chalcédoine précise : « La différence des natures n'est nullement supprimée par leur union, mais plutôt les propriétés de chacune sont sauvegardées et réunies en une seule personne et une seule hypostase ».", "vaticanUrl": "https://www.vatican.va/archive/FRA0013/__P1G.HTM"}, {"reference": "Le péché contre l'Esprit Saint", "part": "III.1.1.8", "arbo": "Troisième partie : La vie dans le Christ › Première section : La vocation de l'homme, la vie dans l'Esprit › Chapitre premier : La dignité de la personne humaine › Article 8 : Le péché › IV. La gravité du péché : péché mortel et véniel", "question": "Existe-t-il un péché que Dieu ne peut pas pardonner, parce qu'il dépasserait sa miséricorde ?", "choices": ["Oui, le blasphème contre l'Esprit Saint dépasse ce que la miséricorde divine peut couvrir", "Non, la miséricorde de Dieu est sans limite ; mais celui qui refuse délibérément de l'accueillir se prive lui-même du pardon", "Non, absolument aucun péché ne peut séparer définitivement une personne de Dieu, quoi qu'elle choisisse"], "correct": 1, "explanation": "« Il n'y a pas de limites à la miséricorde de Dieu, mais celui qui refuse délibérément d'accueillir la miséricorde de Dieu par le repentir rejette le pardon de ses péchés et le salut offert par l'Esprit Saint » (§1864).", "source": "CEC §1864", "more": "L'Évangile le dit : « Tout péché et blasphème sera remis aux hommes, mais le blasphème contre l'Esprit ne sera pas remis » (Mt 12, 31).\n\nCe n'est donc pas Dieu qui refuse de pardonner : « Un tel endurcissement peut conduire à l'impénitence finale et à la perte éternelle » — la fermeture vient de l'homme, pas d'une limite posée par Dieu.", "vaticanUrl": "https://www.vatican.va/archive/FRA0013/__P66.HTM"}];
+    const deck3Cards = [{"reference": "Marie, Mère de Dieu", "part": "I.2.2.3", "arbo": "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre deuxième : Je crois en Jésus-Christ › Article 3 : « Jésus-Christ a été conçu du Saint-Esprit, il est né de la Vierge Marie »", "question": "Le titre « Mère de Dieu », donné à Marie, signifie-t-il qu'elle a engendré la nature divine elle-même ?", "choices": ["Oui, en tant que Mère de Dieu, elle est à l'origine de la nature divine du Christ, au même titre que de sa nature humaine", "Non : elle a engendré une personne à la fois humaine et divine (le Verbe incarné), pas la nature divine en tant que telle"], "correct": 1, "explanation": "Le concile d'Éphèse (431), cité dans le CEC : « Mère de Dieu, non parce que le Verbe de Dieu a tiré d'elle sa nature divine, mais parce que c'est d'elle qu'il tient le corps sacré doté d'une âme rationnelle » (§466).", "source": "CEC §466", "vaticanUrl": "https://www.vatican.va/archive/FRA0013/__P1G.HTM", "more": "Beaucoup pourraient croire, à tort, que « Mère de Dieu » impliquerait que Marie soit à l'origine de la divinité elle-même du Christ — alors qu'elle a engendré la personne du Verbe incarné, pas sa nature divine, qui est éternelle et incréée.\n\nLe CEC cite précisément cette distinction, dans les mots mêmes du concile d'Éphèse (431) : « Mère de Dieu, non parce que le Verbe de Dieu a tiré d'elle sa nature divine, mais parce que c'est d'elle qu'il tient le corps sacré doté d'une âme rationnelle, uni auquel en sa personne le Verbe est dit naître selon la chair » (§466).\n\nL'hérésie combattue ici (le nestorianisme) « voyait dans le Christ une personne humaine conjointe à la personne divine du Fils de Dieu » — deux personnes, pas une seule. Le concile répond au contraire qu'il n'y a « d'autre sujet que la personne divine du Fils de Dieu », qui a assumé une pleine humanité dès sa conception — d'où le titre de Marie comme Mère de cette unique personne, divine et humaine à la fois."}, {"reference": "Contrition imparfaite", "part": "II.2.2.4", "arbo": "Deuxième partie : La célébration du mystère chrétien › Deuxième section : Les sept sacrements de l'Église › Chapitre deuxième : Les sacrements de guérison › Article 4 : Le sacrement de Pénitence et de Réconciliation › VII. Les actes du pénitent", "question": "Si un fidèle se repent de ses péchés uniquement par crainte de la damnation, cette contrition a-t-elle une valeur ?", "choices": ["Oui : cette crainte reste un don de Dieu, une impulsion de l'Esprit Saint, qui dispose au pardon des péchés graves sans l'obtenir directement à elle seule", "Non : sans l'amour de Dieu pour motiver ce regret, cette peur reste insuffisante et sans réelle portée devant lui"], "correct": 0, "explanation": "« La contrition dite 'imparfaite' (ou 'attrition') est, elle aussi, un don de Dieu, une impulsion de l'Esprit Saint » ; mais « par elle-même (...) elle n'obtient pas le pardon des péchés graves, mais elle dispose à l'obtenir dans le sacrement de la Pénitence » (§1453).", "source": "CEC §1453", "more": "Cette contrition « imparfaite » se distingue de la contrition « parfaite », qui « provient de l'amour de Dieu aimé plus que tout » et « obtient aussi le pardon des péchés mortels, si elle comporte la ferme résolution de recourir dès que possible à la confession sacramentelle » (§1452).\n\nLa contrition imparfaite, elle, « naît de la considération de la laideur du péché ou de la crainte de la damnation éternelle » — un mouvement du cœur moins élevé, qui n'est pas méprisé pour autant.\n\nLa contrition, c'est le regret intérieur du péché — le CEC la définit comme « une douleur de l'âme et une détestation du péché commis avec la résolution de ne plus pécher à l'avenir » (§1451). Quand ce regret naît de la peur de la damnation plutôt que de l'amour de Dieu, comme dans cette carte, on l'appelle précisément « attrition » — c'est le nom technique donné à cette contrition dite « imparfaite » (§1453).\n\nLe CEC affirme explicitement que cette crainte « est un don de Dieu, une impulsion de l'Esprit Saint » (§1453) — sans développer davantage ce point, qui reste affirmé comme tel, non expliqué dans le détail par le texte lui-même.\n\nLe CEC précise aussi qu'elle « dispose » au pardon sans l'obtenir directement à elle seule (§1453) : il faut, pour un péché grave, l'acte concret de la confession sacramentelle pour que le pardon soit effectivement accordé.\n\nC'est pour ces deux raisons que la réponse « Non » est fausse : elle affirme que cette contrition resterait « insuffisante et sans réelle portée », alors que le CEC dit l'inverse — elle a une vraie valeur (un don de Dieu qui dispose au pardon), simplement une valeur qui ne suffit pas, à elle seule, pour un péché grave sans la confession qui l'accompagne.", "vaticanUrl": "https://www.vatican.va/archive/FRA0013/__P48.HTM"}, {"reference": "Désespoir et présomption", "part": "III.2.1.1", "arbo": "Troisième partie : La vie dans le Christ › Deuxième section : Les dix commandements › Chapitre premier : « Tu aimeras le Seigneur ton Dieu... » › Article 1 : Le premier commandement › I. « Tu adoreras le Seigneur, ton Dieu, et tu le serviras »", "question": "Deux péchés opposés contre l'espérance, aux antipodes l'un de l'autre, sont identifiés. Lesquels ?", "choices": ["L'orgueil et l'envie", "L'indifférence et le doute", "Le désespoir et la présomption"], "correct": 2, "explanation": "« Le premier commandement vise aussi les péchés contre l'espérance, qui sont le désespoir et la présomption » (§2091).", "source": "CEC §2091-2092", "more": "Par le désespoir, « l'homme cesse d'espérer de Dieu son salut personnel (...). Il s'oppose à la Bonté de Dieu, à sa Justice (...) et à sa Miséricorde ».\n\nLa présomption, elle, prend deux formes : l'homme « présume de ses capacités, espérant pouvoir se sauver sans l'aide d'en Haut », ou bien il « présume de la toute-puissance ou de la miséricorde divines, espérant obtenir son pardon sans conversion et la gloire sans mérite ».", "vaticanUrl": "https://www.vatican.va/archive/FRA0013/__P77.HTM"}, {"reference": "La peine de mort", "part": "III.2.1.5", "arbo": "Troisième partie : La vie dans le Christ › Deuxième section : Les dix commandements › Chapitre premier : « Tu aimeras le Seigneur ton Dieu... » › Article 5 : Le cinquième commandement › I. Le respect de la vie humaine", "question": "Le CEC a-t-il toujours considéré la peine de mort comme totalement inadmissible ?", "choices": ["Non, cette position a évolué avec le temps", "Oui, l'Église a toujours rejeté la peine de mort"], "correct": 0, "explanation": "Depuis une révision voulue par le pape François en 2018, le §2267 affirme : « De nos jours (...) la peine de mort est inadmissible car elle attente à l'inviolabilité et à la dignité de la personne ».", "source": "CEC §2267", "vaticanUrl": "https://www.vatican.va/archive/FRA0013/__P7U.HTM", "more": "Avant cette révision, le §2267 (modifié une première fois en 1997) admettait le principe du recours à la peine de mort, tout en précisant que « les cas d'absolue nécessité de supprimer le coupable sont désormais assez rares, sinon même pratiquement inexistants » — une tolérance de principe, déjà présentée comme rarement applicable en pratique.\n\nLe 1er août 2018, à la demande explicite du pape François, une nouvelle formulation du §2267 a remplacé cette tolérance conditionnelle par un rejet total et sans exception : « la peine de mort est inadmissible car elle attente à l'inviolabilité et à la dignité de la personne »."}, {"reference": "Qui ressuscitera ?", "part": "I.2.3.11", "arbo": "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre troisième : Je crois en l'Esprit Saint › Article 11 : Je crois à la résurrection de la chair", "question": "Qui ressuscitera au dernier jour : uniquement les justes destinés au ciel, ou tous les hommes sans exception ?", "choices": ["Tous les hommes qui sont morts, tant les justes que les pécheurs — la résurrection précède le jugement, elle ne le remplace pas", "Uniquement les justes ; les damnés, eux, ne connaîtront jamais de résurrection corporelle", "Uniquement ceux qui sont morts en état de grâce ; les autres demeurent simplement dans la mort, sans jamais ressusciter"], "correct": 0, "explanation": "« Qui ressuscitera ? Tous les hommes qui sont morts : 'ceux qui auront fait le bien ressusciteront pour la vie, ceux qui auront fait le mal, pour la damnation' » (§998).", "source": "CEC §998", "more": "« La résurrection de tous les morts, des justes et des pécheurs, précédera le Jugement dernier » (§1038) — la résurrection est donc un événement universel, distinct du jugement qui décide ensuite du sort de chacun.\n\nL'Évangile le dit : « Ceux qui auront fait le bien ressusciteront pour la vie, ceux qui auront fait le mal pour la damnation » (Jn 5, 28-29) — ressusciter n'est donc pas en soi une promesse de salut, mais une condition commune à tous, avant le jugement de chacun.", "vaticanUrl": "https://www.vatican.va/archive/FRA0013/__P2C.HTM"}];
+    const deck4Cards = [{"reference": "Pourquoi prier ?", "part": "IV.1.3.1", "arbo": "Quatrième partie : La prière chrétienne › Première section : La prière dans la vie chrétienne › Chapitre troisième : La vie de prière › Article 2 : Le combat de la prière › III. La confiance filiale", "question": "« Notre Père sait bien ce qu'il nous faut, avant que nous le lui demandions » (Mt 6, 8) — alors pourquoi lui demander ?", "choices": ["Parce que Dieu respecte notre dignité, qui est dans notre liberté", "Parce que Dieu veut une preuve concrète de notre foi avant d'accorder son aide"], "correct": 0, "explanation": "« Notre Père sait bien ce qu'il nous faut, avant que nous le lui demandions (...) mais il attend notre demande parce que la dignité de ses enfants est dans leur liberté » (§2736).", "source": "CEC §2736", "more": "Le CEC pose la vraie question derrière tout ça : « Quelle est donc l'image de Dieu qui motive notre prière : un moyen à utiliser ou le Père de notre Seigneur Jésus-Christ  ? » (§2735). En clair : si Dieu nous donnait tout automatiquement sans qu'on ait à demander, on le traiterait comme un outil qu'on utilise — pas comme un Père avec qui on a une vraie relation. C'est précisément parce que Dieu veut cette relation, pas juste nous distribuer des choses, qu'« il attend notre demande parce que la dignité de ses enfants est dans leur liberté » (§2736). Le CEC va même plus loin en citant l'Écriture : « Vous ne possédez pas parce que vous ne demandez pas » (Jc 4, 2, cité au §2737) — la demande n'est donc pas qu'un geste symbolique, elle conditionne réellement ce que nous recevons. Le CEC ne parle jamais d'une preuve de foi à apporter pour \"mériter\" une réponse — c'est bien la seule raison qu'il donne, et rien d'autre.\n\nLe lien entre liberté et dignité est développé ailleurs dans le CEC. Sur la liberté : « La liberté est le pouvoir, enraciné dans la raison et la volonté, d'agir ou de ne pas agir, de faire ceci ou cela, de poser ainsi par soi-même des actions délibérées » (§1731). Sur la dignité : « Dieu a créé l'homme raisonnable en lui conférant la dignité d'une personne douée de l'initiative et de la maîtrise de ses actes » (§1730) ; « Le droit à l'exercice de la liberté est une exigence inséparable de la dignité de l'homme » (§1747).", "vaticanUrl": "https://www.vatican.va/archive/FRA0013/__P9M.HTM"}, {"reference": "Qui cherche qui ?", "part": "IV.1", "arbo": "Quatrième partie : La prière chrétienne › Première section : La prière dans la vie chrétienne › Préambule", "question": "Dans la prière, qui est le premier à chercher l'autre : est-ce l'homme qui va vers Dieu, ou Dieu qui vient à la rencontre de l'homme ?", "choices": ["C'est l'homme qui va chercher Dieu le premier, par sa propre initiative", "C'est le Christ qui vient le premier à la rencontre de l'homme, avant même notre propre désir de prier", "C'est un mouvement simultané : Dieu et l'homme se cherchent l'un l'autre, à parts strictement égales"], "correct": 1, "explanation": "« Le Christ vient à la rencontre de tout être humain, il est le premier à nous chercher et c'est lui qui demande à boire » (§2560).", "source": "CEC §2560", "more": "« La prière, que nous le sachions ou non, est la rencontre de la soif de Dieu et de la nôtre. Dieu a soif que nous ayons soif de Lui » (§2560, citant saint Augustin).\n\nLe texte est explicite sur l'ordre : c'est le Christ qui est « le premier à nous chercher ». L'idée d'un mouvement « simultané, à parts égales » entre Dieu et l'homme inverse donc cet ordre précis — la prière naît toujours d'une initiative divine qui précède la nôtre, non d'une rencontre entre deux démarches égales.\n\nLe CEC précise même que cette antériorité est absolue, pas seulement fréquente : « Cette démarche d'amour du Dieu fidèle est toujours première dans la prière, la démarche de l'homme est toujours une réponse » (§2567). C'est ce qui justifie de dire que le Christ vient à notre rencontre avant même notre propre désir de prier : ce désir lui-même, quand il naît en nous, est déjà une réponse à cette démarche divine qui l'a précédé.", "vaticanUrl": "https://www.vatican.va/archive/FRA0013/__P8U.HTM"}, {"reference": "Le célibat des prêtres", "part": "II.2.4.1", "arbo": "Deuxième partie : La célébration du mystère chrétien › Deuxième section : Les sept sacrements de l'Église › Chapitre troisième : Les sacrements au service de la communion › Article 6 : Le sacrement de l'Ordre › VI. Qui peut recevoir ce sacrement ?", "question": "Le célibat des prêtres est-il une règle universelle dans l'Église catholique ?", "choices": ["Non, les Églises orientales catholiques ordonnent aussi des hommes mariés, une pratique reconnue comme légitime", "Oui, c'est une exigence universelle et immuable, sans aucune exception dans toute l'Église"], "correct": 0, "explanation": "« Dans les Églises Orientales, depuis des siècles, une discipline différente est en vigueur : (...) des hommes mariés peuvent être ordonnés diacres et prêtres. Cette pratique est depuis longtemps considérée comme légitime » (§1580).", "source": "CEC §1579-1580", "more": "Dans l'Église latine, les prêtres sont « normalement choisis parmi les hommes croyants qui vivent en célibataires (...) 'en vue du Royaume des cieux' » (§1579) — mais le CEC précise lui-même que c'est une discipline propre à l'Église latine, pas une loi universelle de toute l'Église catholique.\n\nLe texte ajoute que « le célibat des prêtres est très en honneur dans les Églises Orientales » aussi, et que « nombreux sont les prêtres qui l'ont choisi librement » — ce n'est donc pas une opposition entre une Église « stricte » et une autre « laxiste », mais deux disciplines légitimes, l'une obligatoire, l'autre non.", "vaticanUrl": "https://www.vatican.va/archive/FRA0013/__P4R.HTM"}, {"reference": "Toujours dire la vérité ?", "part": "III.2.2.8", "arbo": "Troisième partie : La vie dans le Christ › Deuxième section : Les dix commandements › Chapitre deuxième : « Tu aimeras ton prochain comme toi-même » › Article 8 : Le huitième commandement › IV. Le respect de la vérité", "question": "A-t-on toujours le devoir de révéler une vérité à quiconque la demande ?", "choices": ["Oui, cacher une information vraie à qui la demande est toujours une forme de mensonge", "Non, le droit à la communication de la vérité n'est pas inconditionnel ; il faut discerner, selon la charité, s'il convient de la révéler", "Non, on peut librement affirmer une chose fausse dès lors que la vérité risquerait de nuire à quelqu'un"], "correct": 1, "explanation": "« Le droit à la communication de la vérité n'est pas inconditionnel. Chacun doit conformer sa vie au précepte évangélique de l'amour fraternel » (§2488).", "source": "CEC §2488", "more": "« Le bien et la sécurité d'autrui, le respect de la vie privée, le bien commun sont des raisons suffisantes pour taire ce qui ne doit pas être connu, ou pour user d'un langage discret » (§2489).\n\n« Personne n'est tenu de révéler la vérité à qui n'a pas droit de la connaître » (§2489) — mais ce droit de se taire reste distinct du droit d'affirmer une chose fausse : taire n'est pas mentir.", "vaticanUrl": "https://www.vatican.va/archive/FRA0013/__P8G.HTM"}, {"reference": "Le dessein de Dieu et la liberté des hommes", "part": "I.2.2.4", "arbo": "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre deuxième : Je crois en Jésus-Christ › Article 4 : « Jésus-Christ a souffert sous Ponce Pilate, a été crucifié, est mort et a été enseveli » › Paragraphe 2 : Jésus est mort crucifié › II. La mort rédemptrice du Christ dans le dessein divin de salut", "question": "La mort de Jésus faisait partie du dessein éternel de Dieu. Ceux qui l'ont livré à la mort (Judas, Pilate, Hérode) étaient-ils alors de simples exécutants d'un scénario déjà écrit, sans vraie responsabilité ?", "choices": ["Oui, puisque Dieu avait tout prévu d'avance, ils n'ont fait qu'exécuter un plan sur lequel ils n'avaient aucune prise", "Non : le dessein éternel de Dieu inclut la réponse libre de chaque homme ; leur aveuglement reste un choix qui leur est propre", "Non, mais seulement parce que Dieu, voyant leur choix d'avance de toute éternité, ne fait que constater ce qu'ils allaient de toute façon nécessairement choisir"], "correct": 1, "explanation": "« Ce langage biblique ne signifie pas que ceux qui ont 'livré Jésus' n'ont été que les exécutants passifs d'un scénario écrit d'avance par Dieu » (§599).", "source": "CEC §599-600", "more": "« À Dieu tous les moments du temps sont présents dans leur actualité. Il établit donc son dessein éternel de 'prédestination' en y incluant la réponse libre de chaque homme à sa grâce » (§600) — comme le montrent Hérode et Pilate qui « ont accompli tout ce que, dans ta puissance et ta sagesse, tu avais prédestiné » (Ac 4, 27-28), sans que cela efface leur propre aveuglement coupable.\n\nLe CEC répond simplement, sans construire d'argument philosophique supplémentaire : il affirme que « à Dieu tous les moments du temps sont présents dans leur actualité » (§600) — Dieu ne voit donc pas les choses « à l'avance » comme nous le ferions, en anticipant un futur pas encore arrivé, mais dans un présent qui contient déjà, pour Lui, ce qui pour nous est passé, présent et futur. Le CEC ne dit jamais que cette manière de connaître forcerait ou figerait le choix de l'homme — au contraire, il précise explicitement que ce dessein « inclut la réponse libre de chaque homme » (§600). C'est cette affirmation de liberté, donnée telle quelle par le texte, qui suffit à rendre fausse la troisième réponse.\n\nLe CEC dit explicitement que ce dessein « inclut la réponse libre de chaque homme » (§600) — et c'est bien de Judas, Pilate et Hérode qu'il est question à cet endroit précis du texte. Or la réponse 3 affirme que leur choix était « nécessaire ». « Libre » et « nécessaire » sont deux mots qui s'excluent : un choix libre aurait pu ne pas se produire, un choix nécessaire ne pouvait pas être autrement. Le CEC emploie le mot « libre » pour ces mêmes hommes, dans ce même passage — la réponse 3 affirme donc l'exact contraire de ce que dit le texte à cet endroit.\n\nUne précision de vocabulaire utile : le CEC emploie aussi le mot « prédestination » dans un sens positif et différent, pour désigner l'appel de Dieu à devenir son enfant adoptif : « Tel est le 'dessein bienveillant' qu'il a conçu dès avant la création du monde en son Fils bien-aimé, 'nous prédestinant à l'adoption filiale en celui-ci', c'est-à-dire 'à reproduire l'image de Son Fils' » (§257). Le mot n'a donc rien d'automatiquement effrayant : son usage principal dans le CEC est un appel à devenir enfant de Dieu, pas une menace de damnation programmée.", "vaticanUrl": "https://www.vatican.va/archive/FRA0013/__P1L.HTM"}];
+    const deck5Cards = [{"reference": "L'efficacité des sacrements", "part": "II.2.4.1", "arbo": "Deuxième partie : La célébration du mystère chrétien › Première section : L'économie sacramentelle › Chapitre premier : Le mystère pascal dans le temps de l'Église › Article 3 : La célébration du mystère pascal › III. Qui célèbre ?", "question": "Un sacrement célébré par un prêtre qui est lui-même en état de péché grave est-il valide ?", "choices": ["Non, un prêtre en état de péché grave ne peut valablement administrer aucun sacrement", "Oui : les sacrements agissent « ex opere operato » — c'est le Christ lui-même qui agit en eux, indépendamment de la sainteté personnelle du ministre"], "correct": 1, "explanation": "« Ils sont efficaces (...) parce qu'en eux le Christ lui-même est à l'œuvre : c'est Lui qui baptise, c'est Lui qui agit dans ses sacrements » (§1127). Le sacrement « n'est pas réalisé par la justice de l'homme qui le donne (...), mais par la puissance de Dieu » (§1128).", "source": "CEC §1127-1128", "vaticanUrl": "https://www.vatican.va/archive/FRA0013/__P2Y.HTM", "more": "Une précision importante à ne pas confondre : si la validité du sacrement ne dépend jamais du prêtre, les fruits spirituels qu'il produit chez le fidèle, eux, dépendent des dispositions de celui qui le reçoit — pas de celles du prêtre qui le célèbre."}, {"reference": "Substance et personne", "part": "I.2.1.2", "arbo": "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre premier : Je crois en Dieu le Père › Article 2 : Le Père › III. Le Saint-Esprit dans la Foi de l'Église", "question": "Dans le vocabulaire trinitaire du CEC, les mots « substance » et « personne » désignent-ils la même chose, appliquée différemment au Père, au Fils et à l'Esprit ?", "choices": ["Non : « substance » désigne l'unique être divin, « personne » désigne le Père, le Fils et l'Esprit dans leur distinction réelle", "Oui, ce sont deux synonymes que le CEC emploie indifféremment pour la même réalité", "Non : c'est l'inverse — « personne » désigne l'unique être divin, « substance » désigne le Père, le Fils et l'Esprit dans leur distinction"], "correct": 0, "explanation": "« L'Église utilise le terme 'substance' (...) pour désigner l'être divin dans son unité, le terme 'personne' (...) pour désigner le Père, le Fils et le Saint-Esprit dans leur distinction réelle entre eux » (§252).", "source": "CEC §252-253", "vaticanUrl": "https://www.vatican.va/archive/FRA0013/__P18.HTM", "more": "Ce vocabulaire précis a été fixé progressivement par l'Église pour exprimer sa foi, face aux hérésies qui déformaient l'une ou l'autre de ces deux affirmations — l'unité de nature ou la distinction des personnes."}, {"reference": "La crémation", "part": "III.2.2.5", "arbo": "Troisième partie : La vie dans le Christ › Deuxième section : Les dix commandements › Chapitre deuxième : « Tu aimeras ton prochain comme toi-même » › Article 5 : Le cinquième commandement › I. Le respect de la vie humaine", "question": "L'Église interdit-elle la crémation des défunts ?", "choices": ["Oui, elle reste strictement interdite en toutes circonstances, contrairement à l'inhumation", "Non, elle est permise, à condition de ne pas manifester une remise en cause de la foi en la résurrection des corps", "Non, elle est même désormais recommandée en priorité, l'inhumation étant jugée dépassée"], "correct": 1, "explanation": "« L'Église permet l'incinération si celle-ci ne manifeste pas une mise en cause de la foi dans la résurrection des corps » (§2301).", "source": "CEC §2300-2301", "vaticanUrl": "https://www.vatican.va/archive/FRA0013/__P7V.HTM", "more": "Le paragraphe qui précède pose le principe général : « Les corps des défunts doivent être traités avec respect et charité dans la foi et l'espérance de la résurrection. L'ensevelissement des morts est une œuvre de miséricorde corporelle » (§2300).\n\nC'est dans ce cadre que s'inscrit l'autorisation de l'incinération : la condition posée par le CEC ne porte donc pas sur le geste matériel en lui-même, mais sur ce que ce choix signifierait — la foi dans la résurrection des corps ne doit pas être mise en cause par la manière dont on traite les restes du défunt."}, {"reference": "Prier les saints", "part": "IV.1.3.2", "arbo": "Quatrième partie : La prière chrétienne › Première section : La prière dans la vie chrétienne › Chapitre deuxième : La tradition de la prière › Article 3 : Aujourd'hui › Paragraphe 5 : La communion des saints", "question": "Peut-on adresser une prière à un saint, ou seul Dieu peut-il être destinataire de nos prières ?", "choices": ["Non, une prière n'a de sens que si elle s'adresse directement à celui qui peut réellement exaucer un besoin — c'est Dieu lui-même, et lui seul", "Oui, on peut prier un saint qui accorde lui-même directement la faveur demandée", "Oui : on peut s'adresser à un saint pour lui demander de porter notre prière et de la présenter lui-même à Dieu, seul à pouvoir réellement l'exaucer"], "correct": 2, "explanation": "« Ils contemplent Dieu, ils le louent et ne cessent pas de prendre soin de ceux qu'ils ont laissé sur la terre (...). Leur intercession est leur plus haut service du Dessein de Dieu. Nous pouvons et devons les prier d'intercéder pour nous » (§2683).", "source": "CEC §2683-2684", "vaticanUrl": "https://www.vatican.va/archive/FRA0013/__P9C.HTM", "more": "Le mot clé est « intercéder » : le saint ne dispose d'aucun pouvoir propre pour accorder une faveur — il transmet notre prière à Dieu, à la manière d'un ami qu'on demande de prier pour nous."}, {"reference": "L'Église, sainte malgré les pécheurs", "part": "I.2.3.9", "arbo": "Première partie : La profession de la foi › Deuxième section : La profession de la foi chrétienne › Chapitre troisième : Je crois en l'Esprit Saint › Article 9 : « Je crois la Sainte Église catholique » › Paragraphe 3 : L'Église est une, sainte, catholique et apostolique › II. L'Église est sainte", "question": "L'Église est proclamée « sainte » dans le Credo. Pourtant elle comprend des pécheurs, y compris parmi ses ministres. Comment concilier les deux ?", "choices": ["Elle n'est sainte que par anticipation de ce qu'elle deviendra à la fin des temps, mais pas réellement dès maintenant", "Elle est sainte par le Christ qui la sanctifie, tout en restant composée de pécheurs appelés à se purifier sans cesse", "Elle est sainte uniquement dans ses éléments invisibles, jamais dans ses membres eux-mêmes qui restent pécheurs"], "correct": 1, "explanation": "« L'Église, qui renferme des pécheurs dans son propre sein, est donc à la fois sainte et appelée à se purifier, et poursuit constamment son effort de pénitence et de renouvellement » (§827).", "source": "CEC §823-824, §827, §867", "vaticanUrl": "https://www.vatican.va/archive/FRA0013/__P23.HTM", "more": "Le CEC définit l'Église ainsi : « société dotée d'organes hiérarchiques et Corps mystique du Christ ; assemblée visible et communauté spirituelle », deux dimensions formant « une seule réalité complexe, faite d'un double élément humain et divin » (§771). Sur le lien précis avec le Christ : « Le Christ est la Tête du Corps qui est l'Église » (§792) ; « L'Église est ce Corps dont le Christ est la Tête : elle vit de Lui, en Lui et pour Lui » (§807).\n\nSur pourquoi elle est sainte, le CEC dit : « L'Église (...) est aux yeux de la foi indéfectiblement sainte. En effet le Christ, Fils de Dieu (...), a aimé l'Église comme son épouse, il s'est livré pour elle afin de la sanctifier, il se l'est unie comme son Corps et l'a comblée du don de l'Esprit Saint » (§823). Et : « L'Église, unie au Christ, est sanctifiée par Lui ; par Lui et en Lui elle devient aussi sanctifiante » (§824).\n\n« L'unité du Christ et de l'Église, Tête et membres du Corps, implique aussi la distinction des deux dans une relation personnelle. Cet aspect est souvent exprimé par l'image de l'époux et de l'épouse » (§796). Ce que ça clarifie : le CEC dit lui-même que ces deux images (corps/tête ET époux/épouse) ne se contredisent pas, elles disent deux choses différentes en même temps : Corps et tête = une vraie union (un seul être vivant). Époux et épouse = une vraie distinction (deux « personnes » restent reconnaissables, dans une relation d'amour, pas fondues en une seule identité). Le CEC assume donc explicitement les deux à la fois : suffisamment unis pour être « un seul corps », mais suffisamment distincts pour qu'il y ait une vraie relation d'amour entre les deux, comme un couple.\n\nEt pourtant, cette Église sainte comprend bien des pécheurs : le CEC le dit sans détour : « Encore qu'elle comprenne des pécheurs, elle est 'la sans-péché faite de pécheurs' » (§867).\n\nC'est ce qui rend la réponse 3 fausse : elle dit que cette sainteté ne se manifesterait jamais à travers un membre concret, seulement à travers des éléments comme les sacrements ou la doctrine. Or le CEC affirme l'inverse : « Dans les saints brille sa sainteté ; en Marie elle est déjà la toute sainte » (§867) — la sainteté devient donc bien visible, concrètement, à travers certains membres."}];
+
+    const contentPool = [deck1Cards, deck2Cards, deck3Cards, deck4Cards, deck5Cards];
+
+    // ===================== MOTEUR DE PROGRESSION REEL =====================
+    const LS_PROGRESS = 'quaerite_progress';
+    const LS_HISTORY = 'quaerite_history';
+    const LS_ASSIGN = 'quaerite_assignments';
+    const LS_WEEKPLAN = 'quaerite_weekplans';
+
+    function isoOf(d) {
+        return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    }
+    function todayISO() { return isoOf(new Date()); }
+
+    function getProgress() {
+        try {
+            const p = JSON.parse(localStorage.getItem(LS_PROGRESS));
+            if (p && typeof p.daysEngaged === 'number' && p.lastDate) return p;
+        } catch (e) {}
+        return null;
+    }
+    function getOrInitProgress() {
+        let p = getProgress();
+        if (!p) {
+            p = { daysEngaged: 0, lastDate: null }; // 0 session terminee au tout premier lancement
+            localStorage.setItem(LS_PROGRESS, JSON.stringify(p));
+        }
+        return p;
+    }
+    function getHistory() {
+        try { return JSON.parse(localStorage.getItem(LS_HISTORY)) || {}; } catch (e) { return {}; }
+    }
+    function saveHistory(dateISO, score, deckIdx) {
+        const h = getHistory();
+        h[dateISO] = { done: true, score, deckIndex: deckIdx };
+        localStorage.setItem(LS_HISTORY, JSON.stringify(h));
+    }
+
+    function getAssignments() {
+        try { return JSON.parse(localStorage.getItem(LS_ASSIGN)) || {}; } catch (e) { return {}; }
+    }
+    function saveAssignment(idx, data) {
+        const a = getAssignments();
+        a[idx] = data;
+        localStorage.setItem(LS_ASSIGN, JSON.stringify(a));
+    }
+    function getWeekPlans() {
+        try { return JSON.parse(localStorage.getItem(LS_WEEKPLAN)) || {}; } catch (e) { return {}; }
+    }
+    function saveWeekPlans(p) { localStorage.setItem(LS_WEEKPLAN, JSON.stringify(p)); }
+
+    // Un jour au hasard de chaque semaine (a partir de la semaine 2) rejoue un jour au hasard
+    // de la semaine precedente. Garde-fou : jamais jour 1 d'une semaine qui repeterait le jour 7
+    // de la precedente (ca ferait 2 fois le meme jeu, 2 jours de suite).
+    function getOrCreateWeekPlan(weekNumber) {
+        const plans = getWeekPlans();
+        if (plans[weekNumber]) return plans[weekNumber];
+        let placementDay, sourceDay;
+        do {
+            placementDay = 1 + Math.floor(Math.random() * 7);
+            sourceDay = 1 + Math.floor(Math.random() * 7);
+        } while (placementDay === 1 && sourceDay === 7);
+        const plan = { placementDay, sourceDay };
+        plans[weekNumber] = plan;
+        saveWeekPlans(plans);
+        return plan;
+    }
+
+    function countFreshBefore(idx) {
+        const a = getAssignments();
+        let n = 0;
+        for (let i = 1; i < idx; i++) {
+            if (a[i] && !a[i].isRepeat) n++;
+        }
+        return n;
+    }
+
+    // Calcule (et memorise) le deck du jour n idx (1 = premier jour jamais engage).
+    function getOrCreateAssignment(idx) {
+        const assignments = getAssignments();
+        if (assignments[idx] && assignments[idx].deckIndex < contentPool.length) {
+            return assignments[idx];
+        }
+
+        const weekNumber = Math.ceil(idx / 7);
+        const dayInWeek = ((idx - 1) % 7) + 1;
+
+        if (weekNumber >= 2) {
+            const plan = getOrCreateWeekPlan(weekNumber);
+            if (dayInWeek === plan.placementDay) {
+                const sourceIdx = (weekNumber - 2) * 7 + plan.sourceDay;
+                const sourceAssignment = getOrCreateAssignment(sourceIdx);
+                const result = { deckIndex: sourceAssignment.deckIndex, isRepeat: true, sourceIdx };
+                saveAssignment(idx, result);
+                return result;
+            }
+        }
+
+        const freshCount = countFreshBefore(idx);
+        const result = { deckIndex: freshCount % contentPool.length, isRepeat: false };
+        saveAssignment(idx, result);
+        return result;
+    }
+
+    const progress = getOrInitProgress();
+    const currentSessionNumber = isTodayDone() ? progress.daysEngaged : progress.daysEngaged + 1;
+    const todayAssignment = getOrCreateAssignment(currentSessionNumber);
+    const todayDeck = contentPool[todayAssignment.deckIndex];
+
+    // ===================== ETAT =====================
+    let answerSelected = false;
+    let isRevealedMode = false;
+    let isArchiveMode = false;
+    let currentCardIndex = 0;
+    let currentDeck = todayDeck;
+    let TOTAL_CARDS = currentDeck.length;
+    let sessionAnswers = new Array(todayDeck.length).fill(null);
+    let scoreSaved = false;
+    let viewingHistoryDay = null; // null = aujourd'hui, sinon l'objet jour {iso, ...}
+
+    function isTodayDone() {
+        const h = getHistory();
+        return !!(h[todayISO()] && h[todayISO()].done);
+    }
+
+    // (indicateur visuel de cadenas retire ; seul le blocage reel de l'acces est conserve, voir renderHistoryGrid/renderArchiveFolders)
+
+    function switchView(viewName) {
+        ['view-deck', 'view-history', 'view-archive', 'view-end-session'].forEach(id => {
+            const el = document.getElementById(id);
+            el.classList.add('hidden');
+            el.style.display = 'none';
+        });
+
+        const activeView = document.getElementById('view-' + viewName);
+        activeView.classList.remove('hidden');
+        activeView.style.display = 'flex';
+
+        const navBtns = document.querySelectorAll('.nav-btn');
+        navBtns.forEach(btn => {
+            btn.classList.remove('text-sacred-red', 'border-sacred-red', 'scale-95', 'relative', '-top-[1px]');
+            btn.classList.add('text-secondary', 'border-transparent');
+            btn.querySelector('.material-symbols-outlined').classList.remove('filled');
+        });
+
+        if (viewName === 'end-session') {
+            const activeBtn = document.getElementById('nav-deck');
+            if (activeBtn) {
+                activeBtn.classList.remove('text-secondary', 'border-transparent');
+                activeBtn.classList.add('text-sacred-red', 'border-sacred-red', 'scale-95', 'relative', '-top-[1px]');
+                activeBtn.querySelector('.material-symbols-outlined').classList.add('filled');
+            }
+        } else {
+            const activeBtn = document.getElementById('nav-' + viewName);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-secondary', 'border-transparent');
+                activeBtn.classList.add('text-sacred-red', 'border-sacred-red', 'scale-95', 'relative', '-top-[1px]');
+                activeBtn.querySelector('.material-symbols-outlined').classList.add('filled');
+            }
+        }
+
+        if (isArchiveMode || isRevealedMode) {
+            document.getElementById('bottom-nav').style.display = 'none';
+            document.getElementById('bottom-nav').classList.add('hidden');
+        } else {
+            document.getElementById('bottom-nav').style.display = 'flex';
+            document.getElementById('bottom-nav').classList.remove('hidden', 'translate-y-full');
+        }
+
+        if (viewName === 'history') {
+            renderHistoryGrid();
+        }
+        if (viewName === 'archive') {
+            renderArchiveFolders();
+        }
+
+        window.scrollTo(0, 0);
+    }
+
+    // day = objet {iso, label, done, score, deckIndex}
+    function loadHistorySession(day) {
+        if (!day.done) return;
+        viewingHistoryDay = day;
+        document.getElementById('history-banner-text').textContent = day.label;
+        document.getElementById('history-banner').classList.remove('hidden');
+        currentDeck = contentPool[day.deckIndex % contentPool.length];
+        currentCardIndex = 0;
+        TOTAL_CARDS = currentDeck.length;
+        isRevealedMode = true;
+        isArchiveMode = false;
+        document.getElementById('bottom-nav').classList.add('hidden');
+        switchView('deck');
+        loadCard();
+    }
+
+    function exitHistoryMode() {
+        const bannerText = document.getElementById('history-banner-text').textContent;
+        const fromArchive = bannerText.startsWith('ARCHIVE:');
+
+        document.getElementById('history-banner').classList.add('hidden');
+
+        currentDeck = todayDeck;
+        currentCardIndex = 0;
+        TOTAL_CARDS = currentDeck.length;
+        isRevealedMode = false;
+        isArchiveMode = false;
+        viewingHistoryDay = null;
+
+        document.getElementById('bottom-nav').classList.remove('hidden');
+        document.getElementById('bottom-nav').style.display = 'flex';
+        document.getElementById('action-section').style.display = 'flex';
+        document.getElementById('top-bar').style.display = 'flex';
+
+        if (fromArchive) {
+            switchView('archive');
+        } else {
+            switchView('history');
+        }
+    }
+
+    function loadCard() {
+        window.scrollTo(0, 0);
+        const card = currentDeck[currentCardIndex];
+        answerSelected = false;
+
+        document.getElementById('deck-part-text').textContent = card.part;
+        document.getElementById('deck-reference-text').textContent = card.reference;
+
+        const arboPath = document.getElementById('arbo-path-deck');
+        arboPath.innerHTML = '';
+        arboPath.classList.add('hidden'); // toujours repliee sur une nouvelle carte
+        arboPath.style.display = 'none';
+        const parts = card.arbo.split('›').map(p => p.trim().replace(/^›\s*/, ''));
+        parts.forEach((part, idx) => {
+            if (!part) return;
+            const isLast = idx === parts.length - 1;
+            let cls = `level-${Math.min(idx+1, 4)}`;
+            let innerCls = isLast ? 'text-absolute-black bg-surface-container-low font-semibold' : 'text-on-surface-variant';
+            if (idx === 0) innerCls = 'text-secondary';
+            if (isLast) {
+                cls += ' bg-surface-container-low';
+                if (!cls.includes('level-4')) cls += ' current-position'; // garantit la bordure meme si on n'atteint pas le niveau 4
+            }
+
+            arboPath.innerHTML += `<div class="breadcrumb-item ${cls} py-xs"><span class="breadcrumb-text ${innerCls}">${part}</span></div>`;
+        });
+
+        document.getElementById('deck-question-text').textContent = card.question;
+
+        const choicesContainer = document.getElementById('deck-choices');
+        choicesContainer.innerHTML = '';
+        card.choices.forEach((choice, idx) => {
+            choicesContainer.innerHTML += `
+            <div class="choice-item flex items-center justify-start text-left py-3 px-2 border-b border-absolute-black cursor-pointer choice-hover-red transition-colors group w-full" data-index="${idx}" data-correct="${idx === card.correct}" onclick="handleChoiceClick(this)">
+                <span class="font-body-lg text-body-lg text-absolute-black transition-colors w-full block text-left">${choice}</span>
+            </div>`;
+        });
+        applyChoiceTextColor();
+
+        document.getElementById('deck-feedback').classList.add('hidden');
+        document.getElementById('feedback-details').classList.add('hidden');
+        document.getElementById('details-close-btn').style.display = 'none';
+        if (!isArchiveMode && !isRevealedMode && window.matchMedia('(max-width: 767px)').matches) {
+            document.getElementById('bottom-nav').style.display = 'flex';
+            document.getElementById('bottom-nav').classList.remove('hidden');
+        }
+
+        updateNavigationButtons();
+        updateProgressBar();
+        updateStackVisibility();
+
+        if (isArchiveMode) {
+            document.getElementById('action-section').style.display = 'none';
+            document.getElementById('top-bar').style.display = 'flex';
+            document.getElementById('card-wrapper').classList.remove('shadow-[0_4px_10px_rgba(0,0,0,0.1)]');
+
+            const correctElement = choicesContainer.querySelector(`[data-index="${card.correct}"]`);
+            handleChoiceClick(correctElement, true);
+        } else {
+            document.getElementById('action-section').style.display = 'flex';
+            document.getElementById('top-bar').style.display = 'flex';
+            document.getElementById('card-wrapper').classList.add('shadow-[0_4px_10px_rgba(0,0,0,0.1)]');
+
+            if (isRevealedMode) {
+                const correctElement = choicesContainer.querySelector(`[data-index="${card.correct}"]`);
+                handleChoiceClick(correctElement, true);
+            }
+        }
+    }
+
+    function updateStackVisibility() {
+        const edge1 = document.querySelector('.stack-edge-1');
+        const edge2 = document.querySelector('.stack-edge-2');
+        if (!edge1 || !edge2) return;
+
+        if (currentCardIndex < TOTAL_CARDS - 2) {
+            edge1.style.display = 'block';
+            edge2.style.display = 'block';
+        } else if (currentCardIndex === TOTAL_CARDS - 2) {
+            edge1.style.display = 'block';
+            edge2.style.display = 'none';
+        } else {
+            edge1.style.display = 'none';
+            edge2.style.display = 'none';
+        }
+    }
+
+    function updateNavigationButtons() {
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+
+        if (currentCardIndex > 0) {
+            prevBtn.classList.remove('hidden');
+        } else {
+            prevBtn.classList.add('hidden');
+        }
+
+        if (answerSelected || isRevealedMode) {
+            nextBtn.classList.remove('hidden');
+            if (currentCardIndex >= TOTAL_CARDS - 1 && !isRevealedMode) {
+                nextBtn.querySelector('span:first-child').textContent = "TERMINER";
+            } else if (currentCardIndex >= TOTAL_CARDS - 1 && isRevealedMode && !isArchiveMode) {
+                nextBtn.classList.add('hidden');
+            } else {
+                nextBtn.querySelector('span:first-child').textContent = "SUIVANT";
+            }
+        } else {
+            nextBtn.classList.add('hidden');
+        }
+
+        if (isArchiveMode && currentCardIndex >= TOTAL_CARDS - 1) {
+            nextBtn.classList.add('hidden');
+        }
+    }
+
+    function updateProgressBar() {
+        const progressBar = document.getElementById('progress-bar');
+        progressBar.innerHTML = '';
+        for (let i = 0; i < TOTAL_CARDS; i++) {
+            if (i <= currentCardIndex) {
+                progressBar.innerHTML += '<div class="flex-1 h-[3px] bg-sacred-red"></div>';
+            } else {
+                progressBar.innerHTML += '<div class="flex-1 h-[3px] bg-surface-container-highest"></div>';
+            }
+        }
+    }
+
+    function goToPrevCard() {
+        if (currentCardIndex > 0) {
+            currentCardIndex--;
+            loadCard();
+        }
+    }
+
+    function goToNextCard() {
+        if (currentCardIndex >= TOTAL_CARDS - 1) {
+            if (!isRevealedMode) {
+                // fin de session reelle (pas une relecture d'historique) : on enregistre le score
+                if (viewingHistoryDay === null && !scoreSaved) {
+                    const score = sessionAnswers.reduce((n, ans, idx) => n + (ans === todayDeck[idx].correct ? 1 : 0), 0);
+                    saveHistory(todayISO(), score, todayAssignment.deckIndex);
+                    scoreSaved = true;
+                    // avancer le compteur de sessions terminees, seulement maintenant que c'est vraiment fini
+                    localStorage.setItem(LS_PROGRESS, JSON.stringify({ daysEngaged: progress.daysEngaged + 1, lastDate: todayISO() }));
+                }
+                document.getElementById('history-banner').classList.add('hidden');
+                switchView('end-session');
+            }
+        } else {
+            currentCardIndex++;
+            loadCard();
+        }
+    }
+
+    function toggleDetails() {
+        const details = document.getElementById('feedback-details');
+        const closeBtn = document.getElementById('details-close-btn');
+        const bottomNav = document.getElementById('bottom-nav');
+        const nowHidden = details.classList.toggle('hidden');
+
+        if (!nowHidden) {
+            // a l'ouverture : calculer le vrai bas du header + bandeau (date/archive), s'il est visible
+            const header = document.getElementById('top-bar');
+            const banner = document.getElementById('history-banner');
+            let topOffset = header.getBoundingClientRect().bottom;
+            if (banner && getComputedStyle(banner).display !== 'none' && !banner.classList.contains('hidden')) {
+                topOffset = banner.getBoundingClientRect().bottom;
+            }
+            details.style.top = topOffset + 'px';
+            details.style.height = `calc(100% - ${topOffset}px)`;
+        }
+
+        if (window.matchMedia('(max-width: 767px)').matches) {
+            closeBtn.classList.toggle('hidden', nowHidden);
+            closeBtn.style.display = nowHidden ? 'none' : 'block';
+
+            const shouldShowNav = nowHidden && !isArchiveMode && !isRevealedMode;
+            bottomNav.classList.toggle('hidden', !shouldShowNav);
+            bottomNav.style.display = shouldShowNav ? 'flex' : 'none';
+            bottomNav.style.transform = 'none';
+        } else {
+            closeBtn.style.display = 'none';
+        }
+    }
+
+    function formatDetails(text) {
+        const paragraphs = text.split(/\n\n+/);
+        return paragraphs.map(p => {
+            const withQuotes = p.replace(/«([^»]+)»/g, '<span class="quote">«$1»</span>');
+            return '<p>' + withQuotes + '</p>';
+        }).join('');
+    }
+
+    function handleChoiceClick(element, autoReveal = false) {
+        if (answerSelected && !autoReveal) return;
+        if (isRevealedMode && !autoReveal) return;
+
+        answerSelected = true;
+
+        const card = currentDeck[currentCardIndex];
+        const isCorrect = element.getAttribute('data-correct') === 'true';
+
+        // on n'enregistre la reponse que si c'est une vraie session du jour (pas une relecture)
+        if (viewingHistoryDay === null && !isArchiveMode && !autoReveal) {
+            sessionAnswers[currentCardIndex] = parseInt(element.getAttribute('data-index'));
+        }
+
+        const allChoices = document.querySelectorAll('.choice-item');
+
+        allChoices.forEach(choice => {
+            choice.classList.remove('choice-hover-red', 'cursor-pointer');
+            choice.style.cursor = 'default';
+
+            if (choice.getAttribute('data-correct') === 'true') {
+                choice.classList.add('bg-sacred-red');
+                choice.classList.remove('bg-surface-bright');
+                choice.querySelector('span').classList.replace('text-absolute-black', 'text-pure-white');
+                choice.querySelector('span').classList.add('font-semibold');
+            } else if (choice === element && !isCorrect && !autoReveal) {
+                choice.classList.add('bg-surface-container-high', 'opacity-50');
+                choice.querySelector('span').classList.replace('text-absolute-black', 'text-error');
+            } else {
+                choice.classList.add('opacity-50');
+            }
+        });
+
+        const feedback = document.getElementById('deck-feedback');
+        const feedbackTitle = document.getElementById('feedback-title');
+
+        document.getElementById('feedback-explanation').textContent = card.explanation;
+        const sourceEl = document.getElementById('feedback-source');
+        if (card.vaticanUrl) {
+            sourceEl.innerHTML = `<a href="${card.vaticanUrl}" target="_blank" rel="noopener" style="color:inherit; text-decoration:underline;">${card.source}</a>`;
+        } else {
+            sourceEl.textContent = card.source;
+        }
+        document.getElementById('feedback-details').innerHTML = formatDetails(card.more);
+
+        feedback.classList.remove('hidden');
+        if (isCorrect || autoReveal) {
+            feedbackTitle.textContent = 'Correct !';
+            feedbackTitle.classList.add('text-sacred-red');
+            feedbackTitle.classList.remove('text-absolute-black');
+        } else {
+            feedbackTitle.textContent = 'Incorrect';
+            feedbackTitle.classList.remove('text-sacred-red');
+            feedbackTitle.classList.add('text-error');
+        }
+
+        applyChoiceTextColor();
+        updateNavigationButtons();
+    }
+
+    // ===================== HISTORIQUE REEL (2 semaines, points noir/rouge, clignotement) =====================
+    const DAY_LABELS_FR = ['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'];
+
+    function buildRealHistoryDays() {
+        const hist = getHistory();
+        const todayD = new Date();
+        const todayIso = todayISO();
+
+        // lundi de la semaine en cours (getDay(): 0=dimanche..6=samedi)
+        const dow = todayD.getDay();
+        const diffToMonday = dow === 0 ? 6 : dow - 1;
+        const mondayThisWeek = new Date(todayD);
+        mondayThisWeek.setDate(todayD.getDate() - diffToMonday);
+
+        // on part du lundi de la semaine PRECEDENTE : 14 jours pile, 2 rangees de 7,
+        // chaque jour cale sur sa vraie colonne L M M J V S D
+        const startMonday = new Date(mondayThisWeek);
+        startMonday.setDate(mondayThisWeek.getDate() - 7);
+
+        const days = [];
+        for (let i = 0; i < 14; i++) {
+            const d = new Date(startMonday);
+            d.setDate(startMonday.getDate() + i);
+            const iso = isoOf(d);
+            const entry = hist[iso];
+            const done = !!(entry && entry.done);
+            const isToday = iso === todayIso;
+            const isFuture = iso > todayIso;
+            const dateLabel = DAY_LABELS_FR[d.getDay()] + ' ' + d.getDate() + ' ' + d.toLocaleDateString('fr-FR', { month: 'long' });
+            days.push({
+                iso,
+                dayNum: d.getDate(),
+                done,
+                isFuture,
+                score: entry ? entry.score : 0,
+                deckIndex: entry ? entry.deckIndex : 0,
+                isToday,
+                label: (dateLabel.charAt(0).toUpperCase() + dateLabel.slice(1))
+            });
+        }
+        return days;
+    }
+
+    function renderHistoryGrid() {
+        const tbody = document.getElementById('history-full-grid-body');
+        tbody.innerHTML = '';
+
+        if (!isTodayDone()) {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td colspan="7" class="p-lg" style="text-align:center;">
+                <span class="material-symbols-outlined text-[40px] text-secondary" style="display:block;">lock</span>
+                <p class="font-body-md text-secondary">Termine tes 5 cartes du jour pour débloquer l'historique.</p>
+            </td>`;
+            tbody.appendChild(tr);
+            return;
+        }
+
+        const days = buildRealHistoryDays(); // 2 semaines calees sur les vraies colonnes L-D
+
+        for (let row = 0; row < 2; row++) {
+            const tr = document.createElement('tr');
+            for (let col = 0; col < 7; col++) {
+                const day = days[row * 7 + col];
+                const perfect = day.done && day.score >= TOTAL_CARDS_REF();
+                let dotHtml = '';
+                if (day.done) {
+                    const dotColor = perfect ? 'bg-sacred-red' : 'bg-absolute-black';
+                    const blink = day.isToday ? ' quaerite-blink' : '';
+                    dotHtml = `<div class="w-2 h-2 rounded-full ${dotColor}${blink}"></div>`;
+                } else if (day.isToday) {
+                    dotHtml = `<div class="w-2 h-2 rounded-full border border-secondary quaerite-blink" style="margin:4px auto 0;"></div>`;
+                } else if (day.isFuture) {
+                    dotHtml = `<span class="text-secondary-fixed-dim">–</span>`;
+                }
+
+                const clickable = day.done;
+                const td = document.createElement('td');
+                td.className = 'bg-pure-white' + (clickable ? ' cursor-pointer choice-hover-red transition-colors' : '');
+                td.innerHTML = `<span class="font-label-caps text-absolute-black" style="position:absolute; top:4px; left:6px;">${day.dayNum}</span>${dotHtml}`;
+                if (clickable) td.onclick = () => loadHistorySession(day);
+                tr.appendChild(td);
+            }
+            tbody.appendChild(tr);
+        }
+    }
+
+    function TOTAL_CARDS_REF() { return todayDeck.length; }
+
+    // ===================== ARCHIVE (construction reelle depuis les jours completes) =====================
+    const PARTIE_INFO = {
+        'I':   { title: 'Partie I',   subtitle: 'La profession de la foi',
+                 desc: "Expose le mystère chrétien tel qu'il est confessé dans le Symbole de la foi (le Credo)." },
+        'II':  { title: 'Partie II',  subtitle: 'La célébration du mystère chrétien',
+                 desc: "Traite de la liturgie et des sept sacrements de l'Église." },
+        'III': { title: 'Partie III', subtitle: 'La vie dans le Christ',
+                 desc: "Présente la vie morale du chrétien, sa vocation à la béatitude, et l'observance des dix commandements à la lumière de l'Évangile." },
+        'IV':  { title: 'Partie IV',  subtitle: 'La prière chrétienne',
+                 desc: "Expose le sens et l'importance de la prière, en s'appuyant notamment sur le Notre Père." }
+    };
+
+    // A partir du repere ("II.2.1.3", "I.2.1.1"...) on extrait la Partie en chiffres romains
+    function partieFromCode(partCode) {
+        const m = partCode.match(/^(I{1,3}V?|IV)\./);
+        return m ? m[1] : null;
+    }
+
+    // Construit les 4 dossiers a partir de LS_HISTORY : chaque jour reellement complete
+    // apporte ses 5 cartes dans leur vraie Partie. Un jeu deja vu (repetition hebdomadaire)
+    // n'est jamais ajoute une deuxieme fois.
+    function buildArchiveData() {
+        const hist = getHistory();
+        const seenDeckIndices = new Set();
+        const seenSources = new Set(); // anti-doublon supplementaire par carte (§ CEC)
+        const folders = { 'I': [], 'II': [], 'III': [], 'IV': [] };
+
+        const isoDates = Object.keys(hist).sort(); // ordre chronologique
+        isoDates.forEach((iso) => {
+            const entry = hist[iso];
+            if (!entry.done) return;
+            if (seenDeckIndices.has(entry.deckIndex)) return; // deck deja integre (ex: repetition hebdo)
+            seenDeckIndices.add(entry.deckIndex);
+
+            const deck = contentPool[entry.deckIndex % contentPool.length];
+            deck.forEach((card) => {
+                if (seenSources.has(card.source)) return;
+                seenSources.add(card.source);
+                const p = partieFromCode(card.part);
+                if (p && folders[p]) folders[p].push(card);
+            });
+        });
+
+        return Object.keys(PARTIE_INFO).map((p) => ({
+            title: PARTIE_INFO[p].title,
+            subtitle: PARTIE_INFO[p].subtitle,
+            desc: PARTIE_INFO[p].desc,
+            deck: folders[p]
+        }));
+    }
+
+    let archiveData = [];
+
+    function renderArchiveFolders(filter = '') {
+        const container = document.getElementById('archive-folders');
+        container.innerHTML = '';
+
+        if (!isTodayDone()) {
+            container.innerHTML = `<div class="p-lg flex flex-col items-center text-center gap-sm bg-pure-white border border-absolute-black">
+                <span class="material-symbols-outlined text-[40px] text-secondary">lock</span>
+                <p class="font-body-md text-secondary">Termine tes 5 cartes du jour pour débloquer l'archive.</p>
+            </div>`;
+            document.getElementById('archive-search').disabled = true;
+            return;
+        }
+        document.getElementById('archive-search').disabled = false;
+
+        archiveData = buildArchiveData(); // reconstruit a chaque ouverture, depuis les vrais jours completes
+        const lowerFilter = filter.toLowerCase();
+
+        archiveData.forEach((folder, idx) => {
+            const filteredCards = folder.deck.filter(card =>
+                card.question.toLowerCase().includes(lowerFilter)
+            );
+
+            if (filter !== '' && filteredCards.length === 0) return;
+
+            const isOpen = filter !== '' && filteredCards.length > 0;
+
+            let html = `
+                <article class="bg-pure-white border border-absolute-black group hover:border-sacred-red hover:border-2 transition-all cursor-pointer relative" onclick="toggleArchiveFolder(${idx})">
+                    <div class="absolute -bottom-[4px] left-0 w-full h-[3px] border-b border-l border-r border-absolute-black z-[-1]"></div>
+                    <div class="absolute -bottom-[7px] left-1 w-[calc(100%-8px)] h-[3px] border-b border-l border-r border-absolute-black z-[-2]"></div>
+                    <div class="p-md flex items-start gap-md">
+                        <div class="text-secondary group-hover:text-sacred-red transition-colors mt-1">
+                            <span class="material-symbols-outlined text-[32px]" style="font-variation-settings: 'FILL' 0;">folder</span>
+                        </div>
+                        <div class="flex-1">
+                            <span class="font-label-caps text-secondary block mb-xs">${folder.title} <span class="text-secondary-fixed-dim">(${folder.deck.length})</span></span>
+                            <h3 class="font-headline-md text-absolute-black group-hover:text-sacred-red transition-colors">${folder.subtitle}</h3>
+                            <p class="font-body-md text-secondary mt-base">${folder.desc}</p>
+                        </div>
+                        <div class="text-secondary group-hover:text-sacred-red">
+                            <span class="material-symbols-outlined" id="archive-icon-${idx}">${isOpen ? 'expand_less' : 'expand_more'}</span>
+                        </div>
+                    </div>
+                </article>
+                <div class="${isOpen ? 'flex' : 'hidden'} flex-col gap-sm pl-8 pr-2 mt-2 mb-4" id="archive-cards-${idx}">
+            `;
+
+            if (folder.deck.length === 0) {
+                html += `<p class="font-body-md text-secondary-fixed-dim italic p-sm">Aucune carte de cette partie pour l'instant.</p>`;
+            }
+
+            (filter !== '' ? filteredCards : folder.deck).forEach((card) => {
+                const realIdx = folder.deck.indexOf(card); // vrai index dans le deck complet, meme si la liste affichee est filtree
+                html += `
+                    <div class="p-sm bg-surface-container-lowest border border-absolute-black flex justify-between items-center cursor-pointer choice-hover-red" onclick="loadArchiveCard(${idx}, ${realIdx}, '${folder.title}')">
+                        <div class="flex flex-col flex-1">
+                            <span class="font-label-caps text-secondary text-xs">${card.part}</span>
+                            <span class="font-body-md truncate-none text-absolute-black">${card.reference}</span>
+                        </div>
+                        <span class="material-symbols-outlined text-sacred-red text-[18px] ml-2">check_circle</span>
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+            container.innerHTML += html;
+        });
+    }
+
+    function toggleArchiveFolder(idx) {
+        const cardsContainer = document.getElementById(`archive-cards-${idx}`);
+        const icon = document.getElementById(`archive-icon-${idx}`);
+        if (cardsContainer.classList.contains('hidden')) {
+            cardsContainer.classList.remove('hidden');
+            cardsContainer.classList.add('flex');
+            icon.textContent = 'expand_less';
+        } else {
+            cardsContainer.classList.add('hidden');
+            cardsContainer.classList.remove('flex');
+            icon.textContent = 'expand_more';
+        }
+    }
+
+    function handleArchiveSearch() {
+        const val = document.getElementById('archive-search').value;
+        renderArchiveFolders(val);
+    }
+
+    function loadArchiveCard(folderIdx, cardIdx, label) {
+        document.getElementById('history-banner-text').textContent = "ARCHIVE: " + label;
+        document.getElementById('history-banner').classList.remove('hidden');
+
+        currentDeck = [archiveData[folderIdx].deck[cardIdx]];
+        currentCardIndex = 0;
+        TOTAL_CARDS = 1;
+        isRevealedMode = true;
+        isArchiveMode = true;
+        document.getElementById('bottom-nav').classList.add('hidden');
+        switchView('deck');
+        loadCard();
+    }
+
+
+    function applyChoiceTextColor() {
+        const isDark = document.body.classList.contains('dark-mode');
+        document.querySelectorAll('.choice-item span').forEach(span => {
+            if (span.classList.contains('text-pure-white')) {
+                span.style.color = '#FFFFFF'; // bonne reponse revelee : toujours blanc
+            } else {
+                span.style.color = isDark ? '#CCCCCC' : '';
+            }
+        });
+    }
+
+    function toggleDarkMode() {
+        const isDark = document.body.classList.toggle('dark-mode');
+        localStorage.setItem('quaerite_dark_mode', isDark ? '1' : '0');
+        applyChoiceTextColor();
+    }
+
+    // Applique le theme sauvegarde des l'ouverture, avant meme le premier rendu de carte
+    if (localStorage.getItem('quaerite_dark_mode') === '1') {
+        document.body.classList.add('dark-mode');
+    }
+
+    // Initialize first load
+    loadCard();
+</script>
+
+
+</body></html>
