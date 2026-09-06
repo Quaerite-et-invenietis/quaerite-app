@@ -374,7 +374,7 @@
         border-bottom: none;
     }
     .history-header-cell {
-        border-bottom: 2px solid #000000 !important;
+        border-bottom: 1px solid #000000 !important;
     }
     #history-full-grid td:not(.history-header-cell) {
         text-align: center;
@@ -415,7 +415,7 @@
 <section class="flex flex-col gap-base border-surface-container-highest pb-1">
 <div class="breadcrumb-container font-label-md text-label-md">
 <div class="part-tag flex items-center gap-xs text-sacred-red font-label-caps text-label-caps tracking-widest mb-1">
-<span class="cursor-pointer flex items-center gap-xs border border-sacred-red px-2 py-1" onclick="const el=document.getElementById('arbo-path-deck'); const willShow = el.style.display==='none'; el.style.display = willShow ? 'flex' : 'none'; el.classList.toggle('hidden', !willShow);">
+<span class="cursor-pointer flex items-center gap-xs border border-sacred-red px-2 py-1" style="transition: transform 0.1s ease;" onmousedown="this.style.transform='scale(0.93)'" onmouseup="this.style.transform='scale(1)'" onmouseleave="this.style.transform='scale(1)'" ontouchstart="this.style.transform='scale(0.93)'" ontouchend="this.style.transform='scale(1)'" onclick="const el=document.getElementById('arbo-path-deck'); const willShow = el.style.display==='none'; el.style.display = willShow ? 'flex' : 'none'; el.classList.toggle('hidden', !willShow);">
 <span class="material-symbols-outlined text-[16px]">account_tree</span>
 <span class="" id="deck-part-text">I.1.2.3</span>
 </span>
@@ -1176,7 +1176,7 @@
             const isOpen = filter !== '' && filteredCards.length > 0;
 
             let html = `
-                <article class="bg-pure-white border border-absolute-black group hover:border-sacred-red hover:border-2 transition-all cursor-pointer relative" onclick="toggleArchiveFolder(${idx})">
+                <article class="bg-pure-white border border-absolute-black group hover:border-sacred-red transition-all cursor-pointer relative" onclick="toggleArchiveFolder(${idx})">
                     <div class="absolute -bottom-[4px] left-0 w-full h-[3px] border-b border-l border-r border-absolute-black z-[-1]"></div>
                     <div class="absolute -bottom-[7px] left-1 w-[calc(100%-8px)] h-[3px] border-b border-l border-r border-absolute-black z-[-2]"></div>
                     <div class="p-md flex items-start gap-md">
