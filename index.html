@@ -395,12 +395,7 @@
 </style></head>
 <body class="bg-surface-bright text-on-surface font-body-md min-h-screen flex flex-col selection:bg-sacred-red selection:text-pure-white pb-[100px]">
 <!-- TopAppBar -->
-<header class="w-full top-0 sticky z-40 bg-pure-white border-b border-absolute-black flex justify-center items-center h-16 px-margin-mobile md:px-margin-desktop relative" id="top-bar" style="display: flex;">
-<span onclick="document.getElementById('diag-overlay').style.display='flex'; document.getElementById('diag-content').textContent = JSON.stringify({history: JSON.parse(localStorage.getItem('quaerite_history')||'null'), progress: JSON.parse(localStorage.getItem('quaerite_progress')||'null'), assignments: JSON.parse(localStorage.getItem('quaerite_assignments')||'null')}, null, 2);" style="position:absolute; left:8px; top:8px; font-size:10px; color:#ccc; cursor:pointer; padding:4px;">diag</span>
-<div id="diag-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:9999; flex-direction:column; padding:20px;">
-<button onclick="document.getElementById('diag-overlay').style.display='none';" style="align-self:flex-end; background:white; border:none; padding:10px 20px; margin-bottom:10px; font-size:16px;">Fermer</button>
-<pre id="diag-content" style="background:white; color:black; padding:15px; overflow-y:auto; flex:1; font-size:11px; white-space:pre-wrap; word-break:break-all; border-radius:4px;"></pre>
-</div>
+<header class="w-full top-0 sticky z-40 bg-pure-white border-b border-absolute-black flex justify-center items-center h-16 px-margin-mobile md:px-margin-desktop" id="top-bar" style="display: flex;">
 <h1 class="font-display text-headline-lg tracking-tighter text-absolute-black uppercase truncate text-center" style="cursor:pointer; transition: transform 0.1s ease;" onclick="toggleDarkMode()" title="Cliquer pour changer de thème" onmousedown="this.style.transform='scale(0.93)'" onmouseup="this.style.transform='scale(1)'" onmouseleave="this.style.transform='scale(1)'" ontouchstart="this.style.transform='scale(0.93)'" ontouchend="this.style.transform='scale(1)'">
             QUAERITE!
         </h1>
@@ -544,6 +539,32 @@
 ;
 
     const contentPool = [deck1Cards, deck2Cards, deck3Cards, deck4Cards, deck5Cards, deck6Cards];
+
+    // Si le nombre de jeux disponibles a change depuis la derniere visite (ajout de nouveau contenu),
+    // le cache des assignations passees est perime (il a ete calcule avec un catalogue plus petit).
+    // On le reconstruit a partir de l'historique reel (qui, lui, dit precisement quel jeu a ete vu
+    // chaque jour) plutot que de tout effacer -- pour que "Cartes" et "Historique" restent cohérents.
+    (function checkPoolSizeChanged() {
+        const stored = localStorage.getItem('quaerite_pool_size');
+        const current = String(contentPool.length);
+        if (stored !== current) {
+            const hist = JSON.parse(localStorage.getItem('quaerite_history') || '{}');
+            const doneDates = Object.keys(hist).filter(d => hist[d].done).sort();
+            const rebuilt = {};
+            doneDates.forEach((date, i) => {
+                rebuilt[i + 1] = { deckIndex: hist[date].deckIndex, isRepeat: false };
+            });
+            const progressNow = JSON.parse(localStorage.getItem('quaerite_progress') || '{}');
+            if (progressNow.daysEngaged && progressNow.daysEngaged !== doneDates.length) {
+                progressNow.daysEngaged = doneDates.length;
+            }
+            localStorage.setItem('quaerite_progress', JSON.stringify(progressNow));
+            localStorage.setItem('quaerite_assignments', JSON.stringify(rebuilt));
+            localStorage.removeItem('quaerite_weekplans');
+            localStorage.setItem('quaerite_pool_size', current);
+        }
+    })();
+
 
     // ===================== MOTEUR DE PROGRESSION REEL =====================
     const LS_PROGRESS = 'quaerite_progress';
