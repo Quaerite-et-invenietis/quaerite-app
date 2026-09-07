@@ -391,10 +391,12 @@
     #history-full-grid .w-2.h-2 {
         margin: 4px auto 0;
     }
+
 </style></head>
 <body class="bg-surface-bright text-on-surface font-body-md min-h-screen flex flex-col selection:bg-sacred-red selection:text-pure-white pb-[100px]">
 <!-- TopAppBar -->
-<header class="w-full top-0 sticky z-40 bg-pure-white border-b border-absolute-black flex justify-center items-center h-16 px-margin-mobile md:px-margin-desktop" id="top-bar" style="display: flex;">
+<header class="w-full top-0 sticky z-40 bg-pure-white border-b border-absolute-black flex justify-center items-center h-16 px-margin-mobile md:px-margin-desktop relative" id="top-bar" style="display: flex;">
+<span onclick="alert(JSON.stringify({progress: JSON.parse(localStorage.getItem('quaerite_progress')||'null'), assignments: JSON.parse(localStorage.getItem('quaerite_assignments')||'null'), history: JSON.parse(localStorage.getItem('quaerite_history')||'null')}, null, 2))" style="position:absolute; left:8px; top:8px; font-size:10px; color:#ccc; cursor:pointer; padding:4px;">diag</span>
 <h1 class="font-display text-headline-lg tracking-tighter text-absolute-black uppercase truncate text-center" style="cursor:pointer; transition: transform 0.1s ease;" onclick="toggleDarkMode()" title="Cliquer pour changer de thème" onmousedown="this.style.transform='scale(0.93)'" onmouseup="this.style.transform='scale(1)'" onmouseleave="this.style.transform='scale(1)'" ontouchstart="this.style.transform='scale(0.93)'" ontouchend="this.style.transform='scale(1)'">
             QUAERITE!
         </h1>
@@ -493,6 +495,7 @@
 </tbody>
 </table>
 </div><div class="flex justify-center items-center gap-md mt-4 font-label-caps text-label-caps tracking-widest"><div class="flex items-center gap-xs"><div class="w-2 h-2 rounded-full bg-absolute-black"></div><span class="text-secondary">COMPLÉTÉ</span></div><div class="flex items-center gap-xs"><div class="w-2 h-2 rounded-full bg-sacred-red"></div><span class="text-secondary">PARFAIT</span></div></div>
+
 </section>
 </main>
 <!-- ARCHIVE VIEW -->
@@ -501,7 +504,7 @@
 <section class="flex flex-col gap-base">
 <div class="relative w-full border border-absolute-black bg-pure-white flex items-center group focus-within:border-sacred-red focus-within:border-2 transition-all">
 <span class="material-symbols-outlined ml-sm text-secondary group-focus-within:text-sacred-red">search</span>
-<input class="w-full bg-transparent border-none focus:ring-0 font-body-md text-absolute-black placeholder-secondary py-sm px-sm" id="archive-search" onkeyup="handleArchiveSearch()" placeholder="Rechercher par numéro de paragraphe ou mot-clé..." type="text">
+<input class="w-full bg-transparent border-none focus:ring-0 font-body-md text-absolute-black placeholder-secondary py-sm px-sm" id="archive-search" onkeyup="handleArchiveSearch()" placeholder="Rechercher (n° § ou mot-clé)" type="text">
 </div>
 </section>
 <!-- Hierarchy Folders -->
@@ -1184,7 +1187,8 @@
 
         archiveData.forEach((folder, idx) => {
             const filteredCards = folder.deck.filter(card =>
-                card.question.toLowerCase().includes(lowerFilter)
+                card.question.toLowerCase().includes(lowerFilter) ||
+                card.source.toLowerCase().includes(lowerFilter)
             );
 
             if (filter !== '' && filteredCards.length === 0) return;
