@@ -395,12 +395,7 @@
 </style></head>
 <body class="bg-surface-bright text-on-surface font-body-md min-h-screen flex flex-col selection:bg-sacred-red selection:text-pure-white pb-[100px]">
 <!-- TopAppBar -->
-<header class="w-full top-0 sticky z-40 bg-pure-white border-b border-absolute-black flex justify-center items-center h-16 px-margin-mobile md:px-margin-desktop relative" id="top-bar" style="display: flex;">
-<span onclick="document.getElementById('diag-overlay').style.display='flex'; document.getElementById('diag-content').textContent = JSON.stringify({history: JSON.parse(localStorage.getItem('quaerite_history')||'null'), progress: JSON.parse(localStorage.getItem('quaerite_progress')||'null'), assignments: JSON.parse(localStorage.getItem('quaerite_assignments')||'null'), pool_size: localStorage.getItem('quaerite_pool_size')}, null, 2);" style="position:absolute; left:8px; top:8px; font-size:10px; color:#ccc; cursor:pointer; padding:4px;">diag</span>
-<div id="diag-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:9999; flex-direction:column; padding:20px;">
-<button onclick="document.getElementById('diag-overlay').style.display='none';" style="align-self:flex-end; background:white; border:none; padding:10px 20px; margin-bottom:10px; font-size:16px;">Fermer</button>
-<pre id="diag-content" style="background:white; color:black; padding:15px; overflow-y:auto; flex:1; font-size:11px; white-space:pre-wrap; word-break:break-all; border-radius:4px;"></pre>
-</div>
+<header class="w-full top-0 sticky z-40 bg-pure-white border-b border-absolute-black flex justify-center items-center h-16 px-margin-mobile md:px-margin-desktop" id="top-bar" style="display: flex;">
 <h1 id="app-logo" class="font-display text-headline-lg tracking-tighter text-absolute-black uppercase truncate text-center" style="cursor:pointer; transition: transform 0.1s ease;" onclick="toggleDarkMode()" title="Cliquer pour changer de thème" onmousedown="this.style.transform='scale(0.93)'" onmouseup="this.style.transform='scale(1)'" onmouseleave="this.style.transform='scale(1)'" ontouchstart="this.style.transform='scale(0.93)'" ontouchend="this.style.transform='scale(1)'">
             QUAERITE!
         </h1>
