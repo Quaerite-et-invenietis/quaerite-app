@@ -704,7 +704,20 @@
 
     const progress = getOrInitProgress();
     const currentSessionNumber = isTodayDone() ? progress.daysEngaged : progress.daysEngaged + 1;
-    const todayAssignment = getOrCreateAssignment(currentSessionNumber);
+    let todayAssignment = getOrCreateAssignment(currentSessionNumber);
+
+    // Garde-fou systematique : si aujourd'hui est deja termine, l'historique (ce qui a ete
+    // reellement vu et note) fait toujours foi. Si le cache d'assignation ne correspond pas
+    // a l'historique pour une raison quelconque, on le corrige immediatement, a chaque chargement.
+    if (isTodayDone()) {
+        const histCheck = getHistory();
+        const todayEntry = histCheck[todayISO()];
+        if (todayEntry && todayEntry.deckIndex !== todayAssignment.deckIndex) {
+            todayAssignment = { deckIndex: todayEntry.deckIndex, isRepeat: todayAssignment.isRepeat || false };
+            saveAssignment(currentSessionNumber, todayAssignment);
+        }
+    }
+
     const todayDeck = contentPool[todayAssignment.deckIndex];
 
     // ===================== ETAT =====================
